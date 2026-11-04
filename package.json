@@ -14,6 +14,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "build-speaker-kit": "tsx scripts/create-speaker-kit.ts",
     "test": "tsx --test tests/*.test.ts",
     "test:e2e": "playwright test",
     "refresh-content": "tsx scripts/fetch-content.ts",

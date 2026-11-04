@@ -4,6 +4,7 @@ import ProjectCard from './ProjectCard.astro';
 import SpeakerKit from './SpeakerKit.astro';
 import Icon from './Icon.astro';
 import { profile, projects } from '../data/profile';
+import { careerEntries, selectedWork } from '../data/cv';
 import { route, t, type Locale, type Page } from '../i18n';
 interface Props {
   locale: Locale;
@@ -36,6 +37,7 @@ const descriptions = {
       <>
         <section class="about-grid section">
           <div class="prose">
+            <h2>{text.storyHeading}</h2>
             <p>{text.bio1}</p>
             <p>{text.bio2}</p>
             <div class="actions">
@@ -47,37 +49,132 @@ const descriptions = {
                 {text.speakerKit}
               </a>
             </div>
-            <div class="info-panel">
+          </div>
+          <figure class="about-headshot">
+            <img
+              src="/assets/photos/speaker-headshot-480.webp"
+              srcset="/assets/photos/speaker-headshot-480.webp 480w, /assets/photos/speaker-headshot-960.webp 960w"
+              sizes="(max-width: 780px) 280px, 360px"
+              alt={text.officialHeadshotAlt}
+              width="480"
+              height="640"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>{text.officialHeadshot}</figcaption>
+          </figure>
+        </section>
+        <section class="section cv-section">
+          <div class="section-heading">
+            <div>
               <h2>{text.experience}</h2>
-              <p>{text.experienceText}</p>
+              <p>{text.experienceIntro}</p>
             </div>
           </div>
-          <img
-            src="/assets/illustration/developer-workspace.svg"
-            alt={text.artAlt}
-            width="760"
-            height="600"
-          />
+          <ol class="career-list">
+            {careerEntries
+              .filter((entry) => entry.verified)
+              .map((entry) => (
+                <li class="card career-entry">
+                  <p class="eyebrow">{text.currentPosition}</p>
+                  <h3>{entry.role[locale]}</h3>
+                  <p class="career-organization">{entry.organization}</p>
+                  <p>{entry.summary[locale]}</p>
+                  <a class="small-link" href={entry.source}>
+                    {text.verifyProfile}
+                    <Icon name="arrow" size={16} />
+                  </a>
+                </li>
+              ))}
+          </ol>
+          <p class="editorial-note">{text.earlierCareerPending}</p>
+        </section>
+        <section class="section cv-section">
+          <div class="section-heading">
+            <div>
+              <h2>{text.selectedWork}</h2>
+              <p>{text.selectedWorkIntro}</p>
+            </div>
+          </div>
+          <div class="cv-work-grid">
+            {selectedWork.map((item) => (
+              <article class="card cv-work-card">
+                <p class="eyebrow">{item.type[locale]}</p>
+                <h3>{item.name}</h3>
+                <p>{item.description[locale]}</p>
+                <a class="small-link" href={item.href}>
+                  {text.viewWork}
+                  <Icon name="arrow" size={16} />
+                </a>
+              </article>
+            ))}
+          </div>
         </section>
         <section class="section">
           <div class="section-heading">
             <h2>{text.skills}</h2>
           </div>
-          <div class="skills-grid">
-            {text.areas.map((area, i) => (
-              <article class="card skill-card">
-                <span class={`mini-icon accent-${i}`}>
-                  <Icon name={area.icon} />
-                </span>
-                <h3>{area.title}</h3>
-                <p>{area.text}</p>
-              </article>
+          <ul class="expertise-list">
+            {text.expertise.map((area) => (
+              <li>{area}</li>
             ))}
-          </div>
+          </ul>
         </section>
-        <section class="section prose">
-          <h2>{text.beyond}</h2>
-          <p>{text.beyondText}</p>
+        <section class="section about-stories">
+          <div class="section-heading">
+            <div>
+              <h2>{text.beyond}</h2>
+              <p>{text.beyondText}</p>
+            </div>
+          </div>
+          <div class="about-photo-grid">
+            <article class="card about-photo-card">
+              <img
+                src="/assets/photos/about-community-960.webp"
+                alt={text.communityPhotoText}
+                width="960"
+                height="720"
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <h3>{text.communityPhotoTitle}</h3>
+                <p>{text.communityPhotoText}</p>
+              </div>
+            </article>
+            <article class="card about-photo-card">
+              <img
+                src="/assets/photos/about-ultra-run-600.webp"
+                srcset="/assets/photos/about-ultra-run-600.webp 600w, /assets/photos/about-ultra-run-900.webp 900w"
+                sizes="(max-width: 780px) 100vw, 33vw"
+                alt={text.runningPhotoText}
+                width="600"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <h3>{text.runningPhotoTitle}</h3>
+                <p>{text.runningPhotoText}</p>
+              </div>
+            </article>
+            <article class="card about-photo-card">
+              <img
+                src="/assets/photos/about-ace-600.webp"
+                srcset="/assets/photos/about-ace-600.webp 600w, /assets/photos/about-ace-900.webp 900w"
+                sizes="(max-width: 780px) 100vw, 33vw"
+                alt={text.acePhotoText}
+                width="600"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <h3>{text.acePhotoTitle}</h3>
+                <p>{text.acePhotoText}</p>
+              </div>
+            </article>
+          </div>
         </section>
       </>
     )}

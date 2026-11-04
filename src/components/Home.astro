@@ -46,11 +46,14 @@ const text = t(locale);
       </div>
       <figure class="hero-art">
         <img
-          src="/assets/illustration/developer-workspace.svg"
+          src="/assets/photos/hero-stackchan-960.webp"
+          srcset="/assets/photos/hero-stackchan-960.webp 960w, /assets/photos/hero-stackchan-1280.webp 1280w"
+          sizes="(max-width: 780px) calc(100vw - 36px), 48vw"
           alt={text.artAlt}
-          width="760"
-          height="600"
+          width="1280"
+          height="960"
           fetchpriority="high"
+          decoding="async"
         />
         <figcaption>{text.artCaption}</figcaption>
       </figure>
@@ -130,10 +133,17 @@ const text = t(locale);
             <Icon name="arrow" size={18} />
           </a>
         </div>
-        <div class="mic-art" aria-hidden="true">
-          <Icon name="mic" size={90} />
-          <span>hello, world.</span>
-        </div>
+        <img
+          class="speaking-promo-photo"
+          src="/assets/photos/home-ai-tour-800.webp"
+          srcset="/assets/photos/home-ai-tour-800.webp 800w, /assets/photos/home-ai-tour-1280.webp 1280w"
+          sizes="(max-width: 780px) calc(100vw - 84px), 300px"
+          alt={text.speakingPhotoAlt}
+          width="1280"
+          height="960"
+          loading="lazy"
+          decoding="async"
+        />
       </article>
       <article class="promo podcast-promo">
         <span class="mini-icon">

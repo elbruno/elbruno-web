@@ -1,29 +1,24 @@
-# Speaker kit editorial workflow
+# Speaker Kit editorial workflow
 
 ## Available now
 
-The speaker kit has an introduction and six factual **draft** biographies: English and Spanish at approximately 50, 100 and 200 words. All six come from `src\data\speaking.ts`. Language and length selectors, copy controls, a selectable fallback and a no-JavaScript biography library are implemented.
+The English `/speaking/` and Spanish `/es/speaking/` routes include:
 
-Drafts use owner-provided identity and role facts, focus areas, the podcast, and verified project purposes. They are labeled as awaiting editorial approval in both languages. These are not claimed to be previously approved conference biographies.
+- Bruno's verified name and Cloud Advocate at Microsoft role, the official headshot and a concise organizer profile.
+- Three authentic photo previews with individual downloads. The podium images are labeled as speaking photos, not headshots.
+- A complete downloadable archive at `public/downloads/speaker/speaker-kit.zip`. It contains exactly the three official photos, `bios-en.txt`, `bios-es.txt` and `README.txt`. The archive can be rebuilt with `npm run build-speaker-kit`.
+- Six factual draft biographies, English and Spanish at approximately 50, 100 and 200 words, with language and length controls, copy buttons, accessible status messages and a no-JavaScript version.
+- Speaking topics, media-use notes and a public LinkedIn contact route. No unverified event list, CV, personal email or dead form is shown.
 
-## Required owner materials
+The three individual photo downloads keep their exact source filenames. High-quality public copies preserve source dimensions and have EXIF/GPS metadata removed. The source masters remain unchanged. The archive identifies each biography as a draft and explains that photo reuse rights and credits must be confirmed before publication.
 
-- Review and approve the six biography variants, including nuanced Spanish phrasing.
-- Supply actual approved headshots and the rights/credit instructions for each.
-- Supply a maintained CV PDF or approve a CV generated solely from verified data.
-- Supply actual career employers, positions and dates for a chronological timeline.
-- Supply selected session/recording/slide URLs and a verified event invitation method.
+## Required owner approvals
 
-Until then, the UI shows an honest photo-pending state, omits CV downloads and history, links the public LinkedIn profile, and does not invent an email or contact form.
+- Review and approve the six biography variants, including Spanish wording.
+- Confirm photo rights, photographer credits and organizer reuse terms.
+- Supply URLs for selected past sessions, recordings or slides if they should be listed.
+- Supply a maintained CV or approve a CV based only on verified facts.
+- Supply verified career history and dates before adding a timeline.
+- Confirm the preferred organizer invitation/contact process.
 
-## Adding real photographs
-
-Store approved originals and web/download variants under `public\assets\speaking\`. Suggested filename convention: `bruno-capuano-headshot-01-1200.jpg`. Keep a local provenance record identifying the approval, photographer, required credit, allowed uses and source file. Do not infer permission from a photo merely being online.
-
-Provide a useful organizer download resolution and a small optimized gallery thumbnail. Include dimensions, file type and descriptive alt text. Make downloads link to real files, and verify status codes, names and image dimensions before exposing them. If a rights field or approval is unknown, do not publish that photo.
-
-Keep website illustrations in a clearly separate section. No generated face, avatar or robot can substitute for an approved professional photograph.
-
-## Approval checklist
-
-Confirm facts against provided primary sources; do not extend a bio with invented awards, appearances, dates or metrics. Have the owner review EN/ES versions. Remove the public draft notice only after approval is recorded. Keep the existing length and clipboard tests, then test obtaining the 100-word Spanish bio and an approved photo in under one minute.
+Do not remove the biography draft notice or the photo-rights notice until the corresponding owner approvals are recorded. See `docs/photo-asset-manifest.md` and `docs/media-usage.md` for source paths, processing, rights status and alt text.

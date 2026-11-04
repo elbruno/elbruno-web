@@ -8,121 +8,248 @@ interface Props {
 }
 const { locale } = Astro.props;
 const text = t(locale);
+const officialHeadshotUrl = new URL(
+  '/downloads/speaker/21-11%20Bruno%20Headshot%20for%20Msft.jpg',
+  Astro.site,
+).href;
+const photos = [
+  {
+    key: 'headshot',
+    title: text.officialHeadshot,
+    alt: text.officialHeadshotAlt,
+    src: '/assets/photos/speaker-headshot-480.webp',
+    srcSet:
+      '/assets/photos/speaker-headshot-480.webp 480w, /assets/photos/speaker-headshot-960.webp 960w',
+    width: 480,
+    height: 640,
+    originalWidth: 3072,
+    originalHeight: 4096,
+    size: '1.6',
+    file: '21-11 Bruno Headshot for Msft.jpg',
+    download: text.downloadHeadshot,
+    path: '/downloads/speaker/21-11%20Bruno%20Headshot%20for%20Msft.jpg',
+  },
+  {
+    key: 'podiumOne',
+    title: text.podiumPhotoOne,
+    alt: text.podiumPhotoOneAlt,
+    src: '/assets/photos/speaker-podium-1-960.webp',
+    srcSet:
+      '/assets/photos/speaker-podium-1-960.webp 960w, /assets/photos/speaker-podium-1-1440.webp 1440w',
+    width: 960,
+    height: 440,
+    originalWidth: 4608,
+    originalHeight: 2112,
+    size: '1.7',
+    file: '22-01 Bruno speaking in Podioum 1.jpg',
+    download: text.downloadPodiumOne,
+    path: '/downloads/speaker/22-01%20Bruno%20speaking%20in%20Podioum%201.jpg',
+  },
+  {
+    key: 'podiumTwo',
+    title: text.podiumPhotoTwo,
+    alt: text.podiumPhotoTwoAlt,
+    src: '/assets/photos/speaker-podium-2-960.webp',
+    srcSet:
+      '/assets/photos/speaker-podium-2-960.webp 960w, /assets/photos/speaker-podium-2-1440.webp 1440w',
+    width: 960,
+    height: 440,
+    originalWidth: 4608,
+    originalHeight: 2112,
+    size: '1.8',
+    file: '22-01 Bruno speaking in Podioum 2.jpg',
+    download: text.downloadPodiumTwo,
+    path: '/downloads/speaker/22-01%20Bruno%20speaking%20in%20Podioum%202.jpg',
+  },
+] as const;
 ---
 
 <div
-  class="speaker-grid"
+  class="speaker-kit"
   data-speaker-kit
   data-bios={JSON.stringify(bios)}
   data-copied={text.copied}
   data-copy-failed={text.copyFailed}
+  data-copy-details-label={text.copyDetails}
+  data-headshot-url={officialHeadshotUrl}
 >
-  <div>
-    <section class="card speaker-panel">
-      <h2>{text.titleLabel}</h2>
-      <p id="speaker-title">{text.professionalTitle}</p>
-      <button class="button secondary" style="margin-top: 18px" data-copy-title>
-        <Icon name="copy" size={18} />
-        {text.copyTitle}
-      </button>
-      <p class="copy-status" data-title-status role="status"></p>
-    </section>
-    <section class="card speaker-panel">
-      <h2>{text.bios}</h2>
-      <p class="notice">{text.biosNote}</p>
-      <div class="bio-controls">
-        <label>
-          {locale === 'en' ? 'Biography language' : 'Idioma de la biografía'}
-          <select id="bio-language">
-            <option value="en" selected={locale === 'en'}>
-              English
-            </option>
-            <option value="es" selected={locale === 'es'}>
-              Español
-            </option>
-          </select>
-        </label>
-        <label>
-          {text.length}
-          <select id="bio-length">
-            {(['50', '100', '200'] as const).map((length) => (
-              <option value={length} selected={length === '100'}>
-                ~{length} {text.words}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <p class="bio-text" id="bio-text" lang={locale} tabindex="0">
-        {bios[locale]['100']}
-      </p>
-      <button class="button primary" data-copy-bio>
-        <Icon name="copy" size={18} />
-        {text.copy}
-      </button>
-      <p class="copy-status" data-bio-status role="status"></p>
-      <noscript>
-        <div class="info-panel">
-          {Object.entries(bios).map(([lang, entries]) => (
-            <div lang={lang}>
-              {Object.entries(entries).map(([length, bio]) => (
-                <details>
-                  <summary>
-                    {lang.toUpperCase()} ~{length}
-                  </summary>
-                  <p>{bio}</p>
-                </details>
-              ))}
-            </div>
-          ))}
-        </div>
-      </noscript>
-    </section>
-  </div>
-  <aside>
-    <section class="card speaker-panel">
-      <h2>{text.photos}</h2>
-      <div class="pending-photo">
-        <span class="mini-icon">
-          <Icon name="people" size={27} />
-        </span>
-        <h3>{text.photosPending}</h3>
-        <p>{text.photosText}</p>
-      </div>
-    </section>
-    <section class="card speaker-panel">
-      <h2>{text.topics}</h2>
-      <ul class="topic-list">
-        {text.topicsList.map((topic) => (
-          <li>{topic}</li>
-        ))}
-      </ul>
-    </section>
-    <section class="card speaker-panel">
-      <h2>{text.illustrations}</h2>
-      <img
-        class="illustration-preview"
-        src="/assets/robot/desk-robot.svg"
-        alt={
-          locale === 'en'
-            ? 'Original illustrated desktop robot'
-            : 'Ilustración original de un robot de escritorio'
-        }
-        width="240"
-        height="260"
-        loading="lazy"
-      />
-      <p>{text.illustrationText}</p>
-    </section>
-    <section class="card speaker-panel">
-      <h2>{text.resources}</h2>
-      <p>{text.resourcesText}</p>
-      <a class="small-link" style="margin-top: 18px" href={profile.linkedin}>
-        {text.connect}
-        <Icon name="arrow" size={17} />
+  <section class="card organizer-profile">
+    <img
+      src="/assets/photos/speaker-headshot-480.webp"
+      srcset="/assets/photos/speaker-headshot-480.webp 480w, /assets/photos/speaker-headshot-960.webp 960w"
+      sizes="(max-width: 780px) 120px, 160px"
+      alt={text.officialHeadshotAlt}
+      width="480"
+      height="640"
+      loading="lazy"
+      decoding="async"
+    />
+    <div>
+      <p class="eyebrow">{text.organizerResources}</p>
+      <h2>Bruno Capuano</h2>
+      <p class="organizer-role">{text.professionalTitle}</p>
+      <p>{text.profileSummary}</p>
+      <a
+        class="button primary"
+        href="/downloads/speaker/speaker-kit.zip"
+        download="bruno-capuano-speaker-kit.zip"
+      >
+        <Icon name="download" size={18} />
+        {text.downloadKit}
       </a>
-    </section>
-  </aside>
+      <p class="kit-contents">{text.kitContents}</p>
+    </div>
+  </section>
+
+  <section class="card speaker-panel speaker-media-panel">
+    <h2>{text.photos}</h2>
+    <div class="speaker-photo-list">
+      {photos.map((photo) => (
+        <article class="speaker-photo-card">
+          <img
+            src={photo.src}
+            srcset={photo.srcSet}
+            sizes="(max-width: 780px) 50vw, 33vw"
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <h3>{photo.title}</h3>
+            <p class="photo-metadata">
+              {text.photoDimensions
+                .replace('{width}', String(photo.originalWidth))
+                .replace('{height}', String(photo.originalHeight))
+                .replace('{size}', photo.size)}
+            </p>
+            <a
+              class="button secondary photo-download"
+              href={photo.path}
+              download={photo.file}
+              aria-label={`${photo.download}: ${photo.title}`}
+            >
+              <Icon name="download" size={17} />
+              {photo.download}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="photo-rights-note">{text.mediaRightsPending}</p>
+  </section>
+
+  <div class="speaker-grid">
+    <div>
+      <section class="card speaker-panel">
+        <h2>{text.titleLabel}</h2>
+        <p id="speaker-title">{text.professionalTitle}</p>
+        <button class="button secondary" style="margin-top: 18px" data-copy-title>
+          <Icon name="copy" size={18} />
+          {text.copyTitle}
+        </button>
+        <p class="copy-status" data-title-status role="status"></p>
+      </section>
+      <section class="card speaker-panel">
+        <h2>{text.bios}</h2>
+        <p class="notice">{text.biosNote}</p>
+        <div class="bio-controls">
+          <label>
+            {locale === 'en' ? 'Biography language' : 'Idioma de la biografía'}
+            <select id="bio-language">
+              <option value="en" selected={locale === 'en'}>
+                English
+              </option>
+              <option value="es" selected={locale === 'es'}>
+                Español
+              </option>
+            </select>
+          </label>
+          <label>
+            {text.length}
+            <select id="bio-length">
+              {(['50', '100', '200'] as const).map((length) => (
+                <option value={length} selected={length === '100'}>
+                  ~{length} {text.words}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <p class="bio-text" id="bio-text" lang={locale} tabindex="0">
+          {bios[locale]['100']}
+        </p>
+        <button class="button primary" data-copy-bio>
+          <Icon name="copy" size={18} />
+          {text.copy}
+        </button>
+        <button class="button secondary" data-copy-details>
+          <Icon name="copy" size={18} />
+          {text.copyDetails}
+        </button>
+        <p class="copy-status" data-bio-status role="status"></p>
+        <textarea
+          class="clipboard-fallback"
+          data-clipboard-fallback
+          hidden
+          readonly
+          aria-label={text.copyFallbackLabel}
+        ></textarea>
+        <noscript>
+          <div class="info-panel">
+            {Object.entries(bios).map(([lang, entries]) => (
+              <div lang={lang}>
+                {Object.entries(entries).map(([length, bio]) => (
+                  <details>
+                    <summary>
+                      {lang.toUpperCase()} ~{length}
+                    </summary>
+                    <p>{bio}</p>
+                  </details>
+                ))}
+              </div>
+            ))}
+          </div>
+        </noscript>
+      </section>
+    </div>
+
+    <aside>
+      <section class="card speaker-panel">
+        <h2>{text.topics}</h2>
+        <ul class="topic-list">
+          {text.topicsList.map((topic) => (
+            <li>{topic}</li>
+          ))}
+        </ul>
+      </section>
+      <section class="card speaker-panel">
+        <h2>{text.resources}</h2>
+        <p>{text.eventContactNote}</p>
+        <a class="small-link" style="margin-top: 18px" href={profile.linkedin}>
+          {text.connect}
+          <Icon name="arrow" size={17} />
+        </a>
+      </section>
+      <section class="card speaker-panel">
+        <h2>{text.illustrations}</h2>
+        <img
+          class="illustration-preview"
+          src="/assets/robot/desk-robot.svg"
+          alt={
+            locale === 'en'
+              ? 'Original illustrated desktop robot'
+              : 'Ilustración original de un robot de escritorio'
+          }
+          width="240"
+          height="260"
+          loading="lazy"
+        />
+        <p>{text.illustrationText}</p>
+      </section>
+    </aside>
+  </div>
 </div>
 <script>
   import type { bios as BioData, BioLength } from '../data/speaking';
@@ -137,30 +264,40 @@ const text = t(locale);
       bio.textContent = data[language.value as Locale][length.value as BioLength];
       bio.lang = language.value;
       kit!.querySelector('[data-bio-status]')!.textContent = '';
+      kit!.querySelector<HTMLTextAreaElement>('[data-clipboard-fallback]')!.hidden = true;
     }
     language.addEventListener('change', updateBio);
     length.addEventListener('change', updateBio);
-    async function copy(source: HTMLElement, status: Element) {
+    async function copy(value: string, status: Element) {
+      const fallback = kit!.querySelector<HTMLTextAreaElement>('[data-clipboard-fallback]')!;
       try {
-        await navigator.clipboard.writeText(source.textContent ?? '');
+        await navigator.clipboard.writeText(value);
+        fallback.hidden = true;
         status.textContent = kit!.dataset.copied!;
       } catch {
+        fallback.value = value;
+        fallback.hidden = false;
+        fallback.focus();
+        fallback.select();
         status.textContent = kit!.dataset.copyFailed!;
-        const range = document.createRange();
-        range.selectNodeContents(source);
-        const selection = window.getSelection();
-        selection?.removeAllRanges();
-        selection?.addRange(range);
-        source.focus();
       }
     }
     kit
       .querySelector('[data-copy-bio]')
-      ?.addEventListener('click', () => copy(bio, kit.querySelector('[data-bio-status]')!));
+      ?.addEventListener('click', () =>
+        copy(bio.textContent ?? '', kit.querySelector('[data-bio-status]')!),
+      );
+    kit.querySelector('[data-copy-details]')?.addEventListener('click', () => {
+      const details = `${bio.textContent ?? ''}\n\n${kit!.dataset.copyDetailsLabel}: ${kit!.dataset.headshotUrl}`;
+      copy(details, kit!.querySelector('[data-bio-status]')!);
+    });
     kit
       .querySelector('[data-copy-title]')
       ?.addEventListener('click', () =>
-        copy(document.querySelector('#speaker-title')!, kit.querySelector('[data-title-status]')!),
+        copy(
+          document.querySelector('#speaker-title')!.textContent ?? '',
+          kit.querySelector('[data-title-status]')!,
+        ),
       );
   }
 </script>

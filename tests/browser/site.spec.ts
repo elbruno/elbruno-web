@@ -86,7 +86,90 @@ test('speaker kit switches language and length and copies actual Spanish text', 
   );
   await page.locator('#bio-length').selectOption('200');
   expect((await page.locator('#bio-text').innerText()).split(/\s+/).length).toBeGreaterThan(170);
-  await expect(page.getByText('Photos coming soon')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Official headshot' })).toBeVisible();
+  await expect(page.locator('.speaker-photo-card a[download]')).toHaveCount(3);
+  await page.getByRole('button', { name: 'Copy speaker details' }).click();
+  const copiedDetails = await page.evaluate(() => navigator.clipboard.readText());
+  expect(copiedDetails).toContain('Bruno Capuano es Cloud Advocate');
+  expect(copiedDetails).toContain(
+    'https://elbruno.com/downloads/speaker/21-11%20Bruno%20Headshot%20for%20Msft.jpg',
+  );
+});
+test('speaker kit exposes a selectable fallback when clipboard access is blocked', async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText: () => Promise.reject(new Error('Clipboard blocked')) },
+    });
+  });
+  await page.goto('/speaking/');
+  await page.getByRole('button', { name: 'Copy bio', exact: true }).click();
+  await expect(page.locator('[data-bio-status]')).toHaveText(
+    'Clipboard access is unavailable. The text is selected below; copy it with your keyboard.',
+  );
+  const fallback = page.locator('[data-clipboard-fallback]');
+  await expect(fallback).toBeVisible();
+  expect(await fallback.inputValue()).toBe(await page.locator('#bio-text').innerText());
+  expect(
+    await fallback.evaluate((element: HTMLTextAreaElement) => element.selectionEnd),
+  ).toBeGreaterThan(0);
+  await page.locator('#bio-length').selectOption('200');
+  await expect(fallback).toBeHidden();
+  await expect(page.locator('[data-bio-status]')).toBeEmpty();
+});
+test('About provides localized current experience, selected work and no invented CV download', async ({
+  page,
+}) => {
+  for (const [route, currentRole, workHeading] of [
+    ['/about/', 'Cloud Advocate', 'Selected work'],
+    ['/es/about/', 'Cloud Advocate', 'Trabajo destacado'],
+  ]) {
+    await page.goto(route);
+    await expect(page.getByRole('heading', { name: currentRole })).toBeVisible();
+    await expect(page.getByRole('heading', { name: workHeading })).toBeVisible();
+    await expect(page.locator('.cv-work-card')).toHaveCount(4);
+    await expect(
+      page.getByText(/dates are not listed|No incluyo otros puestos ni fechas/),
+    ).toBeVisible();
+    await expect(page.getByRole('link', { name: /Download CV|Descargar CV/ })).toHaveCount(0);
+  }
+});
+test('organizers can download the three official photos and complete kit', async ({ page }) => {
+  await page.goto('/speaking/');
+  await expect(
+    page.getByRole('heading', { name: 'Speaker Kit for event organizers' }),
+  ).toBeVisible();
+  const expectedPhotos = [
+    '21-11 Bruno Headshot for Msft.jpg',
+    '22-01 Bruno speaking in Podioum 1.jpg',
+    '22-01 Bruno speaking in Podioum 2.jpg',
+  ];
+  const photoDownloads = page.locator('.speaker-photo-card a[download]');
+  await expect(photoDownloads).toHaveCount(expectedPhotos.length);
+  for (let index = 0; index < expectedPhotos.length; index++) {
+    const downloadPromise = page.waitForEvent('download');
+    await photoDownloads.nth(index).click();
+    expect((await downloadPromise).suggestedFilename()).toBe(expectedPhotos[index]);
+  }
+  const kitDownload = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Download the complete Speaker Kit (ZIP)' }).click();
+  expect((await kitDownload).suggestedFilename()).toBe('bruno-capuano-speaker-kit.zip');
+});
+test('Spanish organizers receive localized media downloads', async ({ page }) => {
+  await page.goto('/es/speaking/');
+  await expect(
+    page.getByRole('heading', { name: 'Speaker Kit para organizadores de eventos' }),
+  ).toBeVisible();
+  const photoDownloads = page.locator('.speaker-photo-card a[download]');
+  await expect(photoDownloads).toHaveCount(3);
+  const photoDownload = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Descargar retrato oficial: Retrato oficial' }).click();
+  expect((await photoDownload).suggestedFilename()).toBe('21-11 Bruno Headshot for Msft.jpg');
+  const kitDownload = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Descargar el Speaker Kit completo (ZIP)' }).click();
+  expect((await kitDownload).suggestedFilename()).toBe('bruno-capuano-speaker-kit.zip');
 });
 test('robot reacts, game lazy-loads and keyboard, touch and turn-based controls work', async ({
   page,

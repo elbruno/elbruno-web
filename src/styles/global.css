@@ -3,9 +3,77 @@
 * {
   box-sizing: border-box;
 }
+.about-grid .prose > h2 {
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+}
+.about-grid .prose > p + p {
+  margin-top: 14px;
+}
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
+}
+.cv-section .section-heading {
+  margin-bottom: 20px;
+}
+.career-list {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.career-entry {
+  padding: 24px;
+}
+.career-entry h3,
+.cv-work-card h3 {
+  margin-top: 7px;
+}
+.career-entry > p:not(.eyebrow),
+.cv-work-card > p:not(.eyebrow) {
+  margin-top: 9px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.career-organization {
+  color: var(--text);
+  font-weight: 650;
+}
+.career-entry .small-link,
+.cv-work-card .small-link {
+  margin-top: 14px;
+}
+.editorial-note {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.cv-work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.cv-work-card {
+  padding: 22px;
+}
+.expertise-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.expertise-list li {
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--brand-soft);
+  color: var(--brand);
+  font-size: 0.82rem;
+  font-weight: 650;
 }
 body {
   margin: 0;
@@ -233,7 +301,7 @@ nav a[aria-current] {
   grid-template-columns: 1.06fr 1fr;
   align-items: center;
   min-height: 555px;
-  gap: 0;
+  gap: 40px;
 }
 .hero-copy {
   padding-block: 58px;
@@ -258,7 +326,7 @@ nav a[aria-current] {
   box-shadow: 0 0 0 4px #4a9b8a17;
 }
 .hero h1 {
-  margin-top: 21px;
+  margin-top: 14px;
   white-space: nowrap;
 }
 .wave {
@@ -281,7 +349,7 @@ nav a[aria-current] {
 .hero-description {
   font-size: 1.04rem;
   line-height: 1.8;
-  margin-top: 16px;
+  margin-top: 12px;
   max-width: 510px;
 }
 .actions {
@@ -289,7 +357,7 @@ nav a[aria-current] {
   align-items: center;
   flex-wrap: wrap;
   gap: 11px;
-  margin-top: 28px;
+  margin-top: 22px;
 }
 .button {
   display: inline-flex;
@@ -328,24 +396,27 @@ nav a[aria-current] {
   gap: 9px;
   font-size: 0.83rem;
   font-weight: 600;
-  margin-top: 20px;
+  margin-top: 12px;
   text-decoration: none;
 }
 .hero-art {
-  margin-right: -70px;
-  margin-left: -5px;
+  margin: 0;
   position: relative;
 }
 .hero-art img {
   width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 18px 48px #3027461c;
 }
 .hero-art figcaption {
   font-size: 0.72rem;
   color: var(--muted);
-  text-align: center;
-  margin-top: -28px;
+  text-align: right;
+  margin-top: 10px;
   letter-spacing: 0.03em;
-  padding-bottom: 25px;
 }
 .section {
   padding-block: 42px;
@@ -545,6 +616,14 @@ nav a[aria-current] {
   align-items: center;
   gap: 20px;
   background: linear-gradient(135deg, var(--soft), var(--brand-soft));
+}
+.speaking-promo-photo {
+  flex: 0 0 240px;
+  width: 240px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 14px;
 }
 .mic-art {
   flex: 0 0 100px;
@@ -790,6 +869,51 @@ nav a[aria-current] {
   width: 100%;
   margin-inline: auto;
 }
+.about-headshot {
+  max-width: 360px;
+  width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 0 3px 0 var(--card-shadow);
+}
+.about-headshot img {
+  width: 100%;
+}
+.about-headshot figcaption {
+  padding: 10px 15px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  text-align: center;
+}
+.about-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.about-photo-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.about-photo-card:nth-child(2) img {
+  object-position: center 58%;
+}
+.about-photo-card:nth-child(3) img {
+  object-position: center 55%;
+}
+.about-photo-card > div {
+  padding: 18px 20px 20px;
+}
+.about-photo-card h3 {
+  font-size: 1rem;
+}
+.about-photo-card p {
+  margin-top: 8px;
+  font-size: 0.82rem;
+}
 .info-panel {
   padding: 30px;
   margin-top: 35px;
@@ -803,9 +927,41 @@ nav a[aria-current] {
 }
 .speaker-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
   gap: 26px;
   align-items: start;
+}
+.organizer-profile {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+  padding: 28px;
+  margin-bottom: 26px;
+}
+.organizer-profile > img {
+  width: 160px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 14px;
+}
+.organizer-profile h2 {
+  margin-top: 8px;
+}
+.organizer-profile > div > p:not(.eyebrow) {
+  margin-top: 11px;
+  max-width: 720px;
+  font-size: 0.9rem;
+}
+.organizer-profile .organizer-role {
+  color: var(--text);
+  font-weight: 650;
+}
+.organizer-profile .button {
+  margin-top: 17px;
+}
+.organizer-profile .kit-contents {
+  font-size: 0.76rem;
 }
 .speaker-panel {
   padding: 30px;
@@ -868,15 +1024,68 @@ select {
 .topic-list li {
   margin-block: 12px;
 }
-.pending-photo {
-  text-align: center;
-  padding-block: 10px;
+.speaker-photo-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
 }
-.pending-photo .mini-icon {
-  margin-bottom: 17px;
+.speaker-photo-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
 }
-.pending-photo h3 {
-  margin-bottom: 14px;
+.speaker-photo-card > img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--soft);
+}
+.speaker-photo-card:first-child > img {
+  aspect-ratio: 1;
+  object-position: center 32%;
+}
+.speaker-media-panel + .speaker-grid {
+  margin-top: 26px;
+}
+.speaker-photo-card h3 {
+  margin-top: 10px;
+  font-size: 0.93rem;
+}
+.speaker-photo-card .photo-metadata {
+  margin-top: 4px;
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+.photo-download {
+  margin-top: 11px;
+  min-height: 42px;
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.74rem;
+}
+.photo-download svg {
+  flex: 0 0 auto;
+}
+.clipboard-fallback:not([hidden]) {
+  display: block;
+  width: 100%;
+  min-height: 100px;
+  margin-top: 12px;
+  padding: 10px;
+  color: var(--text);
+  background: var(--soft);
+  border: 1px solid var(--button-border);
+  border-radius: 8px;
+  font: inherit;
+}
+.photo-rights-note {
+  margin-top: 20px;
+  padding: 13px 15px;
+  border-radius: 9px;
+  background: var(--soft);
+  font-size: 0.76rem !important;
 }
 .illustration-preview {
   width: 140px;
@@ -966,9 +1175,6 @@ dialog details p {
   .hero-grid {
     min-height: 500px;
   }
-  .hero-art {
-    margin-right: -45px;
-  }
   .hero h1 {
     font-size: 3.3rem;
   }
@@ -1036,7 +1242,7 @@ dialog details p {
     grid-template-columns: 1fr;
   }
   .hero-copy {
-    padding-block: 45px 10px;
+    padding-block: 36px 10px;
   }
   .hero h1 {
     font-size: clamp(2.6rem, 9.5vw, 4.2rem);
@@ -1113,6 +1319,23 @@ dialog details p {
   .about-grid img {
     max-width: 280px;
   }
+  .about-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .organizer-profile {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 20px;
+  }
+  .organizer-profile > img {
+    width: 120px;
+  }
+  .speaker-photo-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .speaking-promo-photo {
+    flex-basis: 190px;
+    width: 190px;
+  }
 }
 @media (max-width: 480px) {
   .container {
@@ -1143,7 +1366,7 @@ dialog details p {
     display: none;
   }
   .hero-copy {
-    padding-top: 36px;
+    padding-top: 27px;
   }
   .hero .actions {
     align-items: stretch;
@@ -1159,7 +1382,6 @@ dialog details p {
   }
   .hero-art figcaption {
     font-size: 0.63rem;
-    margin-top: -15px;
   }
   .identity-facts {
     grid-template-columns: 1fr;
@@ -1195,6 +1417,29 @@ dialog details p {
   }
   .promo {
     padding: 25px;
+  }
+  .speaking-promo {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .speaking-promo-photo {
+    flex: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .about-photo-grid {
+    grid-template-columns: 1fr;
+  }
+  .cv-work-grid {
+    grid-template-columns: 1fr;
+  }
+  .organizer-profile {
+    grid-template-columns: 1fr;
+    padding: 23px;
+  }
+  .organizer-profile > img {
+    width: 120px;
   }
   .social-links {
     gap: 8px;
