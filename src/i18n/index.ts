@@ -100,7 +100,7 @@ const en = {
     'Bruno shares practical demos and open-source experiments at the intersection of AI, .NET, Azure and GitHub.',
   downloadKit: 'Download the complete Speaker Kit (ZIP)',
   kitContents:
-    'Includes three official photographs, six English and Spanish biography drafts, and media-use notes.',
+    'Includes three official photographs and media-use notes. The longer biography drafts are being reviewed privately.',
   mediaRightsPending:
     'These are authentic photographs with location metadata removed. Reuse rights are not included; please confirm permission and credit before publishing.',
   eventContactNote:
@@ -146,12 +146,8 @@ const en = {
   speakingDescription: 'Speaker resources for event organizers, in English and Spanish.',
   titleLabel: 'Professional introduction',
   professionalTitle: 'Bruno Capuano, Cloud Advocate at Microsoft. AI, .NET, Azure and GitHub.',
-  bios: 'Biography library',
-  biosNote:
-    'Factual draft bios based on the provided profile. Editorial approval is pending. Please confirm the wording with Bruno before publishing.',
-  length: 'Bio length',
-  words: 'words',
-  copy: 'Copy bio',
+  publicSpeakerBio:
+    'He shares practical demos and open-source experiments at the intersection of AI, .NET, Azure and GitHub.',
   copyTitle: 'Copy introduction',
   copyDetails: 'Copy speaker details',
   copyFallbackLabel: 'Text to copy',
@@ -302,7 +298,7 @@ const es: typeof en = {
     'Bruno comparte demos prácticas y experimentos de código abierto sobre IA, .NET, Azure y GitHub.',
   downloadKit: 'Descargar el Speaker Kit completo (ZIP)',
   kitContents:
-    'Incluye tres fotografías oficiales, seis borradores de biografía en inglés y español, y notas de uso del material.',
+    'Incluye tres fotografías oficiales y notas de uso. Los borradores de biografía extensos se están revisando de forma privada.',
   mediaRightsPending:
     'Son fotografías auténticas sin metadatos de ubicación. No se transfieren derechos de reutilización; confirma permisos y créditos antes de publicarlas.',
   eventContactNote:
@@ -348,12 +344,8 @@ const es: typeof en = {
   speakingDescription: 'Recursos para organizadores de eventos, en inglés y español.',
   titleLabel: 'Presentación profesional',
   professionalTitle: 'Bruno Capuano, Cloud Advocate en Microsoft. IA, .NET, Azure y GitHub.',
-  bios: 'Biografías',
-  biosNote:
-    'Borradores basados en el perfil proporcionado, pendientes de aprobación editorial. Confirma el texto con Bruno antes de publicarlo.',
-  length: 'Extensión de la biografía',
-  words: 'palabras',
-  copy: 'Copiar biografía',
+  publicSpeakerBio:
+    'Comparte demos prácticas y experimentos de código abierto sobre IA, .NET, Azure y GitHub.',
   copyTitle: 'Copiar presentación',
   copyDetails: 'Copiar datos del speaker',
   copyFallbackLabel: 'Texto para copiar',

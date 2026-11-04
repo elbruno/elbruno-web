@@ -1,7 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { deflateRawSync } from 'node:zlib';
-import { bios } from '../src/data/speaking';
 
 interface ArchiveEntry {
   name: string;
@@ -66,23 +65,6 @@ function createZip(entries: ArchiveEntry[]) {
   return Buffer.concat([...localRecords, centralDirectory, end]);
 }
 
-function formatBios(language: 'en' | 'es') {
-  const heading = language === 'en' ? 'Draft biographies' : 'Borradores de biografía';
-  return [
-    `${heading} (${language.toUpperCase()})`,
-    language === 'en'
-      ? 'Owner editorial approval pending. Please confirm the wording before publication.'
-      : 'Pendientes de aprobación editorial del titular. Confirma el texto antes de publicarlo.',
-    '',
-    ...(['50', '100', '200'] as const).flatMap((length) => [
-      `~${length} ${language === 'en' ? 'words' : 'palabras'}`,
-      '',
-      bios[language][length],
-      '',
-    ]),
-  ].join('\n');
-}
-
 async function main() {
   const root = process.cwd();
   const speakerDir = path.join(root, 'public', 'downloads', 'speaker');
@@ -97,42 +79,32 @@ async function main() {
       data: await readFile(path.join(speakerDir, name)),
     })),
   );
-  entries.push(
-    {
-      name: 'bios-en.txt',
-      data: Buffer.from(formatBios('en'), 'utf8'),
-    },
-    {
-      name: 'bios-es.txt',
-      data: Buffer.from(formatBios('es'), 'utf8'),
-    },
-    {
-      name: 'README.txt',
-      data: Buffer.from(
-        [
-          'BRUNO CAPUANO SPEAKER KIT',
-          '',
-          'This organizer kit contains three authentic event photographs and six biography drafts.',
-          'The biographies are pending owner editorial approval. Confirm the wording before use.',
-          '',
-          'Public profile: https://elbruno.com/speaking/',
-          'LinkedIn: https://www.linkedin.com/in/elbruno/',
-          'GitHub: https://github.com/elbruno',
-          'Blog: https://elbruno.com',
-          'Podcast: https://notienenombre.com',
-          '',
-          'The photo files are high-quality JPEG copies with location metadata removed.',
-          'They have not been generatively edited. The original source photographs remain unchanged.',
-          'This download does not grant image reuse rights. Confirm permission and required credit',
-          'with Bruno before publishing or redistributing any photograph.',
-          '',
-          'The ZIP contains only the three official photos, bios-en.txt, bios-es.txt and this file.',
-          '',
-        ].join('\n'),
-        'utf8',
-      ),
-    },
-  );
+  entries.push({
+    name: 'README.txt',
+    data: Buffer.from(
+      [
+        'BRUNO CAPUANO SPEAKER KIT',
+        '',
+        'This organizer kit contains three authentic photographs.',
+        'A short public introduction and current resources are available at:',
+        'https://elbruno.com/speaking/',
+        '',
+        'LinkedIn: https://www.linkedin.com/in/elbruno/',
+        'GitHub: https://github.com/elbruno',
+        'Blog: https://elbruno.com',
+        'Podcast: https://notienenombre.com',
+        '',
+        'The photo files are JPEG copies with location metadata removed.',
+        'They have not been generatively edited. The original source photographs remain unchanged.',
+        'This download does not grant image reuse rights. Confirm permission and required credit',
+        'with Bruno before publishing or redistributing any photograph.',
+        '',
+        'The ZIP contains only the three official photos and this README.',
+        '',
+      ].join('\n'),
+      'utf8',
+    ),
+  });
 
   const output = path.join(speakerDir, 'speaker-kit.zip');
   await mkdir(speakerDir, { recursive: true });

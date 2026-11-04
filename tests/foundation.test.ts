@@ -6,6 +6,7 @@ import sharp from 'sharp';
 import { route, translations } from '../src/i18n/index';
 import { projects } from '../src/data/profile';
 import { careerEntries, selectedWork } from '../src/data/cv';
+import { bios } from '../src/data/speaking';
 
 test('language switching preserves every supported route', () => {
   for (const page of ['', 'about', 'projects', 'speaking'] as const) {
@@ -26,6 +27,9 @@ test('project descriptions preserve the verified teleprompter identity', () => {
   const prompt = projects.find((project) => project.slug === 'PromptDot')!;
   assert.match(prompt.en, /teleprompter/);
   assert.match(prompt.es, /teleprompter/);
+  const bot = projects.find((project) => project.slug === 'new-year-new-bot')!;
+  assert.match(bot.status.en, /coming soon/i);
+  assert.match(bot.status.es, /próximamente/i);
 });
 test('CV content contains only linked, verified career facts and evidence-backed work', () => {
   assert.ok(careerEntries.length > 0);
@@ -65,7 +69,7 @@ function readZipEntries(archive: Buffer) {
   return entries;
 }
 
-test('speaker kit ZIP contains only its three safe photos, draft bios and usage notes', async () => {
+test('speaker kit ZIP contains only its three photos and accurate usage notes', async () => {
   const archive = readZipEntries(await readFile('public/downloads/speaker/speaker-kit.zip'));
   const photoNames = [
     '21-11 Bruno Headshot for Msft.jpg',
@@ -74,12 +78,7 @@ test('speaker kit ZIP contains only its three safe photos, draft bios and usage 
   ];
   assert.deepEqual(
     [...archive.keys()].sort(),
-    [
-      'README.txt',
-      'bios-en.txt',
-      'bios-es.txt',
-      ...photoNames.map((name) => `photos/${name}`),
-    ].sort(),
+    ['README.txt', ...photoNames.map((name) => `photos/${name}`)].sort(),
   );
 
   for (const name of photoNames) {
@@ -93,7 +92,22 @@ test('speaker kit ZIP contains only its three safe photos, draft bios and usage 
     assert.equal(metadata.exif, undefined, `${name} contains no EXIF metadata`);
   }
 
-  assert.match(archive.get('bios-en.txt')!.toString(), /approval pending/i);
-  assert.match(archive.get('bios-es.txt')!.toString(), /pendientes de aprobación/i);
-  assert.match(archive.get('README.txt')!.toString(), /does not grant image reuse rights/i);
+  const readme = archive.get('README.txt')!.toString();
+  assert.match(readme, /does not grant image reuse rights/i);
+  assert.match(readme, /only the three official photos and this README/i);
+  assert.doesNotMatch(readme, /approved biography|bios-(en|es)\.txt/i);
+});
+test('all six unapproved biographies stay in the internal editorial checklist', async () => {
+  const checklist = await readFile('docs/editorial/CONTENT_APPROVAL_CHECKLIST.md', 'utf8').then(
+    (value) => value.replace(/^> ?/gm, ''),
+  );
+  assert.match(checklist, /BLOCKED BY OWNER/);
+  for (const [locale, variants] of Object.entries(bios)) {
+    for (const [length, bio] of Object.entries(variants)) {
+      assert.ok(
+        checklist.includes(bio),
+        `the ${locale} ${length}-word draft is available for editorial review`,
+      );
+    }
+  }
 });

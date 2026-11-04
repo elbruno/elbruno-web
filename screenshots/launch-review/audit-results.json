@@ -1,0 +1,986 @@
+{
+  "baseUrl": "http://127.0.0.1:4322",
+  "browser": "Chromium 156.0.8078.4",
+  "screenshots": [
+    {
+      "path": "screenshots/launch-review/desktop/home-en-light-desktop-full.png",
+      "page": "home",
+      "locale": "en",
+      "route": "/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/home-en-light-desktop-viewport.png",
+      "page": "home",
+      "locale": "en",
+      "route": "/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Above the fold",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/home-es-light-desktop-full.png",
+      "page": "home",
+      "locale": "es",
+      "route": "/es/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/home-es-light-desktop-viewport.png",
+      "page": "home",
+      "locale": "es",
+      "route": "/es/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Above the fold",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/about-en-light-desktop-full.png",
+      "page": "about",
+      "locale": "en",
+      "route": "/about/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/about-en-light-desktop-viewport.png",
+      "page": "about",
+      "locale": "en",
+      "route": "/about/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Above the fold",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/about-es-light-desktop-full.png",
+      "page": "about",
+      "locale": "es",
+      "route": "/es/about/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/about-es-light-desktop-viewport.png",
+      "page": "about",
+      "locale": "es",
+      "route": "/es/about/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Above the fold",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/speaking-en-light-desktop-full.png",
+      "page": "speaking",
+      "locale": "en",
+      "route": "/speaking/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/speaking-es-light-desktop-full.png",
+      "page": "speaking",
+      "locale": "es",
+      "route": "/es/speaking/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/projects-en-light-desktop-full.png",
+      "page": "projects",
+      "locale": "en",
+      "route": "/projects/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/projects-es-light-desktop-full.png",
+      "page": "projects",
+      "locale": "es",
+      "route": "/es/projects/",
+      "theme": "light",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/home-en-dark-desktop-full.png",
+      "page": "home",
+      "locale": "en",
+      "route": "/",
+      "theme": "dark",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/home-es-dark-desktop-full.png",
+      "page": "home",
+      "locale": "es",
+      "route": "/es/",
+      "theme": "dark",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/speaking-en-dark-desktop-full.png",
+      "page": "speaking",
+      "locale": "en",
+      "route": "/speaking/",
+      "theme": "dark",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/desktop/speaking-es-dark-desktop-full.png",
+      "page": "speaking",
+      "locale": "es",
+      "route": "/es/speaking/",
+      "theme": "dark",
+      "viewport": "1440x900",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/home-en-light-mobile-full.png",
+      "page": "home",
+      "locale": "en",
+      "route": "/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/home-en-light-mobile-viewport.png",
+      "page": "home",
+      "locale": "en",
+      "route": "/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Above the fold",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/home-es-light-mobile-full.png",
+      "page": "home",
+      "locale": "es",
+      "route": "/es/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/home-es-light-mobile-viewport.png",
+      "page": "home",
+      "locale": "es",
+      "route": "/es/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Above the fold",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/about-en-light-mobile-full.png",
+      "page": "about",
+      "locale": "en",
+      "route": "/about/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/about-en-light-mobile-viewport.png",
+      "page": "about",
+      "locale": "en",
+      "route": "/about/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Above the fold",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/about-es-light-mobile-full.png",
+      "page": "about",
+      "locale": "es",
+      "route": "/es/about/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/about-es-light-mobile-viewport.png",
+      "page": "about",
+      "locale": "es",
+      "route": "/es/about/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Above the fold",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/speaking-en-light-mobile-full.png",
+      "page": "speaking",
+      "locale": "en",
+      "route": "/speaking/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/speaking-es-light-mobile-full.png",
+      "page": "speaking",
+      "locale": "es",
+      "route": "/es/speaking/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/projects-en-light-mobile-full.png",
+      "page": "projects",
+      "locale": "en",
+      "route": "/projects/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/projects-es-light-mobile-full.png",
+      "page": "projects",
+      "locale": "es",
+      "route": "/es/projects/",
+      "theme": "light",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/home-en-dark-mobile-full.png",
+      "page": "home",
+      "locale": "en",
+      "route": "/",
+      "theme": "dark",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/home-es-dark-mobile-full.png",
+      "page": "home",
+      "locale": "es",
+      "route": "/es/",
+      "theme": "dark",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/speaking-en-dark-mobile-full.png",
+      "page": "speaking",
+      "locale": "en",
+      "route": "/speaking/",
+      "theme": "dark",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    },
+    {
+      "path": "screenshots/launch-review/mobile/speaking-es-dark-mobile-full.png",
+      "page": "speaking",
+      "locale": "es",
+      "route": "/es/speaking/",
+      "theme": "dark",
+      "viewport": "390x844",
+      "type": "Full page",
+      "issues": [],
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      }
+    }
+  ],
+  "routes": [
+    {
+      "route": "/",
+      "locale": "en",
+      "theme": "light",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/",
+      "locale": "es",
+      "theme": "light",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/about/",
+      "locale": "en",
+      "theme": "light",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/about/",
+      "locale": "es",
+      "theme": "light",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/speaking/",
+      "locale": "en",
+      "theme": "light",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/speaking/",
+      "locale": "es",
+      "theme": "light",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/projects/",
+      "locale": "en",
+      "theme": "light",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/projects/",
+      "locale": "es",
+      "theme": "light",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/",
+      "locale": "en",
+      "theme": "dark",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/",
+      "locale": "es",
+      "theme": "dark",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/speaking/",
+      "locale": "en",
+      "theme": "dark",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/speaking/",
+      "locale": "es",
+      "theme": "dark",
+      "viewport": "1440x900",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 1440,
+        "documentWidth": 1440,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/",
+      "locale": "en",
+      "theme": "light",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/",
+      "locale": "es",
+      "theme": "light",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/about/",
+      "locale": "en",
+      "theme": "light",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/about/",
+      "locale": "es",
+      "theme": "light",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/speaking/",
+      "locale": "en",
+      "theme": "light",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/speaking/",
+      "locale": "es",
+      "theme": "light",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/projects/",
+      "locale": "en",
+      "theme": "light",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/projects/",
+      "locale": "es",
+      "theme": "light",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/",
+      "locale": "en",
+      "theme": "dark",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/",
+      "locale": "es",
+      "theme": "dark",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/speaking/",
+      "locale": "en",
+      "theme": "dark",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    },
+    {
+      "route": "/es/speaking/",
+      "locale": "es",
+      "theme": "dark",
+      "viewport": "390x844",
+      "status": 200,
+      "audit": {
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "brokenImages": [],
+        "visibleBodyText": true
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "issues": []
+    }
+  ],
+  "performance": [
+    {
+      "route": "/",
+      "viewport": "390x844",
+      "theme": "light",
+      "navigation": {
+        "domContentLoadedMs": 26,
+        "loadEventMs": 28
+      },
+      "lcpMs": 120,
+      "cls": 0,
+      "resourceCount": 7,
+      "transferBytes": 147670,
+      "imageTransferBytes": 139443,
+      "largestImages": [
+        {
+          "url": "/assets/photos/hero-stackchan-960.webp",
+          "bytes": 84110
+        },
+        {
+          "url": "/assets/photos/home-ai-tour-800.webp",
+          "bytes": 53708
+        },
+        {
+          "url": "/assets/illustration/project-prompt.svg",
+          "bytes": 817
+        },
+        {
+          "url": "/assets/illustration/project-bot.svg",
+          "bytes": 808
+        }
+      ]
+    }
+  ]
+}

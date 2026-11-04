@@ -21,7 +21,7 @@ export const projects = [
     tags: ['AI', '.NET', 'Hardware'],
     en: 'An AI desk companion experiment with M5Stack StackChan and .NET. A little hardware, a lot of possibility.',
     es: 'Un experimento de compañero de escritorio con IA, M5Stack StackChan y .NET. Un poco de hardware y muchas posibilidades.',
-    status: { en: 'In development', es: 'En desarrollo' },
+    status: { en: 'Coming soon', es: 'Próximamente' },
   },
   {
     name: 'PromptDot',
