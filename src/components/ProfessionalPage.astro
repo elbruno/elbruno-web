@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from './ProjectCard.astro';
+import SpeakerKit from './SpeakerKit.astro';
+import Icon from './Icon.astro';
+import { profile, projects } from '../data/profile';
+import { route, t, type Locale, type Page } from '../i18n';
+interface Props {
+  locale: Locale;
+  page: Exclude<Page, ''>;
+}
+const { locale, page } = Astro.props;
+const text = t(locale);
+const headings = {
+  about: text.aboutTitle,
+  projects: text.projectsTitle,
+  speaking: text.speakingTitle,
+};
+const descriptions = {
+  about: text.aboutDescription,
+  projects: text.projectsDescription,
+  speaking: text.speakingDescription,
+};
+---
+
+<Layout locale={locale} page={page} title={text.nav[page]} description={descriptions[page]}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">{text.nav[page]} / Bruno Capuano</p>
+      <h1>{headings[page]}</h1>
+      <p>{descriptions[page]}</p>
+    </div>
+  </section>
+  <div class="container page-content">
+    {page === 'about' && (
+      <>
+        <section class="about-grid section">
+          <div class="prose">
+            <p>{text.bio1}</p>
+            <p>{text.bio2}</p>
+            <div class="actions">
+              <a class="button primary" href={profile.linkedin}>
+                {text.connect}
+                <Icon name="arrow" size={18} />
+              </a>
+              <a class="button secondary" href={route(locale, 'speaking')}>
+                {text.speakerKit}
+              </a>
+            </div>
+            <div class="info-panel">
+              <h2>{text.experience}</h2>
+              <p>{text.experienceText}</p>
+            </div>
+          </div>
+          <img
+            src="/assets/illustration/developer-workspace.svg"
+            alt={text.artAlt}
+            width="760"
+            height="600"
+          />
+        </section>
+        <section class="section">
+          <div class="section-heading">
+            <h2>{text.skills}</h2>
+          </div>
+          <div class="skills-grid">
+            {text.areas.map((area, i) => (
+              <article class="card skill-card">
+                <span class={`mini-icon accent-${i}`}>
+                  <Icon name={area.icon} />
+                </span>
+                <h3>{area.title}</h3>
+                <p>{area.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section class="section prose">
+          <h2>{text.beyond}</h2>
+          <p>{text.beyondText}</p>
+        </section>
+      </>
+    )}
+    {page === 'projects' && (
+      <section class="section">
+        <p class="notice">{text.projectsNote}</p>
+        <div class="projects-grid" style="margin-top: 30px">
+          {projects.map((project) => (
+            <ProjectCard project={project} locale={locale} />
+          ))}
+        </div>
+        <a class="small-link" style="margin-top: 30px" href={profile.github}>
+          GitHub <Icon name="arrow" size={17} />
+        </a>
+      </section>
+    )}
+    {page === 'speaking' && <SpeakerKit locale={locale} />}
+  </div>
+</Layout>

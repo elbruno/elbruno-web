@@ -1,0 +1,9 @@
+---
+import ProfessionalPage from '../../components/ProfessionalPage.astro';
+export function getStaticPaths() {
+  return ['about', 'projects', 'speaking'].map((page) => ({ params: { page } }));
+}
+const page = Astro.params.page as 'about' | 'projects' | 'speaking';
+---
+
+<ProfessionalPage locale="es" page={page} />

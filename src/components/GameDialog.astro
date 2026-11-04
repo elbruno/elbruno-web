@@ -1,0 +1,63 @@
+---
+import { t, type Locale } from '../i18n';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = t(locale);
+---
+
+<dialog
+  id="game-dialog"
+  aria-labelledby="game-title"
+  aria-describedby="game-instructions"
+  data-locale={locale}
+>
+  <div class="game-header">
+    <div>
+      <p class="eyebrow">{text.gameIntro}</p>
+      <h2 id="game-title">{text.gameTitle}</h2>
+    </div>
+    <button class="button secondary" data-game-close>
+      {text.close}
+    </button>
+  </div>
+  <p id="game-instructions">{text.gameInstructions}</p>
+  <p data-game-status role="status" aria-live="polite">
+    {text.gameReady}
+  </p>
+  <canvas
+    width="640"
+    height="360"
+    tabindex="0"
+    aria-label={text.gameTitle}
+    aria-describedby="game-instructions"
+    role="img"
+  ></canvas>
+  <div class="game-actions">
+    <button class="button primary" data-game-start>
+      {text.start}
+    </button>
+    <button class="button secondary" data-game-pause disabled>
+      {text.pause}
+    </button>
+  </div>
+  <div class="touch-controls">
+    <button class="button secondary" data-game-move="-1" aria-label={text.left}>
+      ←
+    </button>
+    <button class="button primary" data-game-fire>
+      {text.fire}
+    </button>
+    <button class="button secondary" data-game-move="1" aria-label={text.right}>
+      →
+    </button>
+  </div>
+  <details>
+    <summary>{text.gameAlternative}</summary>
+    <p>{text.alternativeText}</p>
+    <button class="button secondary" data-game-fix>
+      {text.fixBug}
+    </button>
+  </details>
+</dialog>

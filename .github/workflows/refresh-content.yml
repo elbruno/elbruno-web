@@ -1,0 +1,68 @@
+name: Refresh public content
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: content-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changed.outputs.changed }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run refresh-content
+        env:
+          BLOG_RSS_URL: ${{ vars.BLOG_RSS_URL }}
+          PODCAST_RSS_URL: ${{ vars.PODCAST_RSS_URL }}
+      - run: npm run validate
+      - id: changed
+        name: Commit only normalized content changes
+        shell: bash
+        run: |
+          if ! git diff --quiet -- src/data/feeds/snapshot.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/data/feeds/snapshot.json
+            git commit -m "Refresh verified public content" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+  deploy:
+    needs: refresh
+    if: needs.refresh.outputs.changed == 'true' && vars.AZURE_SWA_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    environment: preview
+    concurrency:
+      group: azure-preview
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+      - name: Build preview without indexing
+        run: |
+          printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt
+          node --input-type=module -e "import fs from 'node:fs'; const path = 'dist/staticwebapp.config.json'; const config = JSON.parse(fs.readFileSync(path)); config.globalHeaders['X-Robots-Tag'] = 'noindex, nofollow'; fs.writeFileSync(path, JSON.stringify(config));"
+      - name: Deploy changed snapshot
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: upload
+          app_location: dist
+          output_location: ''
+          skip_app_build: true
+          skip_api_build: true

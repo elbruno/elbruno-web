@@ -1,0 +1,166 @@
+---
+import { bios } from '../data/speaking';
+import { profile } from '../data/profile';
+import { t, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = t(locale);
+---
+
+<div
+  class="speaker-grid"
+  data-speaker-kit
+  data-bios={JSON.stringify(bios)}
+  data-copied={text.copied}
+  data-copy-failed={text.copyFailed}
+>
+  <div>
+    <section class="card speaker-panel">
+      <h2>{text.titleLabel}</h2>
+      <p id="speaker-title">{text.professionalTitle}</p>
+      <button class="button secondary" style="margin-top: 18px" data-copy-title>
+        <Icon name="copy" size={18} />
+        {text.copyTitle}
+      </button>
+      <p class="copy-status" data-title-status role="status"></p>
+    </section>
+    <section class="card speaker-panel">
+      <h2>{text.bios}</h2>
+      <p class="notice">{text.biosNote}</p>
+      <div class="bio-controls">
+        <label>
+          {locale === 'en' ? 'Biography language' : 'Idioma de la biografía'}
+          <select id="bio-language">
+            <option value="en" selected={locale === 'en'}>
+              English
+            </option>
+            <option value="es" selected={locale === 'es'}>
+              Español
+            </option>
+          </select>
+        </label>
+        <label>
+          {text.length}
+          <select id="bio-length">
+            {(['50', '100', '200'] as const).map((length) => (
+              <option value={length} selected={length === '100'}>
+                ~{length} {text.words}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <p class="bio-text" id="bio-text" lang={locale} tabindex="0">
+        {bios[locale]['100']}
+      </p>
+      <button class="button primary" data-copy-bio>
+        <Icon name="copy" size={18} />
+        {text.copy}
+      </button>
+      <p class="copy-status" data-bio-status role="status"></p>
+      <noscript>
+        <div class="info-panel">
+          {Object.entries(bios).map(([lang, entries]) => (
+            <div lang={lang}>
+              {Object.entries(entries).map(([length, bio]) => (
+                <details>
+                  <summary>
+                    {lang.toUpperCase()} ~{length}
+                  </summary>
+                  <p>{bio}</p>
+                </details>
+              ))}
+            </div>
+          ))}
+        </div>
+      </noscript>
+    </section>
+  </div>
+  <aside>
+    <section class="card speaker-panel">
+      <h2>{text.photos}</h2>
+      <div class="pending-photo">
+        <span class="mini-icon">
+          <Icon name="people" size={27} />
+        </span>
+        <h3>{text.photosPending}</h3>
+        <p>{text.photosText}</p>
+      </div>
+    </section>
+    <section class="card speaker-panel">
+      <h2>{text.topics}</h2>
+      <ul class="topic-list">
+        {text.topicsList.map((topic) => (
+          <li>{topic}</li>
+        ))}
+      </ul>
+    </section>
+    <section class="card speaker-panel">
+      <h2>{text.illustrations}</h2>
+      <img
+        class="illustration-preview"
+        src="/assets/robot/desk-robot.svg"
+        alt={
+          locale === 'en'
+            ? 'Original illustrated desktop robot'
+            : 'Ilustración original de un robot de escritorio'
+        }
+        width="240"
+        height="260"
+        loading="lazy"
+      />
+      <p>{text.illustrationText}</p>
+    </section>
+    <section class="card speaker-panel">
+      <h2>{text.resources}</h2>
+      <p>{text.resourcesText}</p>
+      <a class="small-link" style="margin-top: 18px" href={profile.linkedin}>
+        {text.connect}
+        <Icon name="arrow" size={17} />
+      </a>
+    </section>
+  </aside>
+</div>
+<script>
+  import type { bios as BioData, BioLength } from '../data/speaking';
+  import type { Locale } from '../i18n';
+  const kit = document.querySelector<HTMLElement>('[data-speaker-kit]');
+  if (kit) {
+    const data: typeof BioData = JSON.parse(kit.dataset.bios!);
+    const language = document.querySelector<HTMLSelectElement>('#bio-language')!;
+    const length = document.querySelector<HTMLSelectElement>('#bio-length')!;
+    const bio = document.querySelector<HTMLElement>('#bio-text')!;
+    function updateBio() {
+      bio.textContent = data[language.value as Locale][length.value as BioLength];
+      bio.lang = language.value;
+      kit!.querySelector('[data-bio-status]')!.textContent = '';
+    }
+    language.addEventListener('change', updateBio);
+    length.addEventListener('change', updateBio);
+    async function copy(source: HTMLElement, status: Element) {
+      try {
+        await navigator.clipboard.writeText(source.textContent ?? '');
+        status.textContent = kit!.dataset.copied!;
+      } catch {
+        status.textContent = kit!.dataset.copyFailed!;
+        const range = document.createRange();
+        range.selectNodeContents(source);
+        const selection = window.getSelection();
+        selection?.removeAllRanges();
+        selection?.addRange(range);
+        source.focus();
+      }
+    }
+    kit
+      .querySelector('[data-copy-bio]')
+      ?.addEventListener('click', () => copy(bio, kit.querySelector('[data-bio-status]')!));
+    kit
+      .querySelector('[data-copy-title]')
+      ?.addEventListener('click', () =>
+        copy(document.querySelector('#speaker-title')!, kit.querySelector('[data-title-status]')!),
+      );
+  }
+</script>

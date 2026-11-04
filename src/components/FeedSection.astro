@@ -1,0 +1,143 @@
+---
+import Icon from './Icon.astro';
+import rawSnapshot from '../data/feeds/snapshot.json';
+import { validateSnapshot, type Snapshot } from '../lib/feeds/model';
+import { profile } from '../data/profile';
+import { t, type Locale } from '../i18n';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+validateSnapshot(rawSnapshot);
+const snapshot: Snapshot = rawSnapshot;
+const text = t(locale);
+const sections = [
+  {
+    key: 'podcast' as const,
+    title: text.latestPodcast,
+    subtitle: text.podcastText,
+    url: profile.podcast,
+    icon: 'headphones',
+  },
+  {
+    key: 'youtube' as const,
+    title: text.watch,
+    subtitle: text.watchSub,
+    url: snapshot.sources.youtube,
+    icon: 'play',
+  },
+  {
+    key: 'blog' as const,
+    title: text.read,
+    subtitle: text.readSub,
+    url: profile.blog,
+    icon: 'book',
+  },
+];
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(date));
+---
+
+<section class="section">
+  <div class="section-heading">
+    <div>
+      <h2>
+        <Icon name="github" size={26} />
+        {text.github}
+      </h2>
+      <p>{text.githubSub}</p>
+    </div>
+    <a class="small-link" href={profile.github}>
+      GitHub
+      <Icon name="arrow" size={17} />
+    </a>
+  </div>
+  <div class="feed-grid">
+    {snapshot.repositories.map((repo) => (
+      <article class="card feed-card">
+        <span class="mini-icon">
+          <Icon name="code" />
+        </span>
+        <h3>
+          <a href={repo.url}>
+            {repo.name}
+            <Icon name="arrow" size={17} />
+          </a>
+        </h3>
+        <p>{repo.description}</p>
+        <div class="repo-meta">
+          {repo.language && (
+            <span>
+              <span class="language-dot"></span>
+              {repo.language}
+            </span>
+          )}
+          {typeof repo.stars === 'number' && (
+            <span>
+              <Icon name="star" size={15} />
+              {repo.stars}
+            </span>
+          )}
+        </div>
+      </article>
+    ))}
+    {snapshot.repositories.length === 0 && (
+      <p class="empty-state">
+        {text.empty} <a href={profile.github}>GitHub</a>
+      </p>
+    )}
+  </div>
+</section>
+{sections.map((section) => (
+  <section class="section">
+    <div class="section-heading">
+      <div>
+        <h2>
+          <Icon name={section.icon} size={26} />
+          {section.title}
+        </h2>
+        <p>{section.subtitle}</p>
+      </div>
+      {section.url && (
+        <a class="small-link" href={section.url}>
+          {text.sourceLink}
+          <Icon name="arrow" size={17} />
+        </a>
+      )}
+    </div>
+    <div class="feed-grid">
+      {snapshot.entries
+        .filter((entry) => entry.source === section.key)
+        .map((entry) => (
+          <article class="card feed-card">
+            <span class="feed-kind">
+              {section.key === 'podcast'
+                ? 'No Tiene Nombre'
+                : section.key === 'blog'
+                  ? 'El Bruno'
+                  : 'YouTube'}
+            </span>
+            <h3>
+              <a href={entry.url}>
+                {entry.title}
+                <Icon name="arrow" size={17} />
+              </a>
+            </h3>
+            <time datetime={entry.publishedAt}>{formatDate(entry.publishedAt)}</time>
+            {entry.summary && <p>{entry.summary}</p>}
+          </article>
+        ))}
+    </div>
+    {snapshot.entries.filter((entry) => entry.source === section.key).length === 0 && (
+      <p class="empty-state">
+        {text.empty}
+        {!section.url && (
+          <span>
+            {' '}
+            {locale === 'en' ? 'Channel verification pending.' : 'Canal pendiente de verificación.'}
+          </span>
+        )}
+      </p>
+    )}
+  </section>
+))}

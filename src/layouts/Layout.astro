@@ -1,0 +1,167 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import GameDialog from '../components/GameDialog.astro';
+import { profile } from '../data/profile';
+import { route, t, type Locale, type Page } from '../i18n';
+interface Props {
+  locale: Locale;
+  page?: Page;
+  title?: string;
+  description?: string;
+  notFound?: boolean;
+}
+const { locale, page = '', title, description, notFound = false } = Astro.props;
+const text = t(locale);
+const pageUrl = new URL(route(locale, page), Astro.site);
+const fullTitle = title ? `${title} | elbruno.com` : `${text.hello} | elbruno.com`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  url: Astro.site?.href,
+  jobTitle: profile.role,
+  sameAs: [profile.github, profile.linkedin, profile.podcast, profile.youtube],
+};
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description ?? text.intro} />
+    <meta name="theme-color" content="#6336b5" />
+    {notFound ? (
+      <meta name="robots" content="noindex" />
+    ) : (
+      <>
+        <link rel="canonical" href={pageUrl} />
+        <link rel="alternate" hreflang="en" href={new URL(route('en', page), Astro.site)} />
+        <link rel="alternate" hreflang="es" href={new URL(route('es', page), Astro.site)} />
+        <link rel="alternate" hreflang="x-default" href={new URL(route('en', page), Astro.site)} />
+      </>
+    )}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description ?? text.intro} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'es_ES'} />
+    <meta
+      property="og:image"
+      content={new URL('/assets/illustration/social-card.png', Astro.site)}
+    />
+    <meta
+      property="og:image:alt"
+      content={
+        locale === 'en'
+          ? 'Bruno Capuano. AI, .NET, Azure and GitHub. Original robot artwork.'
+          : 'Bruno Capuano. IA, .NET, Azure y GitHub. Ilustración original de un robot.'
+      }
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
+    <script is:inline src="/theme.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      {text.skip}
+    </a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <button
+            class="terminal-logo"
+            id="terminal-trigger"
+            aria-label={text.game}
+            title={text.game}
+          >
+            <Icon name="terminal" size={23} />
+          </button>
+          <a href={route(locale)} aria-label={`elbruno.com: ${text.home}`}>
+            elbruno<span>.com</span>
+          </a>
+        </div>
+        <button
+          class="icon-button mobile-toggle"
+          aria-label={text.menu}
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <Icon name="menu" />
+        </button>
+        <nav
+          id="primary-nav"
+          aria-label={locale === 'en' ? 'Main navigation' : 'Navegación principal'}
+        >
+          {(['about', 'projects', 'speaking'] as const).map((item) => (
+            <a href={route(locale, item)} aria-current={page === item ? 'page' : undefined}>
+              {text.nav[item]}
+            </a>
+          ))}
+          <a href={profile.podcast}>
+            {text.nav.podcast}
+            <span class="sr-only"> (notienenombre.com)</span>
+          </a>
+          <a href={profile.blog}>
+            {text.nav.blog}
+            <span class="sr-only"> (WordPress)</span>
+          </a>
+        </nav>
+        <div class="header-tools">
+          <div class="language-switch" aria-label={locale === 'en' ? 'Language' : 'Idioma'}>
+            {(['en', 'es'] as const).map((lang) => (
+              <a
+                href={route(lang, page)}
+                lang={lang}
+                hreflang={lang}
+                aria-current={locale === lang ? 'true' : undefined}
+                aria-label={lang === 'en' ? 'English' : 'Español'}
+              >
+                {lang.toUpperCase()}
+              </a>
+            ))}
+          </div>
+          <button class="icon-button theme-toggle" aria-label={text.theme} aria-pressed="false">
+            <span class="moon">
+              <Icon name="moon" />
+            </span>
+            <span class="sun">
+              <Icon name="sun" />
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <a class="footer-brand" href={route(locale)}>
+            elbruno.com
+          </a>
+          <p>{text.footer}</p>
+          <small>{text.independent}</small>
+        </div>
+        <div class="footer-links">
+          <a href={profile.source}>
+            <Icon name="github" size={18} />
+            {text.source}
+          </a>
+          <button class="text-button" data-open-game>
+            <Icon name="terminal" size={18} />
+            {text.game}
+          </button>
+        </div>
+      </div>
+    </footer>
+    <GameDialog locale={locale} />
+    <script>
+      import '../scripts/site';
+    </script>
+  </body>
+</html>

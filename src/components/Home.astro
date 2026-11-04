@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from './Icon.astro';
+import ProjectCard from './ProjectCard.astro';
+import FeedSection from './FeedSection.astro';
+import { profile, projects } from '../data/profile';
+import { route, t, type Locale } from '../i18n';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = t(locale);
+---
+
+<Layout locale={locale}>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span class="status-dot"></span>
+          {text.eyebrow}
+        </p>
+        <h1>
+          {text.hello}
+          <span class="wave" aria-hidden="true">
+            👋
+          </span>
+          <span class="hero-period">.</span>
+        </h1>
+        <p class="role">{text.role}</p>
+        <p class="hero-description">{text.intro}</p>
+        <div class="actions">
+          <a class="button primary" href={route(locale, 'projects')}>
+            <Icon name="code" />
+            {text.explore}
+          </a>
+          <a class="button secondary" href={route(locale, 'speaking')}>
+            <Icon name="mic" size={19} />
+            {text.speaker}
+          </a>
+        </div>
+        <a class="hero-blog" href={profile.blog}>
+          {text.readBlog}
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+      <figure class="hero-art">
+        <img
+          src="/assets/illustration/developer-workspace.svg"
+          alt={text.artAlt}
+          width="760"
+          height="600"
+          fetchpriority="high"
+        />
+        <figcaption>{text.artCaption}</figcaption>
+      </figure>
+    </div>
+  </section>
+  <div class="container home-content">
+    <section class="quick-intro section">
+      <div>
+        <p class="eyebrow">Bruno Capuano</p>
+        <h2>{text.seconds}</h2>
+        <p>{text.secondsText}</p>
+        <a class="small-link" href={route(locale, 'about')}>
+          {text.more}
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+      <ul class="identity-facts">
+        {text.facts.map((fact, i) => (
+          <li>
+            <span class={`mini-icon accent-${i}`}>
+              <Icon name={['cloud', 'code', 'people', 'headphones'][i]} size={20} />
+            </span>
+            {fact}
+          </li>
+        ))}
+      </ul>
+    </section>
+    <section class="section">
+      <div class="section-heading">
+        <h2>
+          <Icon name="code" size={27} />
+          {text.what}
+        </h2>
+      </div>
+      <div class="skills-grid">
+        {text.areas.map((area, i) => (
+          <article class="card skill-card">
+            <span class={`mini-icon accent-${i}`}>
+              <Icon name={area.icon} size={25} />
+            </span>
+            <h3>{area.title}</h3>
+            <p>{area.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <h2>
+            <Icon name="terminal" size={27} />
+            {text.building}
+          </h2>
+          <p>{text.buildingSub}</p>
+        </div>
+        <a class="small-link" href={route(locale, 'projects')}>
+          {text.allProjects}
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+      <div class="projects-grid">
+        {projects.map((project) => (
+          <ProjectCard project={project} locale={locale} />
+        ))}
+      </div>
+    </section>
+    <section class="split-promos section">
+      <article class="promo speaking-promo">
+        <div>
+          <span class="mini-icon">
+            <Icon name="mic" size={26} />
+          </span>
+          <h2>{text.speaking}</h2>
+          <p>{text.speakingText}</p>
+          <a class="button secondary" href={route(locale, 'speaking')}>
+            {text.speakerKit}
+            <Icon name="arrow" size={18} />
+          </a>
+        </div>
+        <div class="mic-art" aria-hidden="true">
+          <Icon name="mic" size={90} />
+          <span>hello, world.</span>
+        </div>
+      </article>
+      <article class="promo podcast-promo">
+        <span class="mini-icon">
+          <Icon name="headphones" size={26} />
+        </span>
+        <p class="eyebrow">No Tiene Nombre</p>
+        <h2>{text.podcast}</h2>
+        <p>{text.podcastText}</p>
+        <a class="small-link" href={profile.podcast}>
+          {text.listen}
+          <Icon name="arrow" size={17} />
+        </a>
+      </article>
+    </section>
+    <FeedSection locale={locale} />
+    <section class="elsewhere section">
+      <div>
+        <h2>{text.elsewhere}</h2>
+        <p>{text.elsewhereSub}</p>
+      </div>
+      <div class="social-links">
+        {[
+          { name: 'GitHub', href: profile.github, icon: 'github' },
+          { name: 'LinkedIn', href: profile.linkedin, icon: 'people' },
+          { name: 'YouTube', href: profile.youtube, icon: 'play' },
+          { name: 'Podcast', href: profile.podcast, icon: 'headphones' },
+          { name: 'Blog', href: profile.blog, icon: 'book' },
+        ].map((social) => (
+          <a href={social.href}>
+            <Icon name={social.icon} size={19} />
+            {social.name}
+            <Icon name="arrow" size={15} />
+          </a>
+        ))}
+      </div>
+    </section>
+    <section class="robot-corner">
+      <button
+        class="robot-button"
+        aria-label={text.robotLabel}
+        data-robot
+        data-messages={JSON.stringify(text.robotMessages)}
+      >
+        <img src="/assets/robot/desk-robot.svg" alt="" width="120" height="130" loading="lazy" />
+      </button>
+      <div>
+        <p class="eyebrow">
+          {locale === 'en' ? 'tiny robot, big curiosity' : 'pequeño robot, gran curiosidad'}
+        </p>
+        <p data-robot-message role="status" aria-live="polite">
+          {text.robotMessages[0]}
+        </p>
+      </div>
+    </section>
+  </div>
+</Layout>

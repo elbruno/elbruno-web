@@ -1,0 +1,99 @@
+{
+  "sources": {
+    "blog": "https://elbruno.com/feed/",
+    "podcast": "https://feeds.ivoox.com/feed_fg_f1277993_filtro_1.xml",
+    "youtube": "https://www.youtube.com/channel/UCyHCkJ4lsphfhu_ljRws6aA"
+  },
+  "entries": [
+    {
+      "id": "http://elbruno.com/?p=43776",
+      "title": "From Zero to Production: Build an AI Agent in C# with Microsoft Agent Framework",
+      "url": "https://elbruno.com/2026/10/31/from-zero-to-production-build-an-ai-agent-in-c-with-microsoft-agent-framework/",
+      "publishedAt": "2026-10-31T22:55:17.000Z",
+      "summary": "Hi!",
+      "source": "blog"
+    },
+    {
+      "id": "http://elbruno.com/?p=43767",
+      "title": "C# + Ollama: Give Your App a Voice with Phonon",
+      "url": "https://elbruno.com/2026/10/25/c-ollama-give-your-app-a-voice-with-phonon/",
+      "publishedAt": "2026-10-25T20:35:08.000Z",
+      "summary": "Hi! Apple Silicon users, please try this C# sample and let us know whether speech generation and playback work on your Mac! ElBruno.Speech 1.6.0-preview.5 keeps setup simple: ca...",
+      "source": "blog"
+    },
+    {
+      "id": "http://elbruno.com/?p=43753",
+      "title": "Which device is on this COM port? A tiny .NET 10 utility",
+      "url": "https://elbruno.com/2026/10/25/which-device-is-on-this-com-port-a-tiny-net-10-utility/",
+      "publishedAt": "2026-10-25T15:59:01.000Z",
+      "summary": "Hi! While building the USB demo for the upcoming New Year, New Bot series, I had two small robots connected to one Windows PC. Windows showed several COM ports, but the names di...",
+      "source": "blog"
+    },
+    {
+      "id": "https://www.ivoox.com/183238577",
+      "title": "NTN 592 - IA operando IA, sin anestesia",
+      "url": "https://www.ivoox.com/ntn-592-ia-operando-ia-sin-audios-mp3_rf_183238577_1.html",
+      "publishedAt": "2026-11-03T18:20:52.000Z",
+      "summary": "️ ¡Nuevo NTN! El CEO de Proton llamó \"perdedores\" a los que piden pentest y canceló las re-entrevistas de IA GPT-6 Astra editó el 0,016% de los pesos de Qwen: matemática de 7,9%...",
+      "source": "podcast"
+    },
+    {
+      "id": "https://www.ivoox.com/183115941",
+      "title": "NTN 591 - La burbuja de la IA ya explotó (en China)",
+      "url": "https://www.ivoox.com/ntn-591-la-burbuja-la-audios-mp3_rf_183115941_1.html",
+      "publishedAt": "2026-11-01T20:29:39.000Z",
+      "summary": "¡La burbuja de la IA ya explotó... en China! • El índice STAR50 cayó 40% en cuatro meses • Google tuvo su peor día en bolsa y vende acciones para pagar data centers • Nortel, el...",
+      "source": "podcast"
+    },
+    {
+      "id": "https://www.ivoox.com/183076292",
+      "title": "NTN 590 - Especial Halloween 2026 e Inteligencia Artificial !",
+      "url": "https://www.ivoox.com/ntn-590-especial-halloween-2026-e-audios-mp3_rf_183076292_1.html",
+      "publishedAt": "2026-10-31T15:14:08.000Z",
+      "summary": "¡Votanos en los Premios iVoox hasta el 2/11! https://go.ivoox.com/wv/premios26?c=5475 Especial Halloween de NO TIENE NOMBRE, modo express: • Agentes de IA que borran producción...",
+      "source": "podcast"
+    },
+    {
+      "id": "yt:video:cKnNBwpiJdI",
+      "title": "Use Your Own AI Model in the GitHub Copilot App (BYOK + Microsoft Foundry)",
+      "url": "https://www.youtube.com/watch?v=cKnNBwpiJdI",
+      "publishedAt": "2026-08-19T15:21:55.000Z",
+      "summary": "Want to use your own AI model inside the GitHub Copilot app? In this quick demo, I connect models deployed in Microsoft Foundry, add them to the Copilot model picker, and use th...",
+      "source": "youtube"
+    },
+    {
+      "id": "yt:video:dUllqWMHJW4",
+      "title": "GitHub Copilot CLI /sandbox: Give Your AI Agent Boundaries",
+      "url": "https://www.youtube.com/watch?v=dUllqWMHJW4",
+      "publishedAt": "2026-08-04T17:15:30.000Z",
+      "summary": "AI coding agents are amazing. They can write code, run commands, install packages, and do real work. And that is fantastic… until you remember they are running with your permiss...",
+      "source": "youtube"
+    },
+    {
+      "id": "yt:video:uuODOdtD2uk",
+      "title": "I Built a Daily News Digest with GitHub Agentic Workflows 🤖📰",
+      "url": "https://www.youtube.com/watch?v=uuODOdtD2uk",
+      "publishedAt": "2026-07-30T14:39:17.000Z",
+      "summary": "GitHub ships features faster than I can update my demos 😄 So instead of checking the GitHub Changelog manually every day, I built a small project using GitHub Agentic Workflows...",
+      "source": "youtube"
+    }
+  ],
+  "repositories": [
+    {
+      "name": "new-year-new-bot",
+      "url": "https://github.com/elbruno/new-year-new-bot",
+      "description": "A coming-soon project exploring an AI desk companion with M5Stack StackChan and .NET.",
+      "language": "C#",
+      "stars": 5,
+      "updatedAt": "2026-10-29T15:07:44Z"
+    },
+    {
+      "name": "PromptDot",
+      "url": "https://github.com/elbruno/PromptDot",
+      "description": "A tiny, resizable desktop teleprompter that lives under your webcam. Local-first, cross-platform, and offline.",
+      "language": "C#",
+      "stars": 0,
+      "updatedAt": "2026-10-09T22:38:00Z"
+    }
+  ]
+}

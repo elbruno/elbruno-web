@@ -1,0 +1,40 @@
+---
+import { projects } from '../data/profile';
+import { t, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+interface Props {
+  project: (typeof projects)[number];
+  locale: Locale;
+}
+const { project, locale } = Astro.props;
+---
+
+<article class="card project-card">
+  <a href={project.url} tabindex="-1" aria-hidden="true" class="project-art">
+    <img
+      src={`/assets/illustration/project-${project.art}.svg`}
+      alt=""
+      width="640"
+      height="320"
+      loading="lazy"
+    />
+  </a>
+  <div class="project-body">
+    <p class="eyebrow">{project.status[locale]}</p>
+    <h3>
+      <a href={project.url}>
+        {project.name}
+        <Icon name="arrow" size={19} />
+      </a>
+    </h3>
+    <p>{project[locale]}</p>
+    <ul class="tags" aria-label={locale === 'en' ? 'Technologies' : 'Tecnologías'}>
+      {project.tags.map((tag) => (
+        <li>{tag}</li>
+      ))}
+    </ul>
+    <a class="small-link" href={project.url}>
+      {t(locale).repository} <Icon name="github" size={17} />
+    </a>
+  </div>
+</article>
