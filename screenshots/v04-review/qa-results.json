@@ -1,0 +1,322 @@
+[
+  {
+    "route": "/",
+    "device": "desktop",
+    "theme": "light",
+    "audit": {
+      "documentWidth": 1440,
+      "viewportWidth": 1440,
+      "brokenImages": [],
+      "locale": "en",
+      "theme": "light",
+      "cards": 3,
+      "metrics": {
+        "lcpMs": 232,
+        "cls": 0
+      },
+      "transferBytes": 148776,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/projects/",
+    "device": "desktop",
+    "theme": "light",
+    "audit": {
+      "documentWidth": 1440,
+      "viewportWidth": 1440,
+      "brokenImages": [],
+      "locale": "en",
+      "theme": "light",
+      "cards": 6,
+      "metrics": {
+        "lcpMs": 60,
+        "cls": 0
+      },
+      "transferBytes": 1500,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/es/",
+    "device": "desktop",
+    "theme": "light",
+    "audit": {
+      "documentWidth": 1440,
+      "viewportWidth": 1440,
+      "brokenImages": [],
+      "locale": "es",
+      "theme": "light",
+      "cards": 3,
+      "metrics": {
+        "lcpMs": 88,
+        "cls": 0
+      },
+      "transferBytes": 2400,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/es/projects/",
+    "device": "desktop",
+    "theme": "light",
+    "audit": {
+      "documentWidth": 1440,
+      "viewportWidth": 1440,
+      "brokenImages": [],
+      "locale": "es",
+      "theme": "light",
+      "cards": 6,
+      "metrics": {
+        "lcpMs": 52,
+        "cls": 0
+      },
+      "transferBytes": 1500,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/",
+    "device": "desktop",
+    "theme": "dark",
+    "audit": {
+      "documentWidth": 1440,
+      "viewportWidth": 1440,
+      "brokenImages": [],
+      "locale": "en",
+      "theme": "dark",
+      "cards": 3,
+      "metrics": {
+        "lcpMs": 100,
+        "cls": 0
+      },
+      "transferBytes": 148776,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/projects/",
+    "device": "desktop",
+    "theme": "dark",
+    "audit": {
+      "documentWidth": 1440,
+      "viewportWidth": 1440,
+      "brokenImages": [],
+      "locale": "en",
+      "theme": "dark",
+      "cards": 6,
+      "metrics": {
+        "lcpMs": 56,
+        "cls": 0
+      },
+      "transferBytes": 1500,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/es/",
+    "device": "desktop",
+    "theme": "dark",
+    "audit": {
+      "documentWidth": 1440,
+      "viewportWidth": 1440,
+      "brokenImages": [],
+      "locale": "es",
+      "theme": "dark",
+      "cards": 3,
+      "metrics": {
+        "lcpMs": 104,
+        "cls": 0
+      },
+      "transferBytes": 2400,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/es/projects/",
+    "device": "desktop",
+    "theme": "dark",
+    "audit": {
+      "documentWidth": 1440,
+      "viewportWidth": 1440,
+      "brokenImages": [],
+      "locale": "es",
+      "theme": "dark",
+      "cards": 6,
+      "metrics": {
+        "lcpMs": 48,
+        "cls": 0
+      },
+      "transferBytes": 1500,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/",
+    "device": "mobile",
+    "theme": "light",
+    "audit": {
+      "documentWidth": 390,
+      "viewportWidth": 390,
+      "brokenImages": [],
+      "locale": "en",
+      "theme": "light",
+      "cards": 3,
+      "metrics": {
+        "lcpMs": 104,
+        "cls": 0
+      },
+      "transferBytes": 148776,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/projects/",
+    "device": "mobile",
+    "theme": "light",
+    "audit": {
+      "documentWidth": 390,
+      "viewportWidth": 390,
+      "brokenImages": [],
+      "locale": "en",
+      "theme": "light",
+      "cards": 6,
+      "metrics": {
+        "lcpMs": 52,
+        "cls": 0
+      },
+      "transferBytes": 1500,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/es/",
+    "device": "mobile",
+    "theme": "light",
+    "audit": {
+      "documentWidth": 390,
+      "viewportWidth": 390,
+      "brokenImages": [],
+      "locale": "es",
+      "theme": "light",
+      "cards": 3,
+      "metrics": {
+        "lcpMs": 84,
+        "cls": 0
+      },
+      "transferBytes": 2400,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/es/projects/",
+    "device": "mobile",
+    "theme": "light",
+    "audit": {
+      "documentWidth": 390,
+      "viewportWidth": 390,
+      "brokenImages": [],
+      "locale": "es",
+      "theme": "light",
+      "cards": 6,
+      "metrics": {
+        "lcpMs": 64,
+        "cls": 0
+      },
+      "transferBytes": 1500,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/",
+    "device": "mobile",
+    "theme": "dark",
+    "audit": {
+      "documentWidth": 390,
+      "viewportWidth": 390,
+      "brokenImages": [],
+      "locale": "en",
+      "theme": "dark",
+      "cards": 3,
+      "metrics": {
+        "lcpMs": 100,
+        "cls": 0
+      },
+      "transferBytes": 148776,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/projects/",
+    "device": "mobile",
+    "theme": "dark",
+    "audit": {
+      "documentWidth": 390,
+      "viewportWidth": 390,
+      "brokenImages": [],
+      "locale": "en",
+      "theme": "dark",
+      "cards": 6,
+      "metrics": {
+        "lcpMs": 52,
+        "cls": 0
+      },
+      "transferBytes": 1500,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/es/",
+    "device": "mobile",
+    "theme": "dark",
+    "audit": {
+      "documentWidth": 390,
+      "viewportWidth": 390,
+      "brokenImages": [],
+      "locale": "es",
+      "theme": "dark",
+      "cards": 3,
+      "metrics": {
+        "lcpMs": 84,
+        "cls": 0
+      },
+      "transferBytes": 2400,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  },
+  {
+    "route": "/es/projects/",
+    "device": "mobile",
+    "theme": "dark",
+    "audit": {
+      "documentWidth": 390,
+      "viewportWidth": 390,
+      "brokenImages": [],
+      "locale": "es",
+      "theme": "dark",
+      "cards": 6,
+      "metrics": {
+        "lcpMs": 52,
+        "cls": 0
+      },
+      "transferBytes": 1500,
+      "scripts": ["/theme.js", "/_astro/Layout.astro_astro_type_script_index_0_lang.CFTCHjQY.js"]
+    },
+    "issues": []
+  }
+]

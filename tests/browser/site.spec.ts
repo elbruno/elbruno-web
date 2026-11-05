@@ -2,6 +2,9 @@ import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { readFile } from 'node:fs/promises';
 import hosting from '../../public/staticwebapp.config.json' with { type: 'json' };
+import feeds from '../../src/data/feeds/snapshot.json' with { type: 'json' };
+import packages from '../../src/data/nuget/snapshot.json' with { type: 'json' };
+import { curatedPackages, packageSources, packageUrl } from '../../src/data/packages';
 
 const routes = [
   '/',
@@ -13,6 +16,108 @@ const routes = [
   '/es/projects/',
   '/es/speaking/',
 ];
+test('all podcast anchors preserve destinations and open isolated new tabs in both locales', async ({
+  page,
+  context,
+  isMobile,
+}) => {
+  const episodes = feeds.entries.filter((entry) => entry.source === 'podcast');
+  await context.route(/^https:\/\/(?:notienenombre\.com|www\.ivoox\.com)(?:\/|$)/, (request) =>
+    request.fulfill({ contentType: 'text/html', body: '<title>Podcast destination</title>' }),
+  );
+  for (const route of routes) {
+    await page.goto(route);
+    const original = page.url();
+    const podcastLinks = page.locator(
+      'a[href^="https://notienenombre.com"], a[href^="https://www.ivoox.com/"]',
+    );
+    const home = route === '/' || route === '/es/';
+    const about = route.endsWith('/about/');
+    await expect(podcastLinks).toHaveCount(home ? 7 : about ? 2 : 1);
+    if (home) {
+      for (const episode of episodes)
+        await expect(page.locator(`.feed-card a[href="${episode.url}"]`)).toHaveCount(1);
+      await expect(page.locator('.podcast-promo a')).toHaveAttribute(
+        'href',
+        'https://notienenombre.com',
+      );
+    }
+    for (const link of await podcastLinks.all()) {
+      const href = await link.getAttribute('href');
+      expect(href).toMatch(/^https:\/\//);
+      expect(
+        href === 'https://notienenombre.com' ||
+          href === 'https://notienenombre.com/' ||
+          episodes.some((episode) => episode.url === href),
+      ).toBe(true);
+      await expect(link).toHaveAttribute('target', '_blank');
+      await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      await expect(link.locator('.sr-only').last()).toContainText(
+        route.startsWith('/es') ? 'se abre en una pestaña nueva' : 'opens in a new tab',
+      );
+      if (isMobile && (await link.evaluate((element) => !!element.closest('#primary-nav'))))
+        await page.locator('.mobile-toggle').click();
+      const popupEvent = context.waitForEvent('page');
+      await link.click();
+      const popup = await popupEvent;
+      await popup.waitForLoadState('domcontentloaded');
+      expect(popup.url()).toBe(new URL(href!).href);
+      expect(await popup.evaluate(() => window.opener === null)).toBe(true);
+      expect(page.url()).toBe(original);
+      await popup.close();
+      if (
+        isMobile &&
+        (await page.locator('.mobile-toggle').getAttribute('aria-expanded')) === 'true'
+      )
+        await page.locator('.mobile-toggle').click();
+    }
+    const internal = page.locator('a[href^="/"]');
+    for (const link of await internal.all())
+      await expect(link).not.toHaveAttribute('target', '_blank');
+  }
+});
+
+test('bilingual package cards expose verified metrics, direct links and a compact homepage selection', async ({
+  page,
+}) => {
+  for (const locale of ['en', 'es'] as const) {
+    for (const directory of [false, true]) {
+      const route = `${locale === 'es' ? '/es/' : '/'}${directory ? 'projects/' : ''}`;
+      await page.goto(route);
+      const section = page.locator(directory ? '#libraries' : '#featured-libraries');
+      await expect(section.getByRole('heading', { level: 2 })).toHaveText(
+        directory
+          ? locale === 'en'
+            ? 'Packages & libraries'
+            : 'Paquetes y librerías'
+          : locale === 'en'
+            ? 'AI & .NET libraries'
+            : 'Librerías de IA y .NET',
+      );
+      const selected = curatedPackages.filter((item) => directory || item.featured);
+      await expect(section.locator('[data-package]')).toHaveCount(selected.length);
+      for (const config of selected) {
+        const metrics = packages.packages.find((item) => item.packageId === config.packageId)!;
+        const card = section.locator(`[data-package="${config.packageId}"]`);
+        await expect(card).toContainText(config.description[locale]);
+        await expect(card.locator(`a[href="${packageUrl(config.packageId)}"]`)).toHaveCount(1);
+        await expect(card.locator(`a[href="${config.repositoryUrl}"]`)).toHaveCount(1);
+        await expect(card.locator('dd').first()).toHaveText(metrics.version);
+        await expect(card.locator('dd').last()).toHaveText(
+          new Intl.NumberFormat(locale).format(metrics.totalDownloads),
+        );
+      }
+      const dashboard = section.locator(`a[href="${packageSources.dashboard}"]`);
+      await expect(dashboard).toHaveAttribute('target', '_blank');
+      await expect(dashboard).toHaveAttribute('rel', 'noopener noreferrer');
+      await expect(section.locator('time')).toHaveAttribute('datetime', packages.sourceUpdatedAt);
+    }
+    await page.goto(locale === 'es' ? '/es/about/' : '/about/');
+    await expect(
+      page.locator(`.prose a[href="${locale === 'es' ? '/es' : ''}/projects/#libraries"]`),
+    ).toHaveCount(1);
+  }
+});
 test('all localized routes have metadata, working local links and no overflow', async ({
   page,
 }) => {
@@ -167,6 +272,10 @@ test('speaker kit exposes a selectable fallback when clipboard access is blocked
     });
   });
   await page.goto('/speaking/');
+  await page.evaluate(async () => {
+    for (const image of document.images) image.loading = 'eager';
+    await Promise.all([...document.images].map((image) => image.decode().catch(() => undefined)));
+  });
   await page.getByRole('button', { name: 'Copy introduction', exact: true }).click();
   await expect(page.locator('[data-title-status]')).toHaveText(
     'Clipboard access is unavailable. The text is selected below; copy it with your keyboard.',

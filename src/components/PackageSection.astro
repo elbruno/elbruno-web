@@ -1,0 +1,108 @@
+---
+import Icon from './Icon.astro';
+import ResourceLink from './ResourceLink.astro';
+import rawSnapshot from '../data/nuget/snapshot.json';
+import { packageSources, packageUrl } from '../data/packages';
+import {
+  displayedPackages,
+  formatDownloads,
+  formatPackageDate,
+  stalePackages,
+  validatePackageSnapshot,
+} from '../lib/packages';
+import { route, t, type Locale } from '../i18n';
+interface Props {
+  locale: Locale;
+  featured?: boolean;
+}
+const { locale, featured = false } = Astro.props;
+const text = t(locale);
+validatePackageSnapshot(rawSnapshot);
+const packages = displayedPackages(rawSnapshot, featured);
+const showCards = featured ? packages.length >= 2 : packages.length > 0;
+const stale = stalePackages(rawSnapshot);
+---
+
+<section class="section packages-section" id={featured ? 'featured-libraries' : 'libraries'}>
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">{text.packagesEyebrow}</p>
+      <h2>{featured ? text.packagesTitle : text.packagesDirectory}</h2>
+      <p>{text.packagesIntro}</p>
+    </div>
+    {featured && (
+      <a class="small-link" href={`${route(locale, 'projects')}#libraries`}>
+        {text.allLibraries}
+        <Icon name="arrow" size={17} />
+      </a>
+    )}
+  </div>
+  {showCards ? (
+    <>
+      <div class="package-grid">
+        {packages.map((item) => (
+          <article class="card package-card" data-package={item.packageId}>
+            <p class="eyebrow">{text.packageCategories[item.category]}</p>
+            <h3>{item.packageId}</h3>
+            <p class="package-description">{item.description[locale]}</p>
+            {(item.lifecycle !== 'active' || item.repositoryArchived || item.listed === false) && (
+              <p class="package-status">
+                {item.lifecycle === 'retired'
+                  ? text.packageRetired
+                  : item.lifecycle === 'unknown'
+                    ? text.packageUnknown
+                    : ''}
+                {item.repositoryArchived && ` · ${text.packageArchived}`}
+                {item.listed === false && ` · ${text.packageUnlisted}`}
+              </p>
+            )}
+            <dl class="package-metrics">
+              {item.version && (
+                <div>
+                  <dt>{text.packageVersion}</dt>
+                  <dd>{item.version}</dd>
+                </div>
+              )}
+              {item.totalDownloads !== undefined && (
+                <div>
+                  <dt>{text.packageDownloads}</dt>
+                  <dd>{formatDownloads(item.totalDownloads, locale)}</dd>
+                </div>
+              )}
+            </dl>
+            <div class="package-links">
+              <a class="small-link" href={packageUrl(item.packageId)}>
+                {text.packageNuget}
+                <Icon name="arrow" size={16} />
+              </a>
+              {item.repositoryUrl && (
+                <a class="small-link" href={item.repositoryUrl}>
+                  {text.packageSource}
+                  <Icon name="github" size={16} />
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="package-freshness">
+        {text.packageSnapshot}{' '}
+        <time datetime={rawSnapshot.sourceUpdatedAt}>
+          {formatPackageDate(rawSnapshot.sourceUpdatedAt, locale)}
+        </time>
+        {' · '}
+        {text.packageMetricsNote}
+        {stale && <span> {text.packageStale}</span>}
+      </p>
+    </>
+  ) : (
+    <p class="empty-state">{text.packagesUnavailable}</p>
+  )}
+  <div class="package-dashboard">
+    <ResourceLink class="button secondary" href={packageSources.dashboard} locale={locale} newTab>
+      {text.packageDashboard}
+      <Icon name="arrow" size={17} />
+    </ResourceLink>
+    <p>{text.packageDashboardNote}</p>
+  </div>
+</section>

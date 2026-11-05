@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Icon from './Icon.astro';
 import ProjectCard from './ProjectCard.astro';
 import FeedSection from './FeedSection.astro';
+import PackageSection from './PackageSection.astro';
+import ResourceLink from './ResourceLink.astro';
 import { profile, projects } from '../data/profile';
 import { route, t, type Locale } from '../i18n';
 interface Props {
@@ -120,6 +122,7 @@ const text = t(locale);
         ))}
       </div>
     </section>
+    <PackageSection locale={locale} featured />
     <section class="split-promos section">
       <article class="promo speaking-promo">
         <div>
@@ -152,10 +155,10 @@ const text = t(locale);
         <p class="eyebrow">No Tiene Nombre</p>
         <h2>{text.podcast}</h2>
         <p>{text.podcastText}</p>
-        <a class="small-link" href={profile.podcast}>
+        <ResourceLink class="small-link" href={profile.podcast} locale={locale} newTab>
           {text.listen}
           <Icon name="arrow" size={17} />
-        </a>
+        </ResourceLink>
       </article>
     </section>
     <FeedSection locale={locale} />
@@ -172,11 +175,11 @@ const text = t(locale);
           { name: 'Podcast', href: profile.podcast, icon: 'headphones' },
           { name: 'Blog', href: profile.blog, icon: 'book' },
         ].map((social) => (
-          <a href={social.href}>
+          <ResourceLink href={social.href} locale={locale} newTab={social.href === profile.podcast}>
             <Icon name={social.icon} size={19} />
             {social.name}
             <Icon name="arrow" size={15} />
-          </a>
+          </ResourceLink>
         ))}
       </div>
     </section>

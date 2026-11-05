@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import ResourceLink from './ResourceLink.astro';
 import rawSnapshot from '../data/feeds/snapshot.json';
 import { validateSnapshot, type Snapshot } from '../lib/feeds/model';
 import { profile } from '../data/profile';
@@ -99,10 +100,15 @@ const formatDate = (date: string) =>
         <p>{section.subtitle}</p>
       </div>
       {section.url && (
-        <a class="small-link" href={section.url}>
+        <ResourceLink
+          class="small-link"
+          href={section.url}
+          locale={locale}
+          newTab={section.key === 'podcast'}
+        >
           {text.sourceLink}
           <Icon name="arrow" size={17} />
-        </a>
+        </ResourceLink>
       )}
     </div>
     <div class="feed-grid">
@@ -118,10 +124,10 @@ const formatDate = (date: string) =>
                   : 'YouTube'}
             </span>
             <h3>
-              <a href={entry.url}>
+              <ResourceLink href={entry.url} locale={locale} newTab={entry.source === 'podcast'}>
                 {entry.title}
                 <Icon name="arrow" size={17} />
-              </a>
+              </ResourceLink>
             </h3>
             <time datetime={entry.publishedAt}>{formatDate(entry.publishedAt)}</time>
             {entry.summary && <p>{entry.summary}</p>}

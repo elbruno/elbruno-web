@@ -58,6 +58,77 @@ html {
 .cv-work-card {
   padding: 22px;
 }
+.packages-section {
+  scroll-margin-top: 6rem;
+}
+.packages-section .section-heading .eyebrow {
+  margin-bottom: 10px;
+}
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+  gap: 18px;
+}
+.package-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 24px;
+}
+.package-card h3 {
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+.package-description {
+  margin-top: 10px;
+  font-size: 0.88rem;
+}
+.package-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin: auto 0 0;
+  padding-top: 20px;
+}
+.package-metrics dt {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.package-metrics dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+.package-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin-top: 16px;
+}
+.package-links a {
+  min-height: 44px;
+}
+.package-freshness,
+.package-dashboard p,
+.package-status {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+.package-dashboard {
+  margin-top: 24px;
+}
+.package-dashboard p {
+  margin-top: 10px;
+}
+.package-dashboard .button {
+  white-space: normal;
+}
 .expertise-list {
   display: flex;
   flex-wrap: wrap;

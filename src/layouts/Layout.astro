@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
 import GameDialog from '../components/GameDialog.astro';
+import ResourceLink from '../components/ResourceLink.astro';
 import { profile } from '../data/profile';
 import { route, t, type Locale, type Page } from '../i18n';
 interface Props {
@@ -101,10 +102,10 @@ const schema = {
               {text.nav[item]}
             </a>
           ))}
-          <a href={profile.podcast}>
+          <ResourceLink href={profile.podcast} locale={locale} newTab>
             {text.nav.podcast}
             <span class="sr-only"> (notienenombre.com)</span>
-          </a>
+          </ResourceLink>
           <a href={profile.blog}>
             {text.nav.blog}
             <span class="sr-only"> (WordPress)</span>

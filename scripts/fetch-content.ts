@@ -9,9 +9,14 @@ import {
   type Source,
 } from '../src/lib/feeds/model';
 import { projects } from '../src/data/profile';
+import { refreshPackages, validatePackageSnapshot } from '../src/lib/packages';
 
 const path = fileURLToPath(new URL('../src/data/feeds/snapshot.json', import.meta.url));
 const old = await readFile(path, 'utf8');
+const packagePath = fileURLToPath(new URL('../src/data/nuget/snapshot.json', import.meta.url));
+const oldPackages = await readFile(packagePath, 'utf8');
+const packageSnapshot: unknown = JSON.parse(oldPackages);
+validatePackageSnapshot(packageSnapshot);
 const snapshot: unknown = JSON.parse(old);
 validateSnapshot(snapshot);
 const sources: Record<Source, string | null> = {
@@ -98,6 +103,14 @@ snapshot.entries.sort(
     Date.parse(b.publishedAt) - Date.parse(a.publishedAt) ||
     a.url.localeCompare(b.url),
 );
+const packageResult = await refreshPackages(packageSnapshot, request);
+if (packageResult.warning) console.warn(packageResult.warning);
+if (packageResult.snapshot) {
+  validatePackageSnapshot(packageResult.snapshot);
+  const packageOutput = `${JSON.stringify(packageResult.snapshot, null, 2)}\n`;
+  if (oldPackages !== packageOutput) await writeFile(packagePath, packageOutput);
+  console.log(`packages: ${packageResult.snapshot.packages.length} curated entries`);
+}
 validateSnapshot(snapshot);
 const output = `${JSON.stringify(snapshot, null, 2)}\n`;
 if (old === output) console.log('No normalized content changes.');
