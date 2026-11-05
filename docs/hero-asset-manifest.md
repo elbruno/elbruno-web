@@ -44,7 +44,8 @@ background of the very same approved derivative. No new photographs, AI editing,
 source processing or derivative files are needed. Portraits and the panoramic
 winter photo retain their complete composition without plain lavender bands.
 
-Captions occupy a compact 100px, fixed-height, high-contrast panel. Controls sit
+Captions occupy a compact 100px, fixed-height, high-contrast panel (120px at
+viewport widths up to 360px to accommodate platform font differences). Controls sit
 inside the media area, with 44px targets, white icons and dark translucent
 backgrounds. There is no toolbar below the caption. Changes are atomic
 with the active figure. The 500ms fade applies only to photographs, never to the

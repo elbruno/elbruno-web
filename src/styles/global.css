@@ -633,6 +633,11 @@ nav a[aria-current] {
     opacity: 1;
   }
 }
+@media (max-width: 360px) {
+  .story-caption {
+    height: 120px;
+  }
+}
 .section {
   padding-block: 42px;
 }
