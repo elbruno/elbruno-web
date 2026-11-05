@@ -5,6 +5,7 @@ import GameDialog from '../components/GameDialog.astro';
 import ResourceLink from '../components/ResourceLink.astro';
 import { profile } from '../data/profile';
 import { route, t, type Locale, type Page } from '../i18n';
+import { indexingPolicy } from '../lib/indexing';
 interface Props {
   locale: Locale;
   page?: Page;
@@ -16,12 +17,14 @@ const { locale, page = '', title, description, notFound = false } = Astro.props;
 const text = t(locale);
 const pageUrl = new URL(route(locale, page), Astro.site);
 const fullTitle = title ? `${title} | elbruno.com` : `${text.hello} | elbruno.com`;
+const { noindex } = indexingPolicy(import.meta.env.SITE_ENV, import.meta.env.SITE_ORIGIN);
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: profile.name,
   url: Astro.site?.href,
   jobTitle: profile.role,
+  worksFor: { '@type': 'Organization', name: profile.employer },
   sameAs: [profile.github, profile.linkedin, profile.podcast, profile.youtube],
 };
 ---
@@ -34,9 +37,8 @@ const schema = {
     <title>{fullTitle}</title>
     <meta name="description" content={description ?? text.intro} />
     <meta name="theme-color" content="#6336b5" />
-    {notFound ? (
-      <meta name="robots" content="noindex" />
-    ) : (
+    {(notFound || noindex) && <meta name="robots" content="noindex" />}
+    {!notFound && (
       <>
         <link rel="canonical" href={pageUrl} />
         <link rel="alternate" hreflang="en" href={new URL(route('en', page), Astro.site)} />
@@ -62,6 +64,26 @@ const schema = {
       }
     />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description ?? text.intro} />
+    <meta
+      name="twitter:image"
+      content={new URL('/assets/illustration/v02-social-art.jpg', Astro.site)}
+    />
+    <meta
+      name="twitter:image:alt"
+      content={
+        locale === 'en'
+          ? 'A friendly desktop robot in a developer workspace.'
+          : 'Un robot amigable en un espacio de trabajo para desarrolladores.'
+      }
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="El Bruno Blog"
+      href="https://elbruno.com/feed/"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
     <script is:inline src="/theme.js"></script>
@@ -119,7 +141,7 @@ const schema = {
                 lang={lang}
                 hreflang={lang}
                 aria-current={locale === lang ? 'true' : undefined}
-                aria-label={lang === 'en' ? 'English' : 'Español'}
+                aria-label={lang === 'en' ? 'EN: English' : 'ES: Español'}
               >
                 {lang.toUpperCase()}
               </a>
@@ -136,7 +158,7 @@ const schema = {
         </div>
       </div>
     </header>
-    <main id="main">
+    <main id="main" tabindex="-1">
       <slot />
     </main>
     <footer class="site-footer">

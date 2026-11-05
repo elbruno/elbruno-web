@@ -37,6 +37,36 @@ npm run format:check
 
 ## Project map
 
+### v0.7 verification and launch hardening
+
+See the [review reconciliation](docs/release/V07_REVIEW_RECONCILIATION.md),
+[QA results](docs/release/V07_QA_REPORT.md),
+[WordPress readiness plan](docs/release/V07_WORDPRESS_MIGRATION_READINESS.md)
+and [owner gates](docs/editorial/V07_OWNER_APPROVALS.md).
+The purple identity, six-story carousel and eight bilingual content routes remain.
+
+`npm run build` defaults to staging: generated HTML is noindex, robots disallow
+crawling, and the SWA config includes an X-Robots-Tag. An explicitly approved
+production build requires both environment variables, never just a hostname:
+
+```powershell
+$env:SITE_ENV = 'production'
+$env:SITE_ORIGIN = 'https://elbruno.com'
+npm run build
+```
+
+This only builds local files and does not authorize deployment. Clear both
+variables and rebuild before producing staging artifacts. `build-info.json`
+records the base commit, dirty-worktree flag, environment and build time, not
+credentials. Canonical and language alternate URLs always use elbruno.com.
+
+Run `npm run capture:v07` against the local production preview on port 4321 for
+57 screenshots and three contact sheets. `npm run measure:v07` measures an
+explicit production preview with Lighthouse, three runs per EN/ES and
+desktop/mobile combination. It checks generated production indexing first.
+All output in `screenshots/v07-review/` and `v07-review.zip` is local-only and
+Git-ignored. Do not include source photos or official full-resolution downloads.
+
 ### v0.6 local hero carousel review
 
 The homepage hero keeps its professional introduction fixed and progressively
@@ -108,7 +138,7 @@ See [content sources](docs/content-sources.md) for provenance, fallback behavior
 
 The deployment workflow is disabled until repository variable `AZURE_SWA_ENABLED` is `true`. Create an Azure Static Web App, configure `AZURE_STATIC_WEB_APPS_API_TOKEN` as a secret, and use the `preview` GitHub environment for review. Do not connect `elbruno.com` yet.
 
-The workflow builds on Node 24, uploads `dist` with Azure's build step disabled, and adds preview-specific `noindex` headers and robots rules. A successful main-branch CI run triggers deployment. Manual dispatch is supported. Content refresh has its own conditional deployment because commits made with `GITHUB_TOKEN` do not start ordinary push workflows.
+The workflow builds on Node 24 with explicit staging indexing, and uploads `dist` with Azure's build step disabled. A successful main-branch CI run triggers deployment. Manual dispatch is supported. Content refresh has its own conditional deployment because commits made with `GITHUB_TOKEN` do not start ordinary push workflows.
 
 Workflows pin Ubuntu 24.04 and commit-pinned Node 24-based checkout/setup actions. Deployment explicitly leaves `api_location` empty because the site has no Azure Functions API.
 

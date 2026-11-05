@@ -33,6 +33,11 @@ export function plainText(value: unknown, limit = 180): string {
 function list<T>(value: T | T[] | undefined): T[] {
   return value === undefined ? [] : Array.isArray(value) ? value : [value];
 }
+export function feedExcerpt(value: unknown): string {
+  return plainText(value, 240)
+    .replace(/^(?:Hi!|Hello!|¡Hola!)(?:\s+|$)/i, '')
+    .trim();
+}
 type XmlItem = Record<string, unknown>;
 function string(value: unknown): string {
   if (value && typeof value === 'object' && '#text' in value)
@@ -87,10 +92,12 @@ export function parseFeed(xml: string, source: Source, now = Date.now()): Extern
       url,
       publishedAt: date.toISOString(),
       summary: plainText(
-        string(
-          item.description ??
-            item.summary ??
-            (item['media:group'] as XmlItem)?.['media:description'],
+        feedExcerpt(
+          string(
+            item.description ??
+              item.summary ??
+              (item['media:group'] as XmlItem)?.['media:description'],
+          ),
         ),
       ),
       source,

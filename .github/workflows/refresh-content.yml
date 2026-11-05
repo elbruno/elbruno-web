@@ -53,10 +53,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run validate
-      - name: Build preview without indexing
-        run: |
-          printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt
-          node --input-type=module -e "import fs from 'node:fs'; const path = 'dist/staticwebapp.config.json'; const config = JSON.parse(fs.readFileSync(path)); config.globalHeaders['X-Robots-Tag'] = 'noindex, nofollow'; fs.writeFileSync(path, JSON.stringify(config));"
+        env:
+          SITE_ENV: staging
       - name: Deploy changed snapshot
         uses: Azure/static-web-apps-deploy@v1
         with:

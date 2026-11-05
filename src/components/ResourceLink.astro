@@ -6,14 +6,16 @@ interface Props {
   locale: Locale;
   newTab?: boolean;
   class?: string;
+  lang?: string;
 }
-const { href, locale, newTab: requestedNewTab = false, class: className } = Astro.props;
+const { href, locale, newTab: requestedNewTab = false, class: className, lang } = Astro.props;
 const newTab = requestedNewTab || isExternalBlog(href);
 ---
 
 <a
   href={href}
   class={className}
+  lang={lang}
   target={newTab ? '_blank' : undefined}
   rel={newTab ? 'noopener noreferrer' : undefined}
 >

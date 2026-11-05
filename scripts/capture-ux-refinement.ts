@@ -4,7 +4,8 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { heroStories, carouselText } from '../src/data/hero-stories';
 
-const output = resolve('screenshots', 'v06-ux-refinement');
+const v07 = process.argv.includes('--v07');
+const output = resolve('screenshots', v07 ? 'v07-review' : 'v06-ux-refinement');
 const baseURL = 'http://127.0.0.1:4321';
 const viewports = { desktop: { width: 1440, height: 900 }, mobile: { width: 390, height: 844 } };
 const routes = { home: '', about: 'about/', projects: 'projects/', 'speaker-kit': 'speaking/' };
@@ -113,7 +114,7 @@ try {
             .png()
             .toFile(join(output, file));
         } else {
-          if (kind === 'carousel' || kind === 'dark') {
+          if (kind === 'carousel' || (kind === 'dark' && !v07)) {
             await page
               .locator('[data-hero-carousel]')
               .evaluate((element) =>
@@ -131,7 +132,7 @@ try {
           } else await page.evaluate(() => scrollTo(0, 0));
           await page.screenshot({
             path: join(output, file),
-            fullPage: kind === 'full',
+            fullPage: kind === 'full' || (kind === 'dark' && v07),
             animations: 'disabled',
           });
         }
@@ -142,7 +143,7 @@ try {
         const route = `${prefix}${path}`;
         await navigate(route);
         await capture(`${name}-full`, route, 'full');
-        if (name === 'home' || name === 'projects')
+        if (name === 'home' || name === (v07 ? 'about' : 'projects'))
           await capture(`${name}-viewport`, route, 'viewport');
       }
       await navigate(prefix);
@@ -164,12 +165,12 @@ try {
           'upcoming-talks': '[data-talks]',
           'building-in-public': '#featured-projects',
           'from-github': '#from-github',
-          'blog-and-external-links': '#feed-blog',
+          [v07 ? 'nuget' : 'blog-and-external-links']: v07 ? '#featured-libraries' : '#feed-blog',
         }))
           await capture(name, prefix, 'focused', selector);
         if (device === 'desktop') {
           await navigate(prefix, 'dark');
-          await capture('carousel-dark', prefix, 'dark', undefined, 1, 'dark');
+          await capture(v07 ? 'home-dark' : 'carousel-dark', prefix, 'dark', undefined, 1, 'dark');
         }
       }
     }
@@ -236,7 +237,7 @@ await writeFile(
 );
 await writeFile(
   join(output, 'README.md'),
-  `# V06 UX refinement review
+  `# ${v07 ? 'V07 launch-hardening' : 'V06 UX refinement'} review
 
 Real Chromium Playwright screenshots from the local production preview, ${baseURL}.
 Desktop: 1440 x 900. Mobile: 390 x 844. Device scale factor: 1.
@@ -245,8 +246,8 @@ Speaker Kit uses the existing /speaking/ and /es/speaking/ routes.
 
 ## Inventory
 
-${captures.length} screenshots: 16 full-page, 8 viewport-only Home/Projects,
-24 individual carousel states, 8 focused sections and one dark-mode carousel.
+${captures.length} screenshots: 16 full-page, 8 viewport-only Home/${v07 ? 'About' : 'Projects'},
+24 individual carousel states, 8 focused sections and one dark-mode ${v07 ? 'homepage' : 'carousel'}.
 Focused captures are cropped to their complete section. Full-page heights follow
 content. Other screenshots use the exact device viewport.
 
@@ -267,7 +268,7 @@ ${issues.length ? issues.map((issue) => `- ${issue}`).join('\n') : 'No horizonta
 ## Reproduce
 
 Run \`npm run build\`, start \`npm run preview -- --host 127.0.0.1\`, then run
-\`npx tsx scripts/capture-ux-refinement.ts\`.
+\`npx tsx scripts/capture-ux-refinement.ts${v07 ? ' --v07' : ''}\`.
 Only screenshots and review documents belong in this local-only directory and ZIP.
 No source photographs, full-resolution images, dependencies or secrets are included.
 `,

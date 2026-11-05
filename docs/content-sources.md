@@ -13,7 +13,10 @@ Verified on November 4, 2026. Data is retrieved at build/refresh time, never fro
 
 The current blog host is **not** `blog.elbruno.com`. That host is a migration candidate, not an established fact. Do not switch feeds, outbound URLs or canonical post URLs before verifying the WordPress migration.
 
-PromptDot is a desktop teleprompter. The mockup's example description as a prompt organizer was not used. New Year New Bot is an in-development AI desk companion experiment, not a claimed released product. Only two featured repositories were verified and selected; no third one was invented.
+PromptDot is a desktop teleprompter. The mockup's example description as a prompt organizer was not used. New Year New Bot is an in-development AI desk companion experiment, not a claimed released product. The original v0.2 selection contained two verified repositories. The approved
+v0.6 selection is now New Year New Bot, MarkItDotNet, LocalEmbeddings and
+OllamaMonitor, with PromptDot retained only in Projects/history. See
+[content verification](content-verification.md) for source evidence.
 
 ## Pipeline
 
@@ -21,7 +24,10 @@ PromptDot is a desktop teleprompter. The mockup's example description as a promp
 
 Normalization removes duplicates, sorts by actual publication time and keeps three entries per source. Tie ordering is deterministic. A failed or empty source retains its old entries and old source metadata. Repository failures retain the previous matching repository. Snapshots are runtime-validated before writing and before rendering.
 
-The committed JSON is sufficient for offline builds. There is intentionally no generated-at timestamp that would cause meaningless refresh commits. Titles and snippets retain the publication's original language. GitHub descriptions retain source wording.
+The committed JSON is sufficient for offline builds. Snapshot timestamps record
+material successful refreshes, not every unchanged poll, avoiding timestamp-only
+deployment churn. Titles and snippets retain the publication's original language.
+GitHub descriptions retain source wording.
 
 ## Automation and manual operation
 
@@ -42,3 +48,16 @@ GitHub schedules can be delayed or disabled after inactivity. Monitor workflow e
 Only original publication links, titles, short plain-text excerpts and metadata are stored. No third-party photos or thumbnails are rehosted. The site currently uses its own artwork rather than making visitors fetch external images. This avoids unverified image rights, tracking pixels, unstable thumbnail URLs and third-party embeds.
 
 There are no invented stars, view counts, durations or podcast episode numbers. Any numbers in source titles are the publication's original title, not a site-generated claim.
+
+## v0.7 cache visibility
+
+Feed snapshots support optional per-source `fetchedAt` timestamps, written only
+after a successful initial or materially changed refresh. Historical snapshots without these timestamps show
+an explicit unknown-refresh-time notice. Repository commit dates remain distinct
+from snapshot refresh dates. A failed refresh retains previous data and freshness,
+and logs a warning. GitHub responses must match the requested repository URL.
+
+Greeting-only RSS excerpts are omitted, not replaced with invented summaries.
+HTML is rendered only as escaped, sanitized text. Podcast titles and excerpts
+carry `lang="es"` on both locales. NuGet retains its existing last-good snapshot,
+source timestamps and seven-day stale warning.

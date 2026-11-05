@@ -5,11 +5,11 @@ This runbook prepares a review; it does not authorize or perform a deployment, d
 ## Current build and hosting
 
 - Static Astro output is produced by `npm run build` in `dist/`.
-- The site hostname is set to `https://elbruno.com` in `astro.config.mjs`; canonical URLs and the sitemap therefore target the production domain even in a local preview.
-- Azure Static Web Apps is the planned host. `.github/workflows/deploy.yml` deploys a prebuilt `dist/` only when repository variable `AZURE_SWA_ENABLED` is exactly `true` and `AZURE_STATIC_WEB_APPS_API_TOKEN` is configured. The workflow adds preview `robots.txt` disallow rules and `X-Robots-Tag: noindex, nofollow`.
-- `public/staticwebapp.config.json` defines CSP/security headers, cached static assets, trailing-slash handling, and a real localized 404 response. It does not itself add `noindex`; use the preview workflow's injected preview controls on a review hostname only.
+- The site hostname is set to `https://elbruno.com` in `astro.config.mjs`; canonical URLs and the sitemap therefore target the production domain even in a local preview. Builds default to staging indexing. Production requires both `SITE_ENV=production` and `SITE_ORIGIN=https://elbruno.com`.
+- Azure Static Web Apps is the staging host. `.github/workflows/deploy.yml` deploys a prebuilt `dist/` only when repository variable `AZURE_SWA_ENABLED` is exactly `true` and `AZURE_STATIC_WEB_APPS_API_TOKEN` is configured. Explicit staging builds generate preview `robots.txt` disallow rules, HTML noindex and `X-Robots-Tag: noindex, nofollow`.
+- `public/staticwebapp.config.json` defines CSP/security headers, cached static assets, trailing-slash handling, and a real localized 404 response. `scripts/prepare-hosting.ts` generates environment-specific robots/headers and `build-info.json`. Never upload the unprocessed public directory.
 - Local review requires Node.js 22.23.4 or newer and npm. No secrets or network are needed for the static build, content snapshot, or local Playwright suite.
-- No preview credentials or deployed temporary hostname have been verified as available for this review. Do not enable the repository variable or dispatch a workflow based on this document alone.
+- The v0.7 reconciliation verified the existing staging hostname and the successful v0.6 deployment, without retrieving credentials or dispatching a workflow. See `V07_REVIEW_RECONCILIATION.md`. This does not authorize a new upload.
 
 ## Local preflight and staging smoke test
 

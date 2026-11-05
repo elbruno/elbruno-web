@@ -5,6 +5,7 @@ import rawSnapshot from '../data/feeds/snapshot.json';
 import { validateSnapshot, type Snapshot } from '../lib/feeds/model';
 import { profile } from '../data/profile';
 import { selectRepositories } from '../lib/repositories';
+import { feedExcerpt } from '../lib/feeds/parse';
 import { t, type Locale } from '../i18n';
 interface Props {
   locale: Locale;
@@ -38,6 +39,14 @@ const sections = [
 ];
 const formatDate = (date: string) =>
   new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(date));
+const freshness = (source: 'blog' | 'podcast' | 'youtube' | 'repositories') => {
+  const date = snapshot.fetchedAt?.[source];
+  return date
+    ? `${locale === 'en' ? 'Snapshot refreshed' : 'Caché actualizada'}: ${formatDate(date)}`
+    : locale === 'en'
+      ? 'Cached snapshot. Refresh time not recorded.'
+      : 'Datos en caché. Fecha de actualización no registrada.';
+};
 ---
 
 <section class="section" id="from-github">
@@ -89,6 +98,9 @@ const formatDate = (date: string) =>
       </article>
     ))}
   </div>
+  <p class="editorial-note" data-feed-freshness>
+    {freshness('repositories')}
+  </p>
 </section>
 {sections.map((section) => (
   <section class="section" id={`feed-${section.key}`}>
@@ -125,16 +137,28 @@ const formatDate = (date: string) =>
                   : 'YouTube'}
             </span>
             <h3>
-              <ResourceLink href={entry.url} locale={locale} newTab={entry.source === 'podcast'}>
+              <ResourceLink
+                href={entry.url}
+                locale={locale}
+                newTab={entry.source === 'podcast'}
+                lang={entry.source === 'podcast' ? 'es' : undefined}
+              >
                 {entry.title}
                 <Icon name="arrow" size={17} />
               </ResourceLink>
             </h3>
             <time datetime={entry.publishedAt}>{formatDate(entry.publishedAt)}</time>
-            {entry.summary && <p>{entry.summary}</p>}
+            {entry.summary && feedExcerpt(entry.summary) && (
+              <p lang={entry.source === 'podcast' ? 'es' : undefined}>
+                {feedExcerpt(entry.summary)}
+              </p>
+            )}
           </article>
         ))}
     </div>
+    <p class="editorial-note" data-feed-freshness>
+      {freshness(section.key)}
+    </p>
     {snapshot.entries.filter((entry) => entry.source === section.key).length === 0 && (
       <p class="empty-state">
         {text.empty}

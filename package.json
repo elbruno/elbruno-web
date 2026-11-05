@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && tsx scripts/prepare-hosting.ts",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "eslint .",
@@ -17,6 +17,8 @@
     "build-speaker-kit": "tsx scripts/create-speaker-kit.ts",
     "test": "tsx --test tests/*.test.ts",
     "test:e2e": "playwright test",
+    "capture:v07": "tsx scripts/capture-ux-refinement.ts --v07",
+    "measure:v07": "tsx scripts/measure-v07.ts",
     "refresh-content": "tsx scripts/fetch-content.ts",
     "validate-content": "tsx scripts/validate-content.ts",
     "validate": "npm run check && npm run lint && npm run test && npm run validate-content && npm run build"
@@ -32,6 +34,7 @@
     "eslint": "10.13.0",
     "eslint-plugin-astro": "3.2.1",
     "fast-xml-parser": "5.11.2",
+    "lighthouse": "13.6.0",
     "prettier": "3.9.10",
     "prettier-plugin-astro": "1.1.2",
     "sharp": "^0.35.5",

@@ -154,7 +154,7 @@ test('all localized routes have metadata, working local links and no overflow', 
       'content',
       'https://elbruno.com/assets/illustration/v02-social-art.jpg',
     );
-    await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
     expect(
       await page
         .locator('img')
@@ -212,14 +212,14 @@ test('homepage retains all available feed items and the site sitemap covers loca
   for (const route of routes) expect(sitemapText).toContain(`https://elbruno.com${route}`);
   const robots = await page.request.get('/robots.txt');
   expect(robots.status()).toBe(200);
-  expect(await robots.text()).toContain('Allow: /');
+  expect(await robots.text()).toContain('Disallow: /');
 });
 test('language switch preserves the current page and theme persists', async ({
   page,
   isMobile,
 }) => {
   await page.goto('/projects/');
-  await page.getByRole('link', { name: 'Español', exact: true }).click();
+  await page.getByRole('link', { name: 'ES: Español', exact: true }).click();
   await expect(page).toHaveURL('/es/projects/');
   await page.getByRole('button', { name: 'Cambiar tema oscuro' }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');

@@ -527,7 +527,7 @@ nav a[aria-current] {
   object-fit: contain;
 }
 .story-caption {
-  height: 100px;
+  min-height: 100px;
   padding: 12px 18px;
   color: var(--text);
   background: var(--card);
@@ -635,7 +635,7 @@ nav a[aria-current] {
 }
 @media (max-width: 360px) {
   .story-caption {
-    height: 120px;
+    min-height: 120px;
   }
 }
 .section {

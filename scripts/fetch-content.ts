@@ -1,9 +1,8 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { parseFeed } from '../src/lib/feeds/parse';
+import { refreshFeed, refreshRepository } from '../src/lib/feeds/refresh';
 import {
   httpsUrl,
-  validRepository,
   validateSnapshot,
   type RepositorySummary,
   type Source,
@@ -50,51 +49,29 @@ async function request(url: string): Promise<string> {
   }
   return Buffer.concat(chunks).toString('utf8');
 }
-await Promise.all(
-  (repositoriesOnly ? [] : (Object.keys(sources) as Source[])).map(async (source) => {
-    try {
-      const url = sources[source]!;
-      const entries = parseFeed(await request(url), source);
-      snapshot.entries = [
-        ...snapshot.entries.filter((entry) => entry.source !== source),
-        ...entries,
-      ];
-      snapshot.sources[source] =
-        source === 'youtube' ? 'https://www.youtube.com/channel/UCyHCkJ4lsphfhu_ljRws6aA' : url;
-      console.log(`${source}: ${entries.length} verified entries`);
-    } catch (error) {
-      console.warn(
-        `${source}: keeping last known good snapshot. ${error instanceof Error ? error.message : 'Source unavailable'}`,
-      );
-    }
-  }),
-);
+for (const source of repositoriesOnly ? [] : (Object.keys(sources) as Source[])) {
+  const result = await refreshFeed(snapshot, source, sources[source]!, request);
+  if (result.warning) console.warn(result.warning);
+  else console.log(`${source}: verified entries refreshed`);
+  Object.assign(snapshot, result.snapshot);
+}
 const repositories: RepositorySummary[] = [];
+let repositoryFailure = false;
 await Promise.all(
   curatedRepositories.map(async (project) => {
-    try {
-      const repo = JSON.parse(
-        await request(`https://api.github.com/repos/elbruno/${project.slug}`),
-      );
-      const normalized = {
-        name: repo.name,
-        url: repo.html_url,
-        description: repo.description ?? '',
-        ...(repo.language ? { language: repo.language } : {}),
-        stars: repo.stargazers_count,
-        updatedAt: repo.updated_at,
-      };
-      if (!validRepository(normalized)) throw new Error('Invalid repository metadata');
-      repositories.push(normalized);
-    } catch (error) {
-      console.warn(
-        `${project.slug}: keeping last known good metadata. ${error instanceof Error ? error.message : 'Source unavailable'}`,
-      );
-      const previous = snapshot.repositories.find((repo) => repo.url === project.url);
-      if (previous) repositories.push(previous);
+    const result = await refreshRepository(
+      project,
+      snapshot.repositories.find((repo) => repo.url === project.url),
+      request,
+    );
+    if (result.warning) {
+      repositoryFailure = true;
+      console.warn(result.warning);
     }
+    if (result.repository) repositories.push(result.repository);
   }),
 );
+const previousRepositories = JSON.stringify(snapshot.repositories);
 snapshot.repositories = [
   ...curatedRepositories.flatMap((project) =>
     repositories.filter((repo) => repo.url === project.url),
@@ -103,6 +80,12 @@ snapshot.repositories = [
     (repo) => !curatedRepositories.some((project) => project.url === repo.url),
   ),
 ];
+if (
+  !repositoryFailure &&
+  (!snapshot.fetchedAt?.repositories ||
+    previousRepositories !== JSON.stringify(snapshot.repositories))
+)
+  snapshot.fetchedAt = { ...snapshot.fetchedAt, repositories: new Date().toISOString() };
 snapshot.entries.sort(
   (a, b) =>
     a.source.localeCompare(b.source) ||

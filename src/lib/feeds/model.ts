@@ -19,6 +19,7 @@ export type Snapshot = {
   sources: Record<Source, string | null>;
   entries: ExternalEntry[];
   repositories: RepositorySummary[];
+  fetchedAt?: Partial<Record<Source | 'repositories', string>>;
 };
 export function httpsUrl(value: unknown): value is string {
   if (typeof value !== 'string') return false;
@@ -64,6 +65,19 @@ export function validRepository(value: unknown): value is RepositorySummary {
 export function validateSnapshot(value: unknown): asserts value is Snapshot {
   if (!value || typeof value !== 'object') throw new Error('Snapshot must be an object');
   const data = value as Snapshot;
+  if (
+    data.fetchedAt !== undefined &&
+    (!data.fetchedAt ||
+      typeof data.fetchedAt !== 'object' ||
+      Array.isArray(data.fetchedAt) ||
+      Object.entries(data.fetchedAt).some(
+        ([source, date]) =>
+          !['blog', 'podcast', 'youtube', 'repositories'].includes(source) ||
+          typeof date !== 'string' ||
+          !Number.isFinite(Date.parse(date)),
+      ))
+  )
+    throw new Error('Invalid snapshot refresh timestamps');
   if (
     !data.sources ||
     !(['blog', 'podcast', 'youtube'] as const).every(
