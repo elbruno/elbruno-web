@@ -87,6 +87,8 @@ The deployment workflow is disabled until repository variable `AZURE_SWA_ENABLED
 
 The workflow builds on Node 24, uploads `dist` with Azure's build step disabled, and adds preview-specific `noindex` headers and robots rules. A successful main-branch CI run triggers deployment. Manual dispatch is supported. Content refresh has its own conditional deployment because commits made with `GITHUB_TOKEN` do not start ordinary push workflows.
 
+Workflows pin Ubuntu 24.04 and commit-pinned Node 24-based checkout/setup actions. Deployment explicitly leaves `api_location` empty because the site has no Azure Functions API.
+
 `public\staticwebapp.config.json` contains headers and real 404 behavior, not an SPA catch-all. The CSP permits same-origin scripts and assets only; inline CSS is allowed for presentation. There are no external embeds, analytics, browser-side API calls or forms. Theme choice is stored locally, and unavailable storage is handled. No cookies or leaderboard services are used.
 
 No Azure deployment, domain binding, DNS change or WordPress migration has been performed. Follow [the migration guide](docs/domain-migration.md) before any cutover.
