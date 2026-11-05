@@ -4,6 +4,38 @@ This summary separates owner-supplied information from repository-backed project
 
 ## Facts used on the site
 
+### V06 UX refinement, verified November 5, 2026
+
+The official agenda was checked again. Both titles, dates, session fragments and
+PST times in the table below remain confirmed. The conference is now the primary
+heading, with a single primary event CTA and a secondary agenda link. After both
+sessions end it remains a .NET Conf speaking highlight, without recording claims.
+
+The GitHub API and repository READMEs confirm the following homepage selection:
+
+1. [New Year New Bot](https://github.com/elbruno/new-year-new-bot): coming-soon
+   StackChan and .NET maker project.
+2. [MarkItDotNet](https://github.com/elbruno/ElBruno.MarkItDotNet): converts
+   documents and file formats to Markdown for AI pipelines.
+3. [LocalEmbeddings](https://github.com/elbruno/elbruno.localembeddings): local
+   ONNX Runtime embeddings with Microsoft.Extensions.AI, without cloud API calls.
+4. [OllamaMonitor](https://github.com/elbruno/ElBruno.OllamaMonitor): Windows
+   system-tray utility for local Ollama status, models and resource usage.
+
+From GitHub uses its own stable order: MarkItDotNet, LocalEmbeddings,
+OllamaMonitor, New Year New Bot. Cards use API descriptions, language, stars and
+update dates when available. Missing metadata leaves a working repository link
+without fabricated metrics. PromptDot remains in Projects and historical data,
+but is not promoted on Home. NuGet statistics remain a separate integration.
+
+External absolute blog links use the shared ResourceLink policy, with an isolated
+new tab and a localized screen-reader notice. Internal routes retain same-tab
+navigation. Existing podcast new-tab behavior is unchanged.
+
+Refresh just repository metadata with
+`npm run refresh-content -- --repositories-only`, without changing feed or NuGet
+snapshots. Existing non-curated historical repository metadata is retained.
+
 ### V05 update, verified November 5, 2026
 
 The owner supplied the current positioning: Cloud Advocate at GitHub / Microsoft,

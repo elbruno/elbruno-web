@@ -115,7 +115,7 @@ test('autoplay uses 6.5 seconds, pauses for hover, focus and explicit pause, and
   await page.mouse.move(0, 0);
   await page.clock.fastForward(20_000);
   await expect(root).toHaveAttribute('data-active-slide', '4');
-  await expect(root.locator('.story-play')).toHaveText('Play stories');
+  await expect(root.locator('.story-play')).toHaveAttribute('aria-label', 'Play stories');
   await root.locator('.story-play').click();
   await page.locator('.hero-blog').focus();
   await page.mouse.move(0, 0);

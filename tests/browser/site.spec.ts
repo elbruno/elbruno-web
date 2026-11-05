@@ -198,7 +198,7 @@ test('homepage retains all available feed items and the site sitemap covers loca
         .getByRole('heading', { name: heading })
         .locator('xpath=ancestor::section[1]');
       await expect(section.locator('.feed-card')).toHaveCount(
-        heading === 'From GitHub' || heading === 'Desde GitHub' ? 2 : 3,
+        heading === 'From GitHub' || heading === 'Desde GitHub' ? 4 : 3,
       );
     }
   }
@@ -309,16 +309,23 @@ test('talk labels stay date-aware after a static build and while the page remain
 }) => {
   await page.clock.install({ time: new Date('2026-11-10T19:59:59Z') });
   await page.goto('/');
-  await expect(page.locator('[data-talks-heading]')).toHaveText('Upcoming talks');
+  await expect(page.locator('[data-talks-heading]')).toHaveText('Speaking at .NET Conf 2026');
   await expect(page.locator('[data-talk-status]').first()).toHaveText('Upcoming');
+  await expect(page.locator('[data-talk-status]').first()).toBeHidden();
   await page.clock.fastForward(30_000);
   await expect(page.locator('[data-talk-status]').first()).toHaveText('Scheduled now');
+  await expect(page.locator('[data-talk-status]').first()).toBeVisible();
   await page.clock.setSystemTime(new Date('2026-11-12T01:00:00Z'));
   await page.clock.fastForward(30_000);
-  await expect(page.locator('[data-talks-heading]')).toHaveText('Speaking highlight');
+  await expect(page.locator('[data-talks-heading]')).toHaveText(
+    '.NET Conf 2026 speaking highlight',
+  );
   await expect(page.locator('[data-talk-status]')).toHaveText(['Past session', 'Past session']);
+  await expect(page.locator('[data-talks]')).not.toContainText(/watch recording|view recording/i);
   await page.goto('/es/speaking/');
-  await expect(page.locator('[data-talks-heading]')).toHaveText('Charlas destacadas');
+  await expect(page.locator('[data-talks-heading]')).toHaveText(
+    'Charlas destacadas en .NET Conf 2026',
+  );
   await expect(page.locator('[data-talk-status]')).toHaveText(['Sesión pasada', 'Sesión pasada']);
 });
 test('speaker kit exposes a selectable fallback when clipboard access is blocked', async ({

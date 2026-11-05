@@ -1,6 +1,6 @@
 ---
 import { conference, talks, talkDate, talkTime, talkStatus } from '../data/talks';
-import { route, t, type Locale } from '../i18n';
+import { t, type Locale } from '../i18n';
 interface Props {
   locale: Locale;
   compact?: boolean;
@@ -13,27 +13,24 @@ const upcoming = talks.some((talk) => talkStatus(talk.start, talk.end) !== 'past
 <section
   class:list={['section', 'talks-section', { 'card talks-compact': compact }]}
   data-talks
-  data-upcoming={text.upcomingTalks}
-  data-archive={text.speakingHighlight}
+  data-upcoming={text.conferenceHeading}
+  data-archive={text.conferenceHighlight}
   data-status-labels={JSON.stringify(text.talkStatus)}
 >
   <div class="section-heading">
     <div>
-      <p class="eyebrow">
-        <a href={conference.url}>{conference.name}</a>
-      </p>
-      <h2 data-talks-heading>{upcoming ? text.upcomingTalks : text.speakingHighlight}</h2>
+      <h2 data-talks-heading>{upcoming ? text.conferenceHeading : text.conferenceHighlight}</h2>
+      <p>{text.conferenceDescription}</p>
     </div>
-    {compact && (
-      <a class="small-link" href={route(locale, 'speaking')}>
-        {text.sessionDetails}
-      </a>
-    )}
   </div>
   <div class="talks-grid">
     {talks.map((talk) => (
       <article class="talk-entry" data-talk-start={talk.start} data-talk-end={talk.end}>
-        <p class="eyebrow" data-talk-status>
+        <p
+          class="eyebrow"
+          data-talk-status
+          hidden={talkStatus(talk.start, talk.end) === 'upcoming'}
+        >
           {text.talkStatus[talkStatus(talk.start, talk.end)]}
         </p>
         <h3>
@@ -56,6 +53,14 @@ const upcoming = talks.some((talk) => talkStatus(talk.start, talk.end) !== 'past
       </article>
     ))}
   </div>
+  <div class="actions conference-actions">
+    <a class="button primary" href={conference.url}>
+      {text.exploreConference}
+    </a>
+    <a class="small-link" href={conference.agenda}>
+      {text.viewSessions}
+    </a>
+  </div>
 </section>
 
 <script>
@@ -71,7 +76,9 @@ const upcoming = talks.some((talk) => talkStatus(talk.start, talk.end) !== 'past
       section.querySelectorAll<HTMLElement>('[data-talk-start]').forEach((entry) => {
         const status = talkStatus(entry.dataset.talkStart!, entry.dataset.talkEnd!);
         upcoming ||= status !== 'past';
-        entry.querySelector('[data-talk-status]')!.textContent = labels[status];
+        const label = entry.querySelector<HTMLElement>('[data-talk-status]')!;
+        label.textContent = labels[status];
+        label.hidden = status === 'upcoming';
       });
       section.querySelector('[data-talks-heading]')!.textContent = upcoming
         ? section.dataset.upcoming!

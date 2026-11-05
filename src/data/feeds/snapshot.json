@@ -80,6 +80,30 @@
   ],
   "repositories": [
     {
+      "name": "ElBruno.MarkItDotNet",
+      "url": "https://github.com/elbruno/ElBruno.MarkItDotNet",
+      "description": ".NET library that converts file formats to Markdown for AI pipelines",
+      "language": "C#",
+      "stars": 58,
+      "updatedAt": "2026-11-04T02:06:38Z"
+    },
+    {
+      "name": "elbruno.localembeddings",
+      "url": "https://github.com/elbruno/elbruno.localembeddings",
+      "description": ".NET library for local embedding generation using ONNX and Microsoft.Extensions.AI",
+      "language": "C#",
+      "stars": 44,
+      "updatedAt": "2026-11-05T17:32:19Z"
+    },
+    {
+      "name": "ElBruno.OllamaMonitor",
+      "url": "https://github.com/elbruno/ElBruno.OllamaMonitor",
+      "description": "A tiny Windows system tray tool to monitor your local Ollama runtime.",
+      "language": "C#",
+      "stars": 12,
+      "updatedAt": "2026-09-07T09:34:20Z"
+    },
+    {
       "name": "new-year-new-bot",
       "url": "https://github.com/elbruno/new-year-new-bot",
       "description": "A coming-soon project exploring an AI desk companion with M5Stack StackChan and .NET.",

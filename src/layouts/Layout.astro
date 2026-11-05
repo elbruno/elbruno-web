@@ -106,10 +106,10 @@ const schema = {
             {text.nav.podcast}
             <span class="sr-only"> (notienenombre.com)</span>
           </ResourceLink>
-          <a href={profile.blog}>
+          <ResourceLink href={profile.blog} locale={locale}>
             {text.nav.blog}
             <span class="sr-only"> (WordPress)</span>
-          </a>
+          </ResourceLink>
         </nav>
         <div class="header-tools">
           <div class="language-switch" aria-label={locale === 'en' ? 'Language' : 'Idioma'}>

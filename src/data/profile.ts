@@ -31,6 +31,36 @@ export const projects = [
     status: { en: 'Coming soon', es: 'Próximamente' },
   },
   {
+    name: 'MarkItDotNet',
+    slug: 'ElBruno.MarkItDotNet',
+    url: 'https://github.com/elbruno/ElBruno.MarkItDotNet',
+    art: 'documents',
+    tags: ['.NET', 'Markdown', 'AI'],
+    en: 'Convert documents to Markdown for AI pipelines. Built for .NET developers working with real-world data and AI workflows.',
+    es: 'Convierte documentos a Markdown para pipelines de IA. Pensado para developers .NET que trabajan con datos reales y flujos de IA.',
+    status: { en: 'Open source', es: 'Código abierto' },
+  },
+  {
+    name: 'LocalEmbeddings',
+    slug: 'elbruno.localembeddings',
+    url: 'https://github.com/elbruno/elbruno.localembeddings',
+    art: 'embeddings',
+    tags: ['.NET', 'ONNX', 'Microsoft.Extensions.AI'],
+    en: 'Generate embeddings locally with .NET, ONNX and Microsoft.Extensions.AI. No cloud API required.',
+    es: 'Genera embeddings localmente con .NET, ONNX y Microsoft.Extensions.AI. Sin depender de una API en la nube.',
+    status: { en: 'Open source', es: 'Código abierto' },
+  },
+  {
+    name: 'OllamaMonitor',
+    slug: 'ElBruno.OllamaMonitor',
+    url: 'https://github.com/elbruno/ElBruno.OllamaMonitor',
+    art: 'monitor',
+    tags: ['.NET', 'Ollama', 'Windows'],
+    en: 'Keep an eye on your local AI models and Ollama runtime with a lightweight Windows tray utility.',
+    es: 'Supervisa tus modelos de IA locales y Ollama con una herramienta ligera para la bandeja de Windows.',
+    status: { en: 'Open source', es: 'Código abierto' },
+  },
+  {
     name: 'PromptDot',
     slug: 'PromptDot',
     url: 'https://github.com/elbruno/PromptDot',
@@ -41,3 +71,11 @@ export const projects = [
     status: { en: 'Open source', es: 'Código abierto' },
   },
 ] as const;
+
+export const featuredProjects = projects.filter((project) => project.slug !== 'PromptDot');
+export const curatedRepositories = [
+  featuredProjects[1],
+  featuredProjects[2],
+  featuredProjects[3],
+  featuredProjects[0],
+];

@@ -11,13 +11,25 @@ const { project, locale } = Astro.props;
 
 <article class="card project-card">
   <a href={project.url} tabindex="-1" aria-hidden="true" class="project-art">
-    <img
-      src={`/assets/illustration/project-${project.art}.svg`}
-      alt=""
-      width="640"
-      height="320"
-      loading="lazy"
-    />
+    {project.art === 'bot' || project.art === 'prompt' ? (
+      <img
+        src={`/assets/illustration/project-${project.art}.svg`}
+        alt=""
+        width="640"
+        height="320"
+        loading="lazy"
+      />
+    ) : (
+      <div class="project-library-art">
+        <Icon
+          name={
+            project.art === 'documents' ? 'book' : project.art === 'monitor' ? 'terminal' : 'code'
+          }
+          size={52}
+        />
+        <span>{project.name}</span>
+      </div>
+    )}
   </a>
   <div class="project-body">
     <p class="eyebrow">{project.status[locale]}</p>

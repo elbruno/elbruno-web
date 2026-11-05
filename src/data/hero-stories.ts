@@ -8,6 +8,8 @@ export interface HeroStory {
   width: number;
   height: number;
   fit: 'cover' | 'contain';
+  objectPosition?: string;
+  backgroundMode?: 'photo' | 'none';
   text: Record<Locale, StoryText>;
 }
 
@@ -20,6 +22,7 @@ export const heroStories: HeroStory[] = [
     width: 1280,
     height: 960,
     fit: 'cover',
+    objectPosition: '50% 40%',
     text: {
       en: {
         title: 'The maker 🤖',
@@ -41,6 +44,7 @@ export const heroStories: HeroStory[] = [
     width: 960,
     height: 440,
     fit: 'contain',
+    backgroundMode: 'photo',
     text: {
       en: {
         title: 'The speaker 🎤',
@@ -60,6 +64,7 @@ export const heroStories: HeroStory[] = [
     width: 760,
     height: 600,
     fit: 'contain',
+    backgroundMode: 'none',
     text: {
       en: {
         title: 'The developer 💻',
@@ -82,6 +87,7 @@ export const heroStories: HeroStory[] = [
     width: 908,
     height: 302,
     fit: 'contain',
+    backgroundMode: 'photo',
     text: {
       en: {
         title: 'Canadian winters ❄️',
@@ -103,6 +109,7 @@ export const heroStories: HeroStory[] = [
     width: 600,
     height: 800,
     fit: 'contain',
+    backgroundMode: 'photo',
     text: {
       en: {
         title: 'The runner 🏃',
@@ -123,6 +130,7 @@ export const heroStories: HeroStory[] = [
     width: 480,
     height: 640,
     fit: 'contain',
+    backgroundMode: 'photo',
     text: {
       en: {
         title: 'The traveler 🚌',

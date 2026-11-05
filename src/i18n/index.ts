@@ -144,6 +144,12 @@ const en = {
   countriesText:
     "I've lived in Argentina, Spain, and Canada. Three countries that are equally part of who I am. Different places, different chapters, and a heart that belongs to all three.",
   upcomingTalks: 'Upcoming talks',
+  conferenceHeading: 'Speaking at .NET Conf 2026',
+  conferenceHighlight: '.NET Conf 2026 speaking highlight',
+  conferenceDescription:
+    'Two sessions at the major official .NET developer conference, exploring AI with Microsoft Foundry and .NET.',
+  exploreConference: 'Explore .NET Conf 2026',
+  viewSessions: 'View sessions',
   speakingHighlight: 'Speaking highlight',
   sessionDetails: 'Session details',
   officialSession: 'View on the official agenda',
@@ -385,6 +391,12 @@ const es: typeof en = {
   countriesText:
     'He vivido en Argentina, España y Canadá. Tres países que forman parte de quien soy por igual. Distintos lugares, distintas etapas y un corazón repartido entre los tres.',
   upcomingTalks: 'Próximas charlas',
+  conferenceHeading: 'Charlas en .NET Conf 2026',
+  conferenceHighlight: 'Charlas destacadas en .NET Conf 2026',
+  conferenceDescription:
+    'Dos sesiones en la gran conferencia oficial para developers .NET, explorando IA con Microsoft Foundry y .NET.',
+  exploreConference: 'Explora .NET Conf 2026',
+  viewSessions: 'Ver sesiones',
   speakingHighlight: 'Charlas destacadas',
   sessionDetails: 'Detalles de las sesiones',
   officialSession: 'Ver en la agenda oficial',

@@ -30,12 +30,15 @@ export function initHeroCarousel(root: HTMLElement) {
     const rotating = canRotate();
     root.dataset.rotating = String(rotating);
     play.disabled = motion.matches;
-    play.textContent = motion.matches
-      ? root.dataset.reduced!
-      : paused
-        ? root.dataset.play!
-        : root.dataset.pause!;
-    play.setAttribute('aria-label', motion.matches ? root.dataset.reducedLabel! : play.textContent);
+    play.querySelector('[data-play-icon]')!.textContent = motion.matches || paused ? '▶' : 'Ⅱ';
+    play.setAttribute(
+      'aria-label',
+      motion.matches
+        ? root.dataset.reducedLabel!
+        : paused
+          ? root.dataset.play!
+          : root.dataset.pause!,
+    );
     if (rotating) timer = setTimeout(() => void select(index + 1, false), INTERVAL);
   }
   function stopManually() {

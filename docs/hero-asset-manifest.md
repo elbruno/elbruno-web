@@ -37,11 +37,16 @@ fixed order above. That file is the bilingual caption and alt-text source of
 truth. The plan's supplied micro-titles and captions are retained exactly.
 Only StackChan has a network image source on first paint. The remaining image
 sources are assigned on demand, decoded before switching, and cached by the
-browser. All subjects remain contained except StackChan's existing 4:3 crop.
-Portraits and the panoramic winter photo use a contained frame with a subtle
-theme-aware background, without cutting out faces, the robot, Ace or the medal.
+browser. The consistent media frame is 16:11. StackChan uses cover with a 50% 40%
+focal position, preserving Bruno's face and the robot. The speaker, winter, runner
+and bus photographs remain completely contained above a blurred, enlarged CSS
+background of the very same approved derivative. No new photographs, AI editing,
+source processing or derivative files are needed. Portraits and the panoramic
+winter photo retain their complete composition without plain lavender bands.
 
-Captions occupy a separate, fixed-height, high-contrast panel. Changes are atomic
+Captions occupy a compact 100px, fixed-height, high-contrast panel. Controls sit
+inside the media area, with 44px targets, white icons and dark translucent
+backgrounds. There is no toolbar below the caption. Changes are atomic
 with the active figure. The 500ms fade applies only to photographs, never to the
 caption text, and is disabled for reduced motion. A failed next image keeps the
 current story; a failed first photo has an inline icon/text fallback.

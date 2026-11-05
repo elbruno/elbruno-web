@@ -1,12 +1,14 @@
 ---
 import { t, type Locale } from '../i18n';
+import { isExternalBlog } from '../lib/links';
 interface Props {
   href: string;
   locale: Locale;
   newTab?: boolean;
   class?: string;
 }
-const { href, locale, newTab = false, class: className } = Astro.props;
+const { href, locale, newTab: requestedNewTab = false, class: className } = Astro.props;
+const newTab = requestedNewTab || isExternalBlog(href);
 ---
 
 <a

@@ -4,6 +4,7 @@ import ResourceLink from './ResourceLink.astro';
 import rawSnapshot from '../data/feeds/snapshot.json';
 import { validateSnapshot, type Snapshot } from '../lib/feeds/model';
 import { profile } from '../data/profile';
+import { selectRepositories } from '../lib/repositories';
 import { t, type Locale } from '../i18n';
 interface Props {
   locale: Locale;
@@ -39,7 +40,7 @@ const formatDate = (date: string) =>
   new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(date));
 ---
 
-<section class="section">
+<section class="section" id="from-github">
   <div class="section-heading">
     <div>
       <h2>
@@ -53,8 +54,8 @@ const formatDate = (date: string) =>
       <Icon name="arrow" size={17} />
     </a>
   </div>
-  <div class="feed-grid">
-    {snapshot.repositories.map((repo) => (
+  <div class="feed-grid repository-grid">
+    {selectRepositories(snapshot.repositories).map((repo) => (
       <article class="card feed-card">
         <span class="mini-icon">
           <Icon name="code" />
@@ -65,7 +66,7 @@ const formatDate = (date: string) =>
             <Icon name="arrow" size={17} />
           </a>
         </h3>
-        <p>{repo.description}</p>
+        {repo.description && <p>{repo.description}</p>}
         <div class="repo-meta">
           {repo.language && (
             <span>
@@ -80,17 +81,17 @@ const formatDate = (date: string) =>
             </span>
           )}
         </div>
+        {repo.updatedAt && (
+          <time datetime={repo.updatedAt}>
+            {locale === 'en' ? 'Updated' : 'Actualizado'} {formatDate(repo.updatedAt)}
+          </time>
+        )}
       </article>
     ))}
-    {snapshot.repositories.length === 0 && (
-      <p class="empty-state">
-        {text.empty} <a href={profile.github}>GitHub</a>
-      </p>
-    )}
   </div>
 </section>
 {sections.map((section) => (
-  <section class="section">
+  <section class="section" id={`feed-${section.key}`}>
     <div class="section-heading">
       <div>
         <h2>

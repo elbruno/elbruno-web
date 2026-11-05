@@ -8,11 +8,12 @@ import {
   type RepositorySummary,
   type Source,
 } from '../src/lib/feeds/model';
-import { projects } from '../src/data/profile';
+import { curatedRepositories } from '../src/data/profile';
 import { refreshPackages, validatePackageSnapshot } from '../src/lib/packages';
 
 const path = fileURLToPath(new URL('../src/data/feeds/snapshot.json', import.meta.url));
 const old = await readFile(path, 'utf8');
+const repositoriesOnly = process.argv.includes('--repositories-only');
 const packagePath = fileURLToPath(new URL('../src/data/nuget/snapshot.json', import.meta.url));
 const oldPackages = await readFile(packagePath, 'utf8');
 const packageSnapshot: unknown = JSON.parse(oldPackages);
@@ -50,7 +51,7 @@ async function request(url: string): Promise<string> {
   return Buffer.concat(chunks).toString('utf8');
 }
 await Promise.all(
-  (Object.keys(sources) as Source[]).map(async (source) => {
+  (repositoriesOnly ? [] : (Object.keys(sources) as Source[])).map(async (source) => {
     try {
       const url = sources[source]!;
       const entries = parseFeed(await request(url), source);
@@ -70,7 +71,7 @@ await Promise.all(
 );
 const repositories: RepositorySummary[] = [];
 await Promise.all(
-  projects.map(async (project) => {
+  curatedRepositories.map(async (project) => {
     try {
       const repo = JSON.parse(
         await request(`https://api.github.com/repos/elbruno/${project.slug}`),
@@ -94,22 +95,29 @@ await Promise.all(
     }
   }),
 );
-snapshot.repositories = projects.flatMap((project) =>
-  repositories.filter((repo) => repo.url === project.url),
-);
+snapshot.repositories = [
+  ...curatedRepositories.flatMap((project) =>
+    repositories.filter((repo) => repo.url === project.url),
+  ),
+  ...snapshot.repositories.filter(
+    (repo) => !curatedRepositories.some((project) => project.url === repo.url),
+  ),
+];
 snapshot.entries.sort(
   (a, b) =>
     a.source.localeCompare(b.source) ||
     Date.parse(b.publishedAt) - Date.parse(a.publishedAt) ||
     a.url.localeCompare(b.url),
 );
-const packageResult = await refreshPackages(packageSnapshot, request);
-if (packageResult.warning) console.warn(packageResult.warning);
-if (packageResult.snapshot) {
-  validatePackageSnapshot(packageResult.snapshot);
-  const packageOutput = `${JSON.stringify(packageResult.snapshot, null, 2)}\n`;
-  if (oldPackages !== packageOutput) await writeFile(packagePath, packageOutput);
-  console.log(`packages: ${packageResult.snapshot.packages.length} curated entries`);
+if (!repositoriesOnly) {
+  const packageResult = await refreshPackages(packageSnapshot, request);
+  if (packageResult.warning) console.warn(packageResult.warning);
+  if (packageResult.snapshot) {
+    validatePackageSnapshot(packageResult.snapshot);
+    const packageOutput = `${JSON.stringify(packageResult.snapshot, null, 2)}\n`;
+    if (oldPackages !== packageOutput) await writeFile(packagePath, packageOutput);
+    console.log(`packages: ${packageResult.snapshot.packages.length} curated entries`);
+  }
 }
 validateSnapshot(snapshot);
 const output = `${JSON.stringify(snapshot, null, 2)}\n`;
