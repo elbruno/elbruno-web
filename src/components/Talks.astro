@@ -1,0 +1,84 @@
+---
+import { conference, talks, talkDate, talkTime, talkStatus } from '../data/talks';
+import { route, t, type Locale } from '../i18n';
+interface Props {
+  locale: Locale;
+  compact?: boolean;
+}
+const { locale, compact = false } = Astro.props;
+const text = t(locale);
+const upcoming = talks.some((talk) => talkStatus(talk.start, talk.end) !== 'past');
+---
+
+<section
+  class:list={['section', 'talks-section', { 'card talks-compact': compact }]}
+  data-talks
+  data-upcoming={text.upcomingTalks}
+  data-archive={text.speakingHighlight}
+  data-status-labels={JSON.stringify(text.talkStatus)}
+>
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">
+        <a href={conference.url}>{conference.name}</a>
+      </p>
+      <h2 data-talks-heading>{upcoming ? text.upcomingTalks : text.speakingHighlight}</h2>
+    </div>
+    {compact && (
+      <a class="small-link" href={route(locale, 'speaking')}>
+        {text.sessionDetails}
+      </a>
+    )}
+  </div>
+  <div class="talks-grid">
+    {talks.map((talk) => (
+      <article class="talk-entry" data-talk-start={talk.start} data-talk-end={talk.end}>
+        <p class="eyebrow" data-talk-status>
+          {text.talkStatus[talkStatus(talk.start, talk.end)]}
+        </p>
+        <h3>
+          <a href={talk.url}>{talk.title}</a>
+        </h3>
+        <p class="talk-date">
+          <time datetime={talk.start}>{talkDate(talk.start, locale)}</time>
+          {' · '}
+          {talkTime(talk.start)}–{talkTime(talk.end)} PST
+        </p>
+        {!compact && (
+          <>
+            <p>{talk.summary[locale]}</p>
+            <p class="talk-speaker">Bruno Capuano · {text.agendaSource}</p>
+            <a class="small-link" href={talk.url}>
+              {text.officialSession}
+            </a>
+          </>
+        )}
+      </article>
+    ))}
+  </div>
+</section>
+
+<script>
+  import { talkStatus } from '../data/talks';
+
+  function updateTalks() {
+    document.querySelectorAll<HTMLElement>('[data-talks]').forEach((section) => {
+      const labels = JSON.parse(section.dataset.statusLabels!) as Record<
+        ReturnType<typeof talkStatus>,
+        string
+      >;
+      let upcoming = false;
+      section.querySelectorAll<HTMLElement>('[data-talk-start]').forEach((entry) => {
+        const status = talkStatus(entry.dataset.talkStart!, entry.dataset.talkEnd!);
+        upcoming ||= status !== 'past';
+        entry.querySelector('[data-talk-status]')!.textContent = labels[status];
+      });
+      section.querySelector('[data-talks-heading]')!.textContent = upcoming
+        ? section.dataset.upcoming!
+        : section.dataset.archive!;
+    });
+  }
+  updateTalks();
+  window.setInterval(updateTalks, 30_000);
+  document.addEventListener('visibilitychange', updateTalks);
+</script>

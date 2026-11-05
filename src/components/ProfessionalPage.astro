@@ -5,6 +5,7 @@ import SpeakerKit from './SpeakerKit.astro';
 import Icon from './Icon.astro';
 import PackageSection from './PackageSection.astro';
 import ResourceLink from './ResourceLink.astro';
+import Talks from './Talks.astro';
 import { profile, projects } from '../data/profile';
 import { careerEntries, selectedWork } from '../data/cv';
 import { route, t, type Locale, type Page } from '../i18n';
@@ -42,6 +43,10 @@ const descriptions = {
             <h2>{text.storyHeading}</h2>
             <p>{text.bio1}</p>
             <p>{text.bio2}</p>
+            <p>
+              {text.confHighlight}{' '}
+              <a href={`${route(locale, 'speaking')}#sessions`}>{text.sessionDetails}</a>
+            </p>
             <p>
               {text.aboutLibraries}{' '}
               <a href={`${route(locale, 'projects')}#libraries`}>{text.allLibraries}</a>
@@ -131,6 +136,10 @@ const descriptions = {
             ))}
           </ul>
         </section>
+        <section class="section personal-roots">
+          <h2>{text.countriesTitle}</h2>
+          <p>{text.countriesText}</p>
+        </section>
         <section class="section about-stories">
           <div class="section-heading">
             <div>
@@ -157,7 +166,7 @@ const descriptions = {
               <img
                 src="/assets/photos/about-ultra-run-600.webp"
                 srcset="/assets/photos/about-ultra-run-600.webp 600w, /assets/photos/about-ultra-run-900.webp 900w"
-                sizes="(max-width: 780px) 100vw, 33vw"
+                sizes="(max-width: 480px) 108px, (max-width: 780px) 50vw, 25vw"
                 alt={text.runningPhotoText}
                 width="600"
                 height="800"
@@ -173,7 +182,7 @@ const descriptions = {
               <img
                 src="/assets/photos/about-ace-600.webp"
                 srcset="/assets/photos/about-ace-600.webp 600w, /assets/photos/about-ace-900.webp 900w"
-                sizes="(max-width: 780px) 100vw, 33vw"
+                sizes="(max-width: 480px) 108px, (max-width: 780px) 50vw, 25vw"
                 alt={text.acePhotoText}
                 width="600"
                 height="800"
@@ -183,6 +192,22 @@ const descriptions = {
               <div>
                 <h3>{text.acePhotoTitle}</h3>
                 <p>{text.acePhotoText}</p>
+              </div>
+            </article>
+            <article class="card about-photo-card winter-photo-card">
+              <img
+                src="/images/personal/canadian-winters-908.webp"
+                srcset="/images/personal/canadian-winters-600.webp 600w, /images/personal/canadian-winters-908.webp 908w"
+                sizes="(max-width: 780px) 100vw, 50vw"
+                alt={text.winterPhotoAlt}
+                width="908"
+                height="302"
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <h3>{text.winterTitle}</h3>
+                <p>{text.winterText}</p>
               </div>
             </article>
           </div>
@@ -205,6 +230,13 @@ const descriptions = {
         <PackageSection locale={locale} />
       </>
     )}
-    {page === 'speaking' && <SpeakerKit locale={locale} />}
+    {page === 'speaking' && (
+      <>
+        <div id="sessions">
+          <Talks locale={locale} />
+        </div>
+        <SpeakerKit locale={locale} />
+      </>
+    )}
   </div>
 </Layout>

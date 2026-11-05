@@ -5,12 +5,12 @@ type LocalizedText = Record<Locale, string>;
 export const careerEntries = [
   {
     verified: true,
-    organization: 'Microsoft',
+    organization: 'GitHub / Microsoft',
     role: { en: 'Cloud Advocate', es: 'Cloud Advocate' } satisfies LocalizedText,
     period: null,
     summary: {
-      en: 'Focuses on AI and .NET, working with Azure, GitHub and developer communities.',
-      es: 'Enfocado en IA y .NET, con trabajo en Azure, GitHub y comunidades de desarrollo.',
+      en: 'Focuses on AI Agents, AI and .NET, working with Azure, GitHub and developer communities.',
+      es: 'Enfocado en agentes de IA, IA y .NET, con trabajo en Azure, GitHub y comunidades de desarrollo.',
     } satisfies LocalizedText,
     source: 'https://www.linkedin.com/in/elbruno/',
   },

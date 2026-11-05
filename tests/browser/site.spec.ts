@@ -249,7 +249,7 @@ test('speaker kit copies the concise Spanish public introduction and absolute he
   await page.getByRole('button', { name: 'Copiar presentación', exact: true }).click();
   await expect(page.locator('[data-title-status]')).toHaveText('Texto copiado.');
   const copiedIntro = await page.evaluate(() => navigator.clipboard.readText());
-  expect(copiedIntro).toContain('Bruno Capuano, Cloud Advocate en Microsoft.');
+  expect(copiedIntro).toContain('Bruno Capuano, Cloud Advocate en GitHub / Microsoft.');
   expect(copiedIntro).toContain('experimentos de código abierto');
   await expect(
     page.getByRole('heading', { name: /Official headshot|Retrato oficial/ }),
@@ -261,6 +261,65 @@ test('speaker kit copies the concise Spanish public introduction and absolute he
   expect(copiedDetails).toContain(
     'https://elbruno.com/downloads/speaker/21-11%20Bruno%20Headshot%20for%20Msft.jpg',
   );
+});
+
+test('personal update is bilingual, uses the selected winter photo and preserves strategic resources', async ({
+  page,
+}) => {
+  for (const locale of ['en', 'es'] as const) {
+    const prefix = locale === 'es' ? '/es/' : '/';
+    await page.goto(`${prefix}about/`);
+    await expect(
+      page.getByRole('heading', {
+        name: locale === 'en' ? 'Three countries. One heart.' : 'Tres países. Un solo corazón.',
+      }),
+    ).toBeVisible();
+    await expect(page.locator('.personal-roots')).toContainText(
+      locale === 'en' ? 'Argentina, Spain, and Canada' : 'Argentina, España y Canadá',
+    );
+    await expect(page.locator('.about-photo-card')).toHaveCount(4);
+    const winter = page.locator('.winter-photo-card img');
+    await winter.scrollIntoViewIfNeeded();
+    await expect(winter).toHaveAttribute(
+      'alt',
+      locale === 'en' ? /Bruno running with Ace/ : /Bruno corriendo con Ace/,
+    );
+    await expect
+      .poll(() =>
+        winter.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0),
+      )
+      .toBe(true);
+    await expect(winter).toHaveAttribute('src', '/images/personal/canadian-winters-908.webp');
+    await page.goto(`${prefix}speaking/`);
+    for (const href of [
+      'https://elbruno.github.io/nuget-repo-dashboard/',
+      'https://aka.ms/newyearnewbot',
+      'https://aka.ms/netfoundry-bt',
+      'https://aka.ms/genainet',
+    ])
+      await expect(page.locator(`a[href="${href}"]`)).toHaveCount(1);
+    await expect(page.locator('#sessions .talk-entry')).toHaveCount(2);
+    await expect(page.locator('#sessions')).toContainText('12:00–12:30 PST');
+    await expect(page.locator('#sessions')).toContainText('16:00–16:30 PST');
+  }
+});
+
+test('talk labels stay date-aware after a static build and while the page remains open', async ({
+  page,
+}) => {
+  await page.clock.install({ time: new Date('2026-11-10T19:59:59Z') });
+  await page.goto('/');
+  await expect(page.locator('[data-talks-heading]')).toHaveText('Upcoming talks');
+  await expect(page.locator('[data-talk-status]').first()).toHaveText('Upcoming');
+  await page.clock.fastForward(30_000);
+  await expect(page.locator('[data-talk-status]').first()).toHaveText('Scheduled now');
+  await page.clock.setSystemTime(new Date('2026-11-12T01:00:00Z'));
+  await page.clock.fastForward(30_000);
+  await expect(page.locator('[data-talks-heading]')).toHaveText('Speaking highlight');
+  await expect(page.locator('[data-talk-status]')).toHaveText(['Past session', 'Past session']);
+  await page.goto('/es/speaking/');
+  await expect(page.locator('[data-talks-heading]')).toHaveText('Charlas destacadas');
+  await expect(page.locator('[data-talk-status]')).toHaveText(['Sesión pasada', 'Sesión pasada']);
 });
 test('speaker kit exposes a selectable fallback when clipboard access is blocked', async ({
   page,

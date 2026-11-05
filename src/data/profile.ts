@@ -2,7 +2,7 @@ export const profile = {
   name: 'Bruno Capuano',
   role: 'Cloud Advocate',
   employer: 'Microsoft',
-  focus: ['AI', '.NET', 'Azure', 'GitHub'],
+  focus: ['AI Agents', 'AI', '.NET', 'Azure', 'GitHub'],
   github: 'https://github.com/elbruno',
   linkedin: 'https://www.linkedin.com/in/elbruno/',
   youtube: 'https://www.youtube.com/channel/UCyHCkJ4lsphfhu_ljRws6aA',
@@ -10,6 +10,13 @@ export const profile = {
   podcast: 'https://notienenombre.com',
   source: 'https://github.com/elbruno/elbruno-web',
 } as const;
+
+export const strategicResources = [
+  { name: 'NuGet portfolio dashboard', url: 'https://elbruno.github.io/nuget-repo-dashboard/' },
+  { name: 'New Year New Bot', url: 'https://aka.ms/newyearnewbot' },
+  { name: '.NET + Foundry: Better Together', url: 'https://aka.ms/netfoundry-bt' },
+  { name: 'Generative AI for .NET', url: 'https://aka.ms/genainet' },
+] as const;
 
 // Pending owner-supplied materials: headshots, CV, career dates, contact and approved bios.
 export const projects = [

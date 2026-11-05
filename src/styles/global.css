@@ -470,24 +470,117 @@ nav a[aria-current] {
   margin-top: 12px;
   text-decoration: none;
 }
-.hero-art {
-  margin: 0;
-  position: relative;
-}
-.hero-art img {
+.hero-carousel {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  max-width: 520px;
+  margin: 24px auto;
   border: 1px solid var(--border);
   border-radius: 24px;
+  overflow: hidden;
+  background: var(--card);
   box-shadow: 0 18px 48px #3027461c;
 }
-.hero-art figcaption {
-  font-size: 0.72rem;
+.story-slide {
+  margin: 0;
+}
+.hero-carousel [hidden] {
+  display: none !important;
+}
+.hero-carousel[data-changed] .story-slide:not([hidden]) img {
+  animation: story-appear 500ms ease;
+}
+.story-slides {
+  touch-action: pan-y;
+}
+.story-frame {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(140deg, var(--brand-soft), var(--soft));
+  display: grid;
+  place-items: center;
+}
+.story-frame img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.story-cover {
+  object-fit: cover;
+}
+.story-contain {
+  object-fit: contain;
+}
+.story-caption {
+  height: 124px;
+  padding: 14px 18px;
+  color: var(--text);
+  background: var(--card);
+}
+.story-caption strong {
+  font-size: 0.95rem;
+}
+.story-caption p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin-top: 6px;
   color: var(--muted);
-  text-align: right;
-  margin-top: 10px;
-  letter-spacing: 0.03em;
+}
+.story-controls-slot {
+  height: 96px;
+}
+.story-controls {
+  padding: 0 12px 8px;
+}
+.story-navigation,
+.story-indicators {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.story-navigation .icon-button,
+.story-indicator {
+  min-width: 44px;
+  min-height: 44px;
+}
+.story-previous svg {
+  transform: rotate(180deg);
+}
+.story-play {
+  min-height: 40px;
+  padding: 7px 14px;
+  min-width: 150px;
+}
+.story-indicators {
+  justify-content: center;
+}
+.story-indicator {
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  border-radius: 8px;
+}
+.story-indicator span {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--muted);
+  border-radius: 50%;
+}
+.story-indicator[aria-current] span {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+.story-fallback {
+  padding: 20px;
+  text-align: center;
+  color: var(--text);
+}
+@keyframes story-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .section {
   padding-block: 42px;
@@ -961,12 +1054,12 @@ nav a[aria-current] {
 }
 .about-photo-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
 .about-photo-card img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
 }
 .about-photo-card:nth-child(2) img {
@@ -984,6 +1077,37 @@ nav a[aria-current] {
 .about-photo-card p {
   margin-top: 8px;
   font-size: 0.82rem;
+}
+.personal-roots {
+  border-left: 3px solid var(--border);
+  padding-left: 24px;
+  max-width: 760px;
+}
+.personal-roots p {
+  margin-top: 14px;
+}
+.talks-compact {
+  padding: 26px;
+}
+.talks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.talk-entry h3 {
+  font-size: 1.08rem;
+  margin-block: 8px;
+}
+.talk-entry p + p {
+  margin-top: 12px;
+}
+.talk-date,
+.talk-speaker {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.talk-entry .small-link {
+  margin-top: 12px;
 }
 .info-panel {
   padding: 30px;
@@ -1325,13 +1449,9 @@ dialog details p {
   .role {
     max-width: 570px;
   }
-  .hero-art {
+  .hero-carousel {
     width: min(100%, 520px);
-    margin: -10px auto 0;
-  }
-  .hero-art figcaption {
-    margin-top: -25px;
-    padding-bottom: 28px;
+    margin: 0 auto 24px;
   }
   .hero .button {
     font-size: 0.8rem;
@@ -1448,11 +1568,8 @@ dialog details p {
   .hero .button svg {
     width: 18px;
   }
-  .hero-art {
+  .hero-carousel {
     margin-top: 5px;
-  }
-  .hero-art figcaption {
-    font-size: 0.63rem;
   }
   .identity-facts {
     grid-template-columns: 1fr;
@@ -1501,6 +1618,24 @@ dialog details p {
   }
   .about-photo-grid {
     grid-template-columns: 1fr;
+  }
+  .about-photo-card:not(.winter-photo-card) {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr);
+  }
+  .about-photo-card:not(.winter-photo-card) img {
+    height: 100%;
+    min-height: 120px;
+  }
+  .about-photo-card > div {
+    padding: 14px;
+  }
+  .winter-photo-card img {
+    aspect-ratio: 908 / 302;
+  }
+  .talks-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
   .cv-work-grid {
     grid-template-columns: 1fr;

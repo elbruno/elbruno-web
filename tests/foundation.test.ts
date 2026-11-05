@@ -7,6 +7,7 @@ import { route, translations } from '../src/i18n/index';
 import { projects } from '../src/data/profile';
 import { careerEntries, selectedWork } from '../src/data/cv';
 import { bios } from '../src/data/speaking';
+import { heroStories } from '../src/data/hero-stories';
 
 test('language switching preserves every supported route', () => {
   for (const page of ['', 'about', 'projects', 'speaking'] as const) {
@@ -37,6 +38,43 @@ test('CV content contains only linked, verified career facts and evidence-backed
   assert.ok(careerEntries.every((entry) => entry.period === null));
   assert.ok(selectedWork.length >= 2 && selectedWork.length <= 4);
   assert.ok(selectedWork.every((item) => item.href.startsWith('https://')));
+});
+
+test('published winter derivatives are web-sized and contain no private metadata', async () => {
+  for (const width of [600, 908]) {
+    const photo = await readFile(`public/images/personal/canadian-winters-${width}.webp`);
+    const metadata = await sharp(photo).metadata();
+    assert.equal(metadata.width, width);
+    assert.ok(photo.length < 60_000);
+    assert.equal(metadata.exif, undefined);
+    assert.equal(metadata.xmp, undefined);
+    assert.equal(metadata.iptc, undefined);
+    assert.ok(Math.abs(metadata.width! / metadata.height! - 908 / 302) < 0.02);
+  }
+});
+
+test('all carousel raster variants are optimized derivatives without private metadata', async () => {
+  const paths = new Set(
+    heroStories.flatMap((story) =>
+      story.srcset
+        ? story.srcset.split(',').map((variant) => variant.trim().split(' ')[0])
+        : [story.src],
+    ),
+  );
+  for (const path of paths) {
+    const buffer = await readFile(`public${path}`);
+    if (path.endsWith('.svg')) {
+      assert.doesNotMatch(buffer.toString(), /<script|https?:\/\/(?!www\.w3\.org)/i);
+      continue;
+    }
+    const metadata = await sharp(buffer).metadata();
+    assert.equal(metadata.format, 'webp');
+    assert.ok(buffer.length < 300_000, `${path} exceeds its web-size budget`);
+    assert.equal(metadata.exif, undefined);
+    assert.equal(metadata.xmp, undefined);
+    assert.equal(metadata.iptc, undefined);
+    assert.ok(metadata.width! <= 1440);
+  }
 });
 
 function readZipEntries(archive: Buffer) {

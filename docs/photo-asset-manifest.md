@@ -2,6 +2,35 @@
 
 The source paths below are relative to the repository root. Masters under `tmp/photos/` are never edited in place. Website derivatives and public download copies are separate outputs. All photo rights and required credits remain subject to owner confirmation; repository visibility is not a license.
 
+On November 5, 2026, the owner approved the V05 winter derivatives and the six
+V06 carousel assets/captions, including incidental details and credits, for public
+repository publication and the existing staging Static Web App. See the
+[scoped carousel approval](hero-asset-manifest.md). This does not authorize
+production deployment or grant third-party reuse rights.
+
+## V05 selected winter photograph
+
+- Private source: `tmp/photos/24-12-Bruno running with ACE snow.jpg`, 908 x 302.
+- Public derivatives: `public/images/personal/canadian-winters-600.webp` (600 x 200)
+  and `public/images/personal/canadian-winters-908.webp` (908 x 302).
+- Regenerate locally with `npx tsx scripts/prepare-personal-photo.ts`.
+  Sharp auto-orients, resizes without enlargement and encodes WebP at quality 82.
+  The derivatives preserve the full panorama, without generated or retouched content.
+  The desktop card crops side scenery with CSS while keeping Bruno and Ace visible;
+  the mobile card displays the full panorama.
+  No EXIF, GPS, XMP or IPTC metadata is retained.
+- Source SHA-256: `6fe504a17712ef3c20008314e3b043bfaf9f30da4a1a1a9be90719c7868f0b61`.
+  The script verifies that the original remains unchanged.
+- English alt: Bruno running with Ace along a snow-covered trail in a Canadian winter landscape.
+- Spanish alt: Bruno corriendo con Ace por un sendero cubierto de nieve en un paisaje invernal canadiense.
+- Owner explicitly selected this photograph for the About page. This website use
+  does not grant third-party reuse rights. No other private source was processed.
+- `tmp/photos/`, V05 screenshots and the local V05 review ZIP are Git-ignored.
+  The source photograph must never be staged, uploaded to editing services or
+  included in the review ZIP. Only the two optimized derivatives are new public assets.
+
+## Existing photography (unchanged by V05)
+
 | Source photo                                        | Source dimensions | Derivatives and route                                                                                     | Type and processing                                                                                                                          | English alt text                                                       | Texto alternativo en español                                                   | Rights / credit                                                               |
 | --------------------------------------------------- | ----------------: | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
 | `tmp/photos/21-11 Bruno Headshot for Msft.jpg`      |       3072 x 4096 | `public/assets/photos/speaker-headshot-480.webp`, `speaker-headshot-960.webp`; About, Speaker Kit and ZIP | Authentic official headshot; deterministic resize and crop for WebP previews. Full-size JPEG download keeps dimensions and has EXIF removed. | Official headshot of Bruno Capuano.                                    | Retrato oficial de Bruno Capuano.                                              | Owner-supplied source; reuse rights and required credit pending confirmation. |

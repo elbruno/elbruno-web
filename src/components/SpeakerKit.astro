@@ -2,6 +2,7 @@
 import { profile } from '../data/profile';
 import { t, type Locale } from '../i18n';
 import Icon from './Icon.astro';
+import { strategicResources } from '../data/profile';
 interface Props {
   locale: Locale;
 }
@@ -177,6 +178,13 @@ const photos = [
       <section class="card speaker-panel">
         <h2>{text.resources}</h2>
         <p>{text.eventContactNote}</p>
+        <ul class="topic-list">
+          {strategicResources.map((resource) => (
+            <li>
+              <a href={resource.url}>{resource.name}</a>
+            </li>
+          ))}
+        </ul>
         <a class="small-link" style="margin-top: 18px" href={profile.linkedin}>
           {text.connect}
           <Icon name="arrow" size={17} />

@@ -37,6 +37,29 @@ npm run format:check
 
 ## Project map
 
+### v0.6 local hero carousel review
+
+The homepage hero keeps its professional introduction fixed and progressively
+enhances six bilingual stories, starting with StackChan. It supports a 6.5-second
+autoplay interval, explicit pause, hover/focus/visibility suspension, manual
+keyboard and touch navigation, reduced motion and a no-JavaScript first slide.
+The image frame and separate caption panel stay stable on mobile and desktop.
+
+See the [hero asset manifest](docs/hero-asset-manifest.md) for selected source
+basenames, web derivatives, privacy evidence and scoped publication approvals.
+Only the selected bus photograph needs new derivatives:
+
+```powershell
+npx tsx scripts/prepare-hero-photos.ts
+```
+
+Originals stay local and ignored. On November 5, 2026, the owner approved these
+selected web assets and captions for repository publication and the existing
+staging Static Web App, and accepted the documented development-only audit
+findings. Production deployment remains unauthorized. The V06 review screenshots
+and ZIP are local-only and Git-ignored. No deployment configuration changes are
+required.
+
 | Location                                       | Purpose                                                                |
 | ---------------------------------------------- | ---------------------------------------------------------------------- |
 | `src\i18n\index.ts`                            | Typed English/Spanish UI, route equivalents                            |

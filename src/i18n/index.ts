@@ -18,7 +18,7 @@ const en = {
   home: 'Home',
   eyebrow: 'AI, code & a little curiosity',
   hello: "Hi, I'm Bruno",
-  role: 'Cloud Advocate at Microsoft, focused on AI and .NET.',
+  role: 'Cloud Advocate at GitHub / Microsoft, focused on AI Agents, AI and .NET.',
   intro:
     'I build practical AI and .NET examples with Azure and GitHub, then share what works with developer communities.',
   explore: 'Explore projects',
@@ -29,8 +29,8 @@ const en = {
     'Open-source projects, a Spanish-language podcast, technical writing and a small desk robot all find their way into the same curious corner of the internet.',
   more: 'A little more about me',
   facts: [
-    'Cloud Advocate at Microsoft',
-    'AI + .NET',
+    'Cloud Advocate at GitHub / Microsoft',
+    'AI Agents, AI + .NET',
     'Developer community',
     'No Tiene Nombre podcaster',
   ],
@@ -135,9 +135,25 @@ const en = {
   runningPhotoText: 'Bruno at a trail race finish, medal in hand.',
   acePhotoTitle: 'Time with Ace',
   acePhotoText: 'A quiet day outside with Ace.',
+  winterTitle: 'Canadian winters',
+  winterText:
+    "Running in the snow with Ace. Because apparently running wasn't hard enough already.",
+  winterPhotoAlt:
+    'Bruno running with Ace along a snow-covered trail in a Canadian winter landscape.',
+  countriesTitle: 'Three countries. One heart.',
+  countriesText:
+    "I've lived in Argentina, Spain, and Canada. Three countries that are equally part of who I am. Different places, different chapters, and a heart that belongs to all three.",
+  upcomingTalks: 'Upcoming talks',
+  speakingHighlight: 'Speaking highlight',
+  sessionDetails: 'Session details',
+  officialSession: 'View on the official agenda',
+  agendaSource: 'Schedule: official agenda',
+  talkStatus: { upcoming: 'Upcoming', live: 'Scheduled now', past: 'Past session' },
+  confHighlight:
+    'My speaking highlights include two sessions at .NET Conf 2026, exploring Microsoft Foundry with .NET and taking .NET agents beyond localhost.',
   aboutTitle: 'Developer by trade. Curious by default.',
   aboutDescription:
-    'Bruno Capuano is a Microsoft Cloud Advocate focused on AI and .NET, sharing practical work with developer communities.',
+    'Bruno Capuano is a Cloud Advocate at GitHub / Microsoft focused on AI Agents, AI and .NET, sharing practical work with developer communities.',
   storyHeading: 'Professional story',
   bio1: 'My work brings AI and .NET into hands-on examples for developers, using Azure and GitHub where they fit. I like keeping the code close to the idea so people can explore how it works.',
   bio2: 'I share those experiments through open-source projects, technical writing, speaking and conversations with developer communities. Away from the keyboard, there is a small robot, a Spanish-language podcast and an occasional trail.',
@@ -169,7 +185,7 @@ const en = {
   speakingTitle: 'Speaker Kit for event organizers',
   speakingDescription: 'Speaker resources for event organizers, in English and Spanish.',
   titleLabel: 'Professional introduction',
-  professionalTitle: 'Bruno Capuano, Cloud Advocate at Microsoft. AI, .NET, Azure and GitHub.',
+  professionalTitle: 'Bruno Capuano, Cloud Advocate at GitHub / Microsoft. AI Agents, AI and .NET.',
   publicSpeakerBio:
     'He shares practical demos and open-source experiments at the intersection of AI, .NET, Azure and GitHub.',
   copyTitle: 'Copy introduction',
@@ -240,7 +256,7 @@ const es: typeof en = {
   home: 'Inicio',
   eyebrow: 'IA, código y un poco de curiosidad',
   hello: 'Hola, soy Bruno',
-  role: 'Cloud Advocate en Microsoft, enfocado en IA y .NET.',
+  role: 'Cloud Advocate en GitHub / Microsoft, enfocado en agentes de IA, IA y .NET.',
   intro:
     'Creo ejemplos prácticos de IA y .NET con Azure y GitHub, y comparto lo que funciona con comunidades de desarrollo.',
   explore: 'Explorar proyectos',
@@ -251,8 +267,8 @@ const es: typeof en = {
     'Proyectos de código abierto, un podcast en español, artículos técnicos y un pequeño robot de escritorio conviven en este rincón curioso de internet.',
   more: 'Un poco más sobre mí',
   facts: [
-    'Cloud Advocate en Microsoft',
-    'IA + .NET',
+    'Cloud Advocate en GitHub / Microsoft',
+    'Agentes de IA, IA + .NET',
     'Comunidad de desarrollo',
     'Podcaster en No Tiene Nombre',
   ],
@@ -360,9 +376,25 @@ const es: typeof en = {
   runningPhotoText: 'Bruno al llegar a la meta de una carrera de trail, con su medalla.',
   acePhotoTitle: 'Tiempo con Ace',
   acePhotoText: 'Un día tranquilo al aire libre con Ace.',
+  winterTitle: 'Inviernos canadienses',
+  winterText:
+    'Corriendo en la nieve con Ace. Porque aparentemente correr no era suficientemente difícil.',
+  winterPhotoAlt:
+    'Bruno corriendo con Ace por un sendero cubierto de nieve en un paisaje invernal canadiense.',
+  countriesTitle: 'Tres países. Un solo corazón.',
+  countriesText:
+    'He vivido en Argentina, España y Canadá. Tres países que forman parte de quien soy por igual. Distintos lugares, distintas etapas y un corazón repartido entre los tres.',
+  upcomingTalks: 'Próximas charlas',
+  speakingHighlight: 'Charlas destacadas',
+  sessionDetails: 'Detalles de las sesiones',
+  officialSession: 'Ver en la agenda oficial',
+  agendaSource: 'Horario: agenda oficial',
+  talkStatus: { upcoming: 'Próximamente', live: 'En el horario previsto', past: 'Sesión pasada' },
+  confHighlight:
+    'Entre mis charlas destacadas están dos sesiones en .NET Conf 2026 sobre Microsoft Foundry con .NET y cómo llevar los agentes .NET más allá de localhost.',
   aboutTitle: 'Desarrollador. Curioso por naturaleza.',
   aboutDescription:
-    'Bruno Capuano es Cloud Advocate en Microsoft, enfocado en IA y .NET, y comparte trabajo práctico con comunidades de desarrollo.',
+    'Bruno Capuano es Cloud Advocate en GitHub / Microsoft, enfocado en agentes de IA, IA y .NET, y comparte trabajo práctico con comunidades de desarrollo.',
   storyHeading: 'Mi historia profesional',
   bio1: 'Mi trabajo acerca la IA y .NET a ejemplos prácticos para desarrolladores, con Azure y GitHub cuando aportan valor. Me gusta que el código acompañe a la idea para que cualquiera pueda explorar cómo funciona.',
   bio2: 'Comparto esos experimentos mediante proyectos de código abierto, artículos técnicos, charlas y conversaciones con comunidades de desarrollo. Lejos del teclado, aparecen un pequeño robot, un podcast en español y alguna salida por los senderos.',
@@ -394,7 +426,8 @@ const es: typeof en = {
   speakingTitle: 'Speaker Kit para organizadores de eventos',
   speakingDescription: 'Recursos para organizadores de eventos, en inglés y español.',
   titleLabel: 'Presentación profesional',
-  professionalTitle: 'Bruno Capuano, Cloud Advocate en Microsoft. IA, .NET, Azure y GitHub.',
+  professionalTitle:
+    'Bruno Capuano, Cloud Advocate en GitHub / Microsoft. Agentes de IA, IA y .NET.',
   publicSpeakerBio:
     'Comparte demos prácticas y experimentos de código abierto sobre IA, .NET, Azure y GitHub.',
   copyTitle: 'Copiar presentación',

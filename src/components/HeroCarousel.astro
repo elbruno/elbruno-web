@@ -1,0 +1,101 @@
+---
+import { heroStories, carouselText } from '../data/hero-stories';
+import type { Locale } from '../i18n';
+import Icon from './Icon.astro';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = carouselText[locale];
+---
+
+<section
+  class="hero-carousel"
+  aria-label={text.label}
+  aria-roledescription={text.carousel}
+  data-hero-carousel
+  data-pause={text.pause}
+  data-play={text.play}
+  data-reduced={text.reduced}
+  data-reduced-label={text.reducedLabel}
+  data-unavailable={text.unavailable}
+>
+  <div class="story-slides">
+    {heroStories.map((story, index) => (
+      <figure
+        class="story-slide"
+        role="group"
+        aria-roledescription={text.slide}
+        aria-label={`${index + 1} ${text.of} ${heroStories.length}: ${story.text[locale].title}`}
+        hidden={index !== 0}
+        data-story={story.id}
+      >
+        <div class="story-frame">
+          <img
+            src={index === 0 ? story.src : undefined}
+            srcset={index === 0 ? story.srcset : undefined}
+            data-src={story.src}
+            data-srcset={story.srcset}
+            sizes="(max-width: 780px) calc(100vw - 36px), 520px"
+            alt={story.text[locale].alt}
+            width={story.width}
+            height={story.height}
+            fetchpriority={index === 0 ? 'high' : undefined}
+            decoding="async"
+            class:list={[`story-${story.fit}`]}
+          />
+          {index === 0 && (
+            <div class="story-fallback" hidden>
+              <Icon name="robot" size={60} />
+              <p>{text.fallback}</p>
+            </div>
+          )}
+        </div>
+        <figcaption class="story-caption">
+          <strong>{story.text[locale].title}</strong>
+          <p>{story.text[locale].caption}</p>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+  <div class="story-controls-slot">
+    <div class="story-controls" hidden>
+      <div class="story-navigation">
+        <button type="button" class="icon-button story-previous" aria-label={text.previous}>
+          <Icon name="arrow" size={20} />
+        </button>
+        <button type="button" class="story-play button secondary" aria-label={text.pause}>
+          {text.pause}
+        </button>
+        <button type="button" class="icon-button story-next" aria-label={text.next}>
+          <Icon name="arrow" size={20} />
+        </button>
+      </div>
+      <div class="story-indicators" role="group" aria-label={text.label}>
+        {heroStories.map((story, index) => (
+          <button
+            type="button"
+            class="story-indicator"
+            aria-label={`${text.show} ${index + 1}: ${story.text[locale].title}`}
+            aria-current={index === 0 ? 'true' : undefined}
+            data-story-index={index}
+          >
+            <span></span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+  <p
+    class="sr-only"
+    data-story-announcement
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  ></p>
+</section>
+
+<script>
+  import { initHeroCarousel } from '../scripts/hero-carousel';
+  document.querySelectorAll<HTMLElement>('[data-hero-carousel]').forEach(initHeroCarousel);
+</script>

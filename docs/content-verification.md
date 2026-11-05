@@ -4,6 +4,28 @@ This summary separates owner-supplied information from repository-backed project
 
 ## Facts used on the site
 
+### V05 update, verified November 5, 2026
+
+The owner supplied the current positioning: Cloud Advocate at GitHub / Microsoft,
+focused on AI Agents, AI and .NET. No employer dates or additional roles are inferred.
+
+The [official .NET Conf website](https://www.dotnetconf.net/) lists November 10-13, 2026. The [official agenda](https://www.dotnetconf.net/agenda) confirms Bruno Capuano:
+
+| Session                                  | Date              | Official time   | Agenda                                                                       |
+| ---------------------------------------- | ----------------- | --------------- | ---------------------------------------------------------------------------- |
+| .NET + Foundry: Better Together          | November 10, 2026 | 12:00-12:30 PST | [Day 1 session](https://www.dotnetconf.net/agenda#session-D1T20261110120000) |
+| Beyond Localhost: .NET Agents in Foundry | November 11, 2026 | 16:00-16:30 PST | [Day 2 session](https://www.dotnetconf.net/agenda#session-D2T20261111040000) |
+
+Session summaries are concise adaptations of the official abstracts, translated
+into Spanish. No recordings are claimed. Status is evaluated at build time and
+refreshed in the browser on load, every 30 seconds, and on visibility changes.
+After both sessions finish, the heading becomes a speaking highlight, not an
+upcoming invitation. JavaScript-disabled pages reflect their last build date.
+
+The three-country story and winter caption are owner-supplied bilingual copy.
+The four strategic resource URLs are maintained in `src/data/profile.ts` and linked
+once each in the Speaker Kit. The existing NuGet dashboard links remain intact.
+
 | Published fact                                                                                    | Source                                                                                                                                                                                                   |
 | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Bruno Capuano is a Cloud Advocate at Microsoft.                                                   | Owner-supplied launch brief and `src/data/profile.ts`; [public profile](https://www.linkedin.com/in/elbruno/) returned HTTP 999 during this audit, so its contents could not be independently confirmed. |
