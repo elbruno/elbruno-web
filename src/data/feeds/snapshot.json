@@ -10,7 +10,7 @@
       "title": "Local AI in GitHub Copilot: plenty of RAM, still out of memory?",
       "url": "https://elbruno.com/2026/11/04/local-ai-in-github-copilot-plenty-of-ram-still-out-of-memory/",
       "publishedAt": "2026-11-04T18:38:52.000Z",
-      "summary": "Hi! I tried running MAI Code 1.1 Flash locally in the GitHub Copilot desktop app. A 52 GB model, four NVIDIA Tesla T4 GPUs, and hundreds of GB of system RAM. Should be easy, rig...",
+      "summary": "I tried running MAI Code 1.1 Flash locally in the GitHub Copilot desktop app. A 52 GB model, four NVIDIA Tesla T4 GPUs, and hundreds of GB of system RAM. Should be easy, right?...",
       "source": "blog"
     },
     {
@@ -18,7 +18,7 @@
       "title": "From Zero to Production: Build an AI Agent in C# with Microsoft Agent Framework",
       "url": "https://elbruno.com/2026/10/31/from-zero-to-production-build-an-ai-agent-in-c-with-microsoft-agent-framework/",
       "publishedAt": "2026-10-31T22:55:17.000Z",
-      "summary": "Hi!",
+      "summary": "",
       "source": "blog"
     },
     {
@@ -26,7 +26,7 @@
       "title": "C# + Ollama: Give Your App a Voice with Phonon",
       "url": "https://elbruno.com/2026/10/25/c-ollama-give-your-app-a-voice-with-phonon/",
       "publishedAt": "2026-10-25T20:35:08.000Z",
-      "summary": "Hi! Apple Silicon users, please try this C# sample and let us know whether speech generation and playback work on your Mac! ElBruno.Speech 1.6.0-preview.5 keeps setup simple: ca...",
+      "summary": "Apple Silicon users, please try this C# sample and let us know whether speech generation and playback work on your Mac! ElBruno.Speech 1.6.0-preview.5 keeps setup simple: call s...",
       "source": "blog"
     },
     {
@@ -119,5 +119,10 @@
       "stars": 0,
       "updatedAt": "2026-10-09T22:38:00Z"
     }
-  ]
+  ],
+  "fetchedAt": {
+    "blog": "2026-11-06T06:57:31.986Z",
+    "podcast": "2026-11-06T06:57:32.318Z",
+    "repositories": "2026-11-06T06:57:34.071Z"
+  }
 }
