@@ -30,6 +30,14 @@
       "source": "blog"
     },
     {
+      "id": "https://www.ivoox.com/183458704",
+      "title": "NTN 594 - Reescribir ya no es pecado (Parte 2)",
+      "url": "https://www.ivoox.com/ntn-594-reescribir-ya-no-es-audios-mp3_rf_183458704_1.html",
+      "publishedAt": "2026-11-07T18:25:51.000Z",
+      "summary": "Parte 2: los agentes quieren llegar a verde y, si los dejás, cambian los tests • Dieselgate y la ley de Goodhart • «Si compila, es correcto» es un chiste • Cuánto cuesta reescri...",
+      "source": "podcast"
+    },
+    {
       "id": "https://www.ivoox.com/183372480",
       "title": "NTN 593 - Reescribir ya no es pecado (Parte 1)",
       "url": "https://www.ivoox.com/ntn-593-reescribir-ya-no-es-audios-mp3_rf_183372480_1.html",
@@ -43,14 +51,6 @@
       "url": "https://www.ivoox.com/ntn-592-ia-operando-ia-sin-audios-mp3_rf_183238577_1.html",
       "publishedAt": "2026-11-03T18:20:52.000Z",
       "summary": "️ ¡Nuevo NTN! El CEO de Proton llamó \"perdedores\" a los que piden pentest y canceló las re-entrevistas de IA GPT-6 Astra editó el 0,016% de los pesos de Qwen: matemática de 7,9%...",
-      "source": "podcast"
-    },
-    {
-      "id": "https://www.ivoox.com/183115941",
-      "title": "NTN 591 - La burbuja de la IA ya explotó (en China)",
-      "url": "https://www.ivoox.com/ntn-591-la-burbuja-la-audios-mp3_rf_183115941_1.html",
-      "publishedAt": "2026-11-01T20:29:39.000Z",
-      "summary": "¡La burbuja de la IA ya explotó... en China! • El índice STAR50 cayó 40% en cuatro meses • Google tuvo su peor día en bolsa y vende acciones para pagar data centers • Nortel, el...",
       "source": "podcast"
     },
     {
@@ -122,7 +122,7 @@
   ],
   "fetchedAt": {
     "blog": "2026-11-06T06:57:31.986Z",
-    "podcast": "2026-11-06T06:57:32.318Z",
+    "podcast": "2026-11-07T21:57:49.639Z",
     "repositories": "2026-11-06T06:57:34.071Z",
     "youtube": "2026-11-06T19:29:59.006Z"
   }
