@@ -30,6 +30,14 @@
       "source": "blog"
     },
     {
+      "id": "https://www.ivoox.com/183543590",
+      "title": "NTN 595 - ️ Espías, Chips y Corazones",
+      "url": "https://www.ivoox.com/ntn-595-espias-chips-corazones-audios-mp3_rf_183543590_1.html",
+      "publishedAt": "2026-11-09T15:40:25.000Z",
+      "summary": "️ ¡Episodio de espías tech! • Nvidia investiga a su CEO, Jensen Huang, por su relación con una presunta espía china • 75 centavos que destaparon a un hacker de la KGB • Google,...",
+      "source": "podcast"
+    },
+    {
       "id": "https://www.ivoox.com/183458704",
       "title": "NTN 594 - Reescribir ya no es pecado (Parte 2)",
       "url": "https://www.ivoox.com/ntn-594-reescribir-ya-no-es-audios-mp3_rf_183458704_1.html",
@@ -43,14 +51,6 @@
       "url": "https://www.ivoox.com/ntn-593-reescribir-ya-no-es-audios-mp3_rf_183372480_1.html",
       "publishedAt": "2026-11-05T15:30:53.000Z",
       "summary": "Parte 1: en 2000 Spolsky dijo NUNCA reescribas. En 2026 Toub portó Copilot a Rust con agentes • Netscape y el origen de Rust • ⚔️ Big bang vs. pieza por pieza • https://www.deve...",
-      "source": "podcast"
-    },
-    {
-      "id": "https://www.ivoox.com/183238577",
-      "title": "NTN 592 - IA operando IA, sin anestesia",
-      "url": "https://www.ivoox.com/ntn-592-ia-operando-ia-sin-audios-mp3_rf_183238577_1.html",
-      "publishedAt": "2026-11-03T18:20:52.000Z",
-      "summary": "️ ¡Nuevo NTN! El CEO de Proton llamó \"perdedores\" a los que piden pentest y canceló las re-entrevistas de IA GPT-6 Astra editó el 0,016% de los pesos de Qwen: matemática de 7,9%...",
       "source": "podcast"
     },
     {
@@ -92,8 +92,8 @@
       "url": "https://github.com/elbruno/elbruno.localembeddings",
       "description": ".NET library for local embedding generation using ONNX and Microsoft.Extensions.AI",
       "language": "C#",
-      "stars": 44,
-      "updatedAt": "2026-11-05T17:32:19Z"
+      "stars": 45,
+      "updatedAt": "2026-11-09T20:18:50Z"
     },
     {
       "name": "ElBruno.OllamaMonitor",
@@ -108,8 +108,8 @@
       "url": "https://github.com/elbruno/new-year-new-bot",
       "description": "A coming-soon project exploring an AI desk companion with M5Stack StackChan and .NET.",
       "language": "C#",
-      "stars": 5,
-      "updatedAt": "2026-11-09T03:36:45Z"
+      "stars": 7,
+      "updatedAt": "2026-11-09T17:32:30Z"
     },
     {
       "name": "PromptDot",
@@ -122,8 +122,8 @@
   ],
   "fetchedAt": {
     "blog": "2026-11-08T22:14:38.199Z",
-    "podcast": "2026-11-07T21:57:49.639Z",
-    "repositories": "2026-11-09T06:47:28.595Z",
+    "podcast": "2026-11-09T22:28:25.848Z",
+    "repositories": "2026-11-09T22:28:27.397Z",
     "youtube": "2026-11-06T19:29:59.006Z"
   }
 }
