@@ -109,7 +109,7 @@
       "description": "A coming-soon project exploring an AI desk companion with M5Stack StackChan and .NET.",
       "language": "C#",
       "stars": 5,
-      "updatedAt": "2026-10-29T15:07:44Z"
+      "updatedAt": "2026-11-09T03:36:45Z"
     },
     {
       "name": "PromptDot",
@@ -123,7 +123,7 @@
   "fetchedAt": {
     "blog": "2026-11-08T22:14:38.199Z",
     "podcast": "2026-11-07T21:57:49.639Z",
-    "repositories": "2026-11-06T06:57:34.071Z",
+    "repositories": "2026-11-09T06:47:28.595Z",
     "youtube": "2026-11-06T19:29:59.006Z"
   }
 }
