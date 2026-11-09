@@ -134,6 +134,9 @@ The refresh workflow runs every six hours and accepts manual dispatch. Failed so
 
 See [content sources](docs/content-sources.md) for provenance, fallback behavior and monitoring.
 
+General blog links use `https://brunocapuano.wordpress.com` and open in an isolated
+new tab. Individual article URLs and feed sources retain their original addresses.
+
 ## Azure preview, not domain cutover
 
 The deployment workflow is disabled until repository variable `AZURE_SWA_ENABLED` is `true`. Create an Azure Static Web App, configure `AZURE_STATIC_WEB_APPS_API_TOKEN` as a secret, and use the `preview` GitHub environment for review. Do not connect `elbruno.com` yet.

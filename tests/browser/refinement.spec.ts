@@ -10,14 +10,18 @@ test('all WordPress links open isolated new tabs, including mobile navigation an
   context,
   isMobile,
 }) => {
-  await context.route(/^https:\/\/(?:www\.)?elbruno\.com(?:\/|$)/, (route) =>
-    route.fulfill({ contentType: 'text/html', body: '<title>Blog destination</title>' }),
+  await context.route(
+    /^https:\/\/(?:(?:www\.)?elbruno\.com|brunocapuano\.wordpress\.com)(?:\/|$)/,
+    (route) => route.fulfill({ contentType: 'text/html', body: '<title>Blog destination</title>' }),
   );
   for (const prefix of ['/', '/es/']) {
     for (const route of routes) {
       await page.goto(`${prefix}${route}`);
       const original = page.url();
-      const links = page.locator('a[href^="https://elbruno.com"]');
+      const links = page.locator(
+        'a[href^="https://elbruno.com"], a[href^="https://brunocapuano.wordpress.com"]',
+      );
+      await expect(page.locator('nav a[href="https://brunocapuano.wordpress.com"]')).toHaveCount(1);
       expect(await links.count()).toBeGreaterThan(0);
       if (!route) {
         for (const article of feeds.entries.filter((entry) => entry.source === 'blog'))

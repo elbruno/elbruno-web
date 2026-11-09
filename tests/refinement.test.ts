@@ -10,6 +10,8 @@ test('only absolute links to the WordPress blog use the blog new-tab policy', ()
     'https://elbruno.com/2026/11/04/article/',
     'https://www.elbruno.com/',
     'http://elbruno.wordpress.com/article/',
+    'https://brunocapuano.wordpress.com',
+    'https://brunocapuano.wordpress.com/2026/11/04/article/',
   ])
     assert.equal(isExternalBlog(url), true);
   for (const url of [
@@ -18,6 +20,7 @@ test('only absolute links to the WordPress blog use the blog new-tab policy', ()
     '/es/projects/',
     'https://github.com/elbruno',
     'https://elbruno.com.example.org/',
+    'https://brunocapuano.wordpress.com.example.org/',
   ])
     assert.equal(isExternalBlog(url), false);
 });

@@ -6,7 +6,7 @@ export const profile = {
   github: 'https://github.com/elbruno',
   linkedin: 'https://www.linkedin.com/in/elbruno/',
   youtube: 'https://www.youtube.com/channel/UCyHCkJ4lsphfhu_ljRws6aA',
-  blog: 'https://elbruno.com',
+  blog: 'https://brunocapuano.wordpress.com',
   podcast: 'https://notienenombre.com',
   source: 'https://github.com/elbruno/elbruno-web',
 } as const;
