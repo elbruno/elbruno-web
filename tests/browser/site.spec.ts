@@ -360,6 +360,12 @@ test('upcoming stream cards separate confirmed sessions from proposed robot epis
         prefix === '/' ? 'Upcoming streams' : 'Próximos streams',
       );
       await expect(streams.locator('.stream-card')).toHaveCount(3);
+      for (const card of await streams.locator('.stream-card').all()) {
+        await expect(card.locator('.actions a')).toHaveCount(1);
+        await expect(card.locator('h3 a')).toHaveCount(0);
+      }
+      for (const session of await streams.locator('.talk-entry').all())
+        await expect(session.locator('a')).toHaveCount(1);
       const conference = streams.locator('[data-stream-series="conference"]');
       await expect(conference.locator('.talk-entry')).toHaveCount(1);
       await expect(conference.locator('h4 a')).toHaveAttribute(
@@ -372,13 +378,15 @@ test('upcoming stream cards separate confirmed sessions from proposed robot epis
       );
       await expect(streams).not.toContainText('Beyond Localhost');
       const foundry = streams.locator('[data-stream-series="foundry"]');
-      await expect(foundry.locator('h3 a')).toHaveAttribute('href', 'https://aka.ms/netfoundry-bt');
+      await expect(foundry.locator('.actions a')).toHaveAttribute(
+        'href',
+        'https://aka.ms/netfoundry-bt',
+      );
       await expect(foundry.locator('time')).toHaveText(
         prefix === '/'
           ? ['November 12, 2026', 'December 3, 2026']
           : ['12 de noviembre de 2026', '3 de diciembre de 2026'],
       );
-      await expect(foundry.locator('.stream-session-links a')).toHaveCount(4);
       await expect(foundry.locator('h4 a').first()).toHaveAttribute(
         'href',
         'https://developer.microsoft.com/en-us/reactor/events/27632/',
@@ -388,15 +396,16 @@ test('upcoming stream cards separate confirmed sessions from proposed robot epis
         'https://developer.microsoft.com/en-us/reactor/events/27634/',
       );
       const bot = streams.locator('[data-stream-series="bot"]');
-      await expect(bot.locator('h3 a')).toHaveAttribute('href', 'https://aka.ms/newyearnewbot');
+      await expect(bot.locator('.actions a')).toHaveAttribute(
+        'href',
+        'https://aka.ms/newyearnewbot',
+      );
       await expect(bot.locator('.stream-episode-list li')).toHaveCount(3);
       await expect(bot.locator('.stream-note')).toContainText(
         prefix === '/' ? 'to be confirmed' : 'por confirmar',
       );
       await expect(bot.locator('time, [data-talk-start], [data-talk-status]')).toHaveCount(0);
-      await expect(
-        bot.locator(`a[href="https://elbruno.github.io/new-year-new-bot/#series"]`),
-      ).toHaveCount(1);
+      await expect(bot.locator('a')).toHaveCount(1);
       expect(
         await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
       ).toBe(true);

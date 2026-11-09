@@ -20,14 +20,19 @@ Home and Speaker Kit now group online appearances into three cards:
   November 12, 2026, and
   [episode 04](https://developer.microsoft.com/en-us/reactor/events/27634/),
   December 3, 2026. Reactor confirms 17:00-18:00 UTC for both, displayed as
-  09:00-10:00 PST. Each links to registration and its published episode resource
-  page. Specific topics remain unconfirmed. October episodes are not promoted as
+  09:00-10:00 PST. Each episode title links to its event registration page;
+  resources are accessible through the series website. Specific topics remain
+  unconfirmed. October episodes are not promoted as
   future sessions.
 - **[New Year, New Bot](https://aka.ms/newyearnewbot):** three proposed episode
   themes from the public series page, progressing from StackChan hardware to a
   .NET/Aspire AI backend and an agentic companion. Dates, streaming channel, and
   collaboration details are not confirmed. No dates or individual episode URLs
-  are invented: the sessions link targets the existing `#series` section.
+  are invented: the card links to the series website.
+
+Cards keep a single linked title per confirmed session and one general footer
+button per conference or series. Card headings and proposed robot episode names
+are plain text, with no repeated registration, resource, or agenda links.
 
 All scheduled dates use Pacific Time with explicit PST labels. Browser status
 updates cover the conference and both Reactor sessions, including leave-open

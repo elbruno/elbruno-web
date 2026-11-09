@@ -43,9 +43,7 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
         </span>
         <p class="eyebrow">{text.onlineConference}</p>
       </div>
-      <h3>
-        <a href={conference.url}>{conference.name}</a>
-      </h3>
+      <h3>{conference.name}</h3>
       <p class="stream-summary">{text.conferenceDescription}</p>
       <div class="stream-sessions">
         {talks.map((talk) => (
@@ -65,9 +63,6 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
               <>
                 <p>{talk.summary[locale]}</p>
                 <p class="talk-speaker">Bruno Capuano · {text.agendaSource}</p>
-                <a class="small-link" href={talk.url}>
-                  {text.officialSession}
-                </a>
               </>
             )}
           </div>
@@ -76,9 +71,6 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
       <div class="actions conference-actions">
         <a class="button primary" href={conference.url}>
           {text.exploreConference}
-        </a>
-        <a class="small-link" href={conference.agenda}>
-          {text.viewSessions}
         </a>
       </div>
     </article>
@@ -89,9 +81,7 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
         </span>
         <p class="eyebrow">{text.livestreamSeries}</p>
       </div>
-      <h3>
-        <a href={foundrySeries.url}>{foundrySeries.title}</a>
-      </h3>
+      <h3>{foundrySeries.title}</h3>
       <p class="stream-summary">{foundrySeries.summary[locale]}</p>
       <div class="stream-sessions">
         {foundrySeries.sessions.map((session) => (
@@ -109,14 +99,6 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
               {' · '}
               {talkTime(session.start)}–{talkTime(session.end)} PST
             </p>
-            <div class="stream-session-links">
-              <a class="small-link" href={session.url}>
-                {text.sessionRegistration}
-              </a>
-              <a class="small-link" href={session.resources}>
-                {text.episodeResources}
-              </a>
-            </div>
           </div>
         ))}
       </div>
@@ -134,9 +116,7 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
         </span>
         <p class="eyebrow">{text.proposedSeries}</p>
       </div>
-      <h3>
-        <a href={botSeries.url}>{botSeries.title}</a>
-      </h3>
+      <h3>{botSeries.title}</h3>
       <p class="stream-summary">{botSeries.summary[locale]}</p>
       <ol class="stream-episode-list">
         {botSeries.episodes.map((title) => (
@@ -147,9 +127,6 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
       <div class="actions stream-actions">
         <a class="button secondary" href={botSeries.url}>
           {text.exploreSeries}
-        </a>
-        <a class="small-link" href={botSeries.sessionsUrl}>
-          {text.proposedEpisodes}
         </a>
       </div>
     </article>

@@ -1186,14 +1186,6 @@ nav a[aria-current] {
 .stream-card h3 {
   font-size: 1.25rem;
 }
-.stream-card h3 a {
-  color: var(--text);
-  text-decoration: none;
-}
-.stream-card h3 a:hover {
-  color: var(--brand);
-  text-decoration: underline;
-}
 .stream-summary {
   margin-top: 12px;
   font-size: 0.9rem;
@@ -1219,11 +1211,6 @@ nav a[aria-current] {
 .stream-card .actions {
   margin-top: auto;
   padding-top: 24px;
-}
-.stream-session-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 16px;
 }
 .stream-episode-list {
   display: grid;

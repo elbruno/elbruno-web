@@ -83,10 +83,7 @@ test('curated portfolio and API repository cards retain distinct stable orders a
       'href',
       'https://www.dotnetconf.net/',
     );
-    await expect(conference.locator('.conference-actions .small-link')).toHaveAttribute(
-      'href',
-      'https://www.dotnetconf.net/agenda',
-    );
+    await expect(conference.locator('.conference-actions a')).toHaveCount(1);
   }
 });
 
