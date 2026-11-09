@@ -297,36 +297,111 @@ test('personal update is bilingual, uses the selected winter photo and preserves
       'https://aka.ms/netfoundry-bt',
       'https://aka.ms/genainet',
     ])
-      await expect(page.locator(`a[href="${href}"]`)).toHaveCount(1);
-    await expect(page.locator('#sessions .talk-entry')).toHaveCount(2);
-    await expect(page.locator('#sessions')).toContainText('12:00–12:30 PST');
+      await expect(page.locator(`.speaker-kit a[href="${href}"]`)).toHaveCount(1);
+    await expect(page.locator('#sessions .talk-entry')).toHaveCount(3);
     await expect(page.locator('#sessions')).toContainText('16:00–16:30 PST');
+    await expect(page.locator('#sessions')).toContainText('09:00–10:00 PST');
   }
 });
 
 test('talk labels stay date-aware after a static build and while the page remains open', async ({
   page,
 }) => {
-  await page.clock.install({ time: new Date('2026-11-10T19:59:59Z') });
+  await page.clock.install({ time: new Date('2026-11-11T23:59:59Z') });
   await page.goto('/');
-  await expect(page.locator('[data-talks-heading]')).toHaveText('Speaking at .NET Conf 2026');
+  await expect(page.locator('[data-talks-heading]')).toHaveText('Upcoming streams');
   await expect(page.locator('[data-talk-status]').first()).toHaveText('Upcoming');
-  await expect(page.locator('[data-talk-status]').first()).toBeHidden();
+  await expect(page.locator('[data-talk-status]').first()).toBeVisible();
   await page.clock.fastForward(30_000);
   await expect(page.locator('[data-talk-status]').first()).toHaveText('Scheduled now');
   await expect(page.locator('[data-talk-status]').first()).toBeVisible();
   await page.clock.setSystemTime(new Date('2026-11-12T01:00:00Z'));
   await page.clock.fastForward(30_000);
-  await expect(page.locator('[data-talks-heading]')).toHaveText(
-    '.NET Conf 2026 speaking highlight',
-  );
-  await expect(page.locator('[data-talk-status]')).toHaveText(['Past session', 'Past session']);
+  await expect(page.locator('[data-talks-heading]')).toHaveText('Upcoming streams');
+  await expect(page.locator('[data-talk-status]')).toHaveText([
+    'Past session',
+    'Upcoming',
+    'Upcoming',
+  ]);
+  await page.clock.setSystemTime(new Date('2026-11-12T17:00:00Z'));
+  await page.clock.fastForward(30_000);
+  await expect(page.locator('[data-talk-status]')).toHaveText([
+    'Past session',
+    'Scheduled now',
+    'Upcoming',
+  ]);
+  await page.clock.setSystemTime(new Date('2026-12-03T18:00:00Z'));
+  await page.clock.fastForward(30_000);
+  await expect(page.locator('[data-talks-heading]')).toHaveText('Streams & series');
+  await expect(page.locator('[data-talk-status]')).toHaveText([
+    'Past session',
+    'Past session',
+    'Past session',
+  ]);
   await expect(page.locator('[data-talks]')).not.toContainText(/watch recording|view recording/i);
   await page.goto('/es/speaking/');
-  await expect(page.locator('[data-talks-heading]')).toHaveText(
-    'Charlas destacadas en .NET Conf 2026',
-  );
-  await expect(page.locator('[data-talk-status]')).toHaveText(['Sesión pasada', 'Sesión pasada']);
+  await expect(page.locator('[data-talks-heading]')).toHaveText('Streams y series');
+  await expect(page.locator('[data-talk-status]')).toHaveText([
+    'Sesión pasada',
+    'Sesión pasada',
+    'Sesión pasada',
+  ]);
+});
+
+test('upcoming stream cards separate confirmed sessions from proposed robot episodes', async ({
+  page,
+}) => {
+  await page.clock.install({ time: new Date('2026-11-09T02:00:00Z') });
+  for (const prefix of ['/', '/es/']) {
+    for (const route of ['', 'speaking/']) {
+      await page.goto(`${prefix}${route}`);
+      const streams = page.locator('[data-talks]');
+      await expect(streams.locator('h2')).toHaveText(
+        prefix === '/' ? 'Upcoming streams' : 'Próximos streams',
+      );
+      await expect(streams.locator('.stream-card')).toHaveCount(3);
+      const conference = streams.locator('[data-stream-series="conference"]');
+      await expect(conference.locator('.talk-entry')).toHaveCount(1);
+      await expect(conference.locator('h4 a')).toHaveAttribute(
+        'href',
+        'https://www.dotnetconf.net/agenda#session-D2T20261111040000',
+      );
+      await expect(conference.locator('time')).toHaveAttribute(
+        'datetime',
+        '2026-11-11T16:00:00-08:00',
+      );
+      await expect(streams).not.toContainText('Beyond Localhost');
+      const foundry = streams.locator('[data-stream-series="foundry"]');
+      await expect(foundry.locator('h3 a')).toHaveAttribute('href', 'https://aka.ms/netfoundry-bt');
+      await expect(foundry.locator('time')).toHaveText(
+        prefix === '/'
+          ? ['November 12, 2026', 'December 3, 2026']
+          : ['12 de noviembre de 2026', '3 de diciembre de 2026'],
+      );
+      await expect(foundry.locator('.stream-session-links a')).toHaveCount(4);
+      await expect(foundry.locator('h4 a').first()).toHaveAttribute(
+        'href',
+        'https://developer.microsoft.com/en-us/reactor/events/27632/',
+      );
+      await expect(foundry.locator('h4 a').last()).toHaveAttribute(
+        'href',
+        'https://developer.microsoft.com/en-us/reactor/events/27634/',
+      );
+      const bot = streams.locator('[data-stream-series="bot"]');
+      await expect(bot.locator('h3 a')).toHaveAttribute('href', 'https://aka.ms/newyearnewbot');
+      await expect(bot.locator('.stream-episode-list li')).toHaveCount(3);
+      await expect(bot.locator('.stream-note')).toContainText(
+        prefix === '/' ? 'to be confirmed' : 'por confirmar',
+      );
+      await expect(bot.locator('time, [data-talk-start], [data-talk-status]')).toHaveCount(0);
+      await expect(
+        bot.locator(`a[href="https://elbruno.github.io/new-year-new-bot/#series"]`),
+      ).toHaveCount(1);
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+      ).toBe(true);
+    }
+  }
 });
 test('speaker kit exposes a selectable fallback when clipboard access is blocked', async ({
   page,

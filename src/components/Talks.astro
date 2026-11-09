@@ -1,5 +1,14 @@
 ---
-import { conference, talks, talkDate, talkTime, talkStatus } from '../data/talks';
+import {
+  conference,
+  talks,
+  foundrySeries,
+  botSeries,
+  talkDate,
+  talkTime,
+  talkStatus,
+} from '../data/talks';
+import Icon from './Icon.astro';
 import { t, type Locale } from '../i18n';
 interface Props {
   locale: Locale;
@@ -7,60 +16,145 @@ interface Props {
 }
 const { locale, compact = false } = Astro.props;
 const text = t(locale);
-const upcoming = talks.some((talk) => talkStatus(talk.start, talk.end) !== 'past');
+const upcoming = [...talks, ...foundrySeries.sessions].some(
+  (talk) => talkStatus(talk.start, talk.end) !== 'past',
+);
 ---
 
 <section
   class:list={['section', 'talks-section', { 'card talks-compact': compact }]}
   data-talks
-  data-upcoming={text.conferenceHeading}
-  data-archive={text.conferenceHighlight}
+  data-upcoming={text.streamsHeading}
+  data-archive={text.streamsArchive}
   data-status-labels={JSON.stringify(text.talkStatus)}
 >
   <div class="section-heading">
     <div>
-      <h2 data-talks-heading>{upcoming ? text.conferenceHeading : text.conferenceHighlight}</h2>
-      <p>{text.conferenceDescription}</p>
+      <p class="eyebrow">{text.streamsEyebrow}</p>
+      <h2 data-talks-heading>{upcoming ? text.streamsHeading : text.streamsArchive}</h2>
+      <p>{text.streamsDescription}</p>
     </div>
   </div>
   <div class="talks-grid">
-    {talks.map((talk) => (
-      <article class="talk-entry" data-talk-start={talk.start} data-talk-end={talk.end}>
-        <p
-          class="eyebrow"
-          data-talk-status
-          hidden={talkStatus(talk.start, talk.end) === 'upcoming'}
-        >
-          {text.talkStatus[talkStatus(talk.start, talk.end)]}
-        </p>
-        <h3>
-          <a href={talk.url}>{talk.title}</a>
-        </h3>
-        <p class="talk-date">
-          <time datetime={talk.start}>{talkDate(talk.start, locale)}</time>
-          {' · '}
-          {talkTime(talk.start)}–{talkTime(talk.end)} PST
-        </p>
-        {!compact && (
-          <>
-            <p>{talk.summary[locale]}</p>
-            <p class="talk-speaker">Bruno Capuano · {text.agendaSource}</p>
-            <a class="small-link" href={talk.url}>
-              {text.officialSession}
-            </a>
-          </>
-        )}
-      </article>
-    ))}
+    <article class="card stream-card" data-stream-series="conference">
+      <div class="stream-card-heading">
+        <span class="mini-icon">
+          <Icon name="mic" size={24} />
+        </span>
+        <p class="eyebrow">{text.onlineConference}</p>
+      </div>
+      <h3>
+        <a href={conference.url}>{conference.name}</a>
+      </h3>
+      <p class="stream-summary">{text.conferenceDescription}</p>
+      <div class="stream-sessions">
+        {talks.map((talk) => (
+          <div class="talk-entry" data-talk-start={talk.start} data-talk-end={talk.end}>
+            <p class="eyebrow" data-talk-status>
+              {text.talkStatus[talkStatus(talk.start, talk.end)]}
+            </p>
+            <h4>
+              <a href={talk.url}>{talk.title}</a>
+            </h4>
+            <p class="talk-date">
+              <time datetime={talk.start}>{talkDate(talk.start, locale)}</time>
+              {' · '}
+              {talkTime(talk.start)}–{talkTime(talk.end)} PST
+            </p>
+            {!compact && (
+              <>
+                <p>{talk.summary[locale]}</p>
+                <p class="talk-speaker">Bruno Capuano · {text.agendaSource}</p>
+                <a class="small-link" href={talk.url}>
+                  {text.officialSession}
+                </a>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+      <div class="actions conference-actions">
+        <a class="button primary" href={conference.url}>
+          {text.exploreConference}
+        </a>
+        <a class="small-link" href={conference.agenda}>
+          {text.viewSessions}
+        </a>
+      </div>
+    </article>
+    <article class="card stream-card" data-stream-series="foundry">
+      <div class="stream-card-heading">
+        <span class="mini-icon">
+          <Icon name="play" size={24} />
+        </span>
+        <p class="eyebrow">{text.livestreamSeries}</p>
+      </div>
+      <h3>
+        <a href={foundrySeries.url}>{foundrySeries.title}</a>
+      </h3>
+      <p class="stream-summary">{foundrySeries.summary[locale]}</p>
+      <div class="stream-sessions">
+        {foundrySeries.sessions.map((session) => (
+          <div class="talk-entry" data-talk-start={session.start} data-talk-end={session.end}>
+            <p class="eyebrow" data-talk-status>
+              {text.talkStatus[talkStatus(session.start, session.end)]}
+            </p>
+            <h4>
+              <a href={session.url}>
+                {text.episode} {session.episode}
+              </a>
+            </h4>
+            <p class="talk-date">
+              <time datetime={session.start}>{talkDate(session.start, locale)}</time>
+              {' · '}
+              {talkTime(session.start)}–{talkTime(session.end)} PST
+            </p>
+            <div class="stream-session-links">
+              <a class="small-link" href={session.url}>
+                {text.sessionRegistration}
+              </a>
+              <a class="small-link" href={session.resources}>
+                {text.episodeResources}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="stream-note">{text.topicsPending}</p>
+      <div class="actions stream-actions">
+        <a class="button secondary" href={foundrySeries.url}>
+          {text.exploreSeries}
+        </a>
+      </div>
+    </article>
+    <article class="card stream-card" data-stream-series="bot">
+      <div class="stream-card-heading">
+        <span class="mini-icon">
+          <Icon name="robot" size={24} />
+        </span>
+        <p class="eyebrow">{text.proposedSeries}</p>
+      </div>
+      <h3>
+        <a href={botSeries.url}>{botSeries.title}</a>
+      </h3>
+      <p class="stream-summary">{botSeries.summary[locale]}</p>
+      <ol class="stream-episode-list">
+        {botSeries.episodes.map((title) => (
+          <li lang="en">{title}</li>
+        ))}
+      </ol>
+      <p class="stream-note">{text.botSchedulePending}</p>
+      <div class="actions stream-actions">
+        <a class="button secondary" href={botSeries.url}>
+          {text.exploreSeries}
+        </a>
+        <a class="small-link" href={botSeries.sessionsUrl}>
+          {text.proposedEpisodes}
+        </a>
+      </div>
+    </article>
   </div>
-  <div class="actions conference-actions">
-    <a class="button primary" href={conference.url}>
-      {text.exploreConference}
-    </a>
-    <a class="small-link" href={conference.agenda}>
-      {text.viewSessions}
-    </a>
-  </div>
+  <p class="stream-timezone">{text.streamsTimezone}</p>
 </section>
 
 <script>
@@ -78,7 +172,6 @@ const upcoming = talks.some((talk) => talkStatus(talk.start, talk.end) !== 'past
         upcoming ||= status !== 'past';
         const label = entry.querySelector<HTMLElement>('[data-talk-status]')!;
         label.textContent = labels[status];
-        label.hidden = status === 'upcoming';
       });
       section.querySelector('[data-talks-heading]')!.textContent = upcoming
         ? section.dataset.upcoming!

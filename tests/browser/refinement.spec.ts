@@ -76,12 +76,9 @@ test('curated portfolio and API repository cards retain distinct stable orders a
     const first = (await cards[0].boundingBox())!;
     const second = (await cards[1].boundingBox())!;
     expect(isMobile ? second.y > first.y : Math.abs(second.y - first.y) < 1).toBe(true);
-    const conference = page.locator('[data-talks]');
-    await expect(conference.locator('h2')).toContainText('.NET Conf 2026');
-    await expect(conference.locator('h3')).toHaveText([
-      '.NET + Foundry: Better Together',
-      'Beyond Localhost: .NET Agents in Foundry',
-    ]);
+    const conference = page.locator('[data-stream-series="conference"]');
+    await expect(conference.locator('h3')).toHaveText('.NET Conf 2026');
+    await expect(conference.locator('h4')).toHaveText(['.NET + Foundry: Better Together']);
     await expect(conference.locator('.conference-actions .primary')).toHaveAttribute(
       'href',
       'https://www.dotnetconf.net/',

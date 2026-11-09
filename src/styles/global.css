@@ -1168,15 +1168,44 @@ nav a[aria-current] {
 }
 .talks-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
-.talk-entry h3 {
+.stream-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 24px;
+}
+.stream-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.stream-card h3 {
+  font-size: 1.25rem;
+}
+.stream-card h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+.stream-card h3 a:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}
+.stream-summary {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+.stream-sessions {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+.talk-entry h4 {
   font-size: 1.08rem;
   margin-block: 8px;
-}
-[data-talk-status][hidden] {
-  display: none;
 }
 .talk-entry {
   padding: 18px;
@@ -1186,6 +1215,31 @@ nav a[aria-current] {
 }
 .conference-actions {
   margin-top: 20px;
+}
+.stream-card .actions {
+  margin-top: auto;
+  padding-top: 24px;
+}
+.stream-session-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+.stream-episode-list {
+  display: grid;
+  gap: 16px;
+  padding-left: 24px;
+  margin-block: 20px;
+  font-weight: 600;
+}
+.stream-episode-list li::marker {
+  color: var(--brand);
+}
+.stream-note,
+.stream-timezone {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 0.8rem;
 }
 .talk-entry p + p {
   margin-top: 12px;
@@ -1441,6 +1495,9 @@ dialog details p {
   }
 }
 @media (max-width: 1050px) {
+  .talks-grid {
+    grid-template-columns: 1fr;
+  }
   .container {
     width: calc(100% - 3rem);
   }
@@ -1618,6 +1675,10 @@ dialog details p {
   }
 }
 @media (max-width: 480px) {
+  .talks-compact,
+  .stream-card {
+    padding: 18px;
+  }
   .container {
     width: calc(100% - 2.25rem);
   }

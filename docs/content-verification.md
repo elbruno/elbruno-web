@@ -4,6 +4,38 @@ This summary separates owner-supplied information from repository-backed project
 
 ## Facts used on the site
 
+### Upcoming streams, verified November 8, 2026
+
+The [current official .NET Conf agenda](https://www.dotnetconf.net/agenda) now
+lists one Bruno Capuano session: [.NET + Foundry: Better Together](https://www.dotnetconf.net/agenda#session-D2T20261111040000),
+November 11, 2026, 16:00-16:30 PST. The former November 10 listing is now a
+different speaker's session, and Beyond Localhost is no longer listed. This
+verification supersedes the older two-session schedule documented below.
+
+Home and Speaker Kit now group online appearances into three cards:
+
+- **.NET Conf 2026:** the single currently listed session and official agenda.
+- **[.NET + Foundry: Better Together](https://aka.ms/netfoundry-bt):**
+  [episode 03](https://developer.microsoft.com/en-us/reactor/events/27632/),
+  November 12, 2026, and
+  [episode 04](https://developer.microsoft.com/en-us/reactor/events/27634/),
+  December 3, 2026. Reactor confirms 17:00-18:00 UTC for both, displayed as
+  09:00-10:00 PST. Each links to registration and its published episode resource
+  page. Specific topics remain unconfirmed. October episodes are not promoted as
+  future sessions.
+- **[New Year, New Bot](https://aka.ms/newyearnewbot):** three proposed episode
+  themes from the public series page, progressing from StackChan hardware to a
+  .NET/Aspire AI backend and an agentic companion. Dates, streaming channel, and
+  collaboration details are not confirmed. No dates or individual episode URLs
+  are invented: the sessions link targets the existing `#series` section.
+
+All scheduled dates use Pacific Time with explicit PST labels. Browser status
+updates cover the conference and both Reactor sessions, including leave-open
+transitions. Once all confirmed sessions end, the section becomes "Streams &
+series"; proposed robot episodes remain explicitly marked as proposals. No
+recording availability is inferred. Without JavaScript, status reflects build
+time. Titles of external episodes retain their published English wording.
+
 ### V06 UX refinement, verified November 5, 2026
 
 The official agenda was checked again. Both titles, dates, session fragments and
