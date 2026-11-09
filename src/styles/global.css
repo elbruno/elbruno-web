@@ -1163,9 +1163,6 @@ nav a[aria-current] {
 .personal-roots p {
   margin-top: 14px;
 }
-.talks-compact {
-  padding: 26px;
-}
 .talks-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1192,39 +1189,51 @@ nav a[aria-current] {
 }
 .stream-sessions {
   display: grid;
-  gap: 16px;
+  gap: 12px;
+  padding: 16px 0 0;
   margin-top: 20px;
+  border-top: 1px solid var(--border);
+  list-style: none;
 }
-.talk-entry h4 {
-  font-size: 1.08rem;
-  margin-block: 8px;
+.stream-sessions > li + li {
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
 }
-.talk-entry {
-  padding: 18px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--soft);
+.stream-sessions h4 {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+.stream-sessions h4 a {
+  color: var(--text);
+  text-decoration: none;
+}
+.stream-sessions h4 a:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}
+.talk-entry .talk-date {
+  margin-top: 6px;
+  font-size: 0.8rem;
+}
+.talk-status {
+  color: var(--brand);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.talk-status[hidden] {
+  display: none;
 }
 .conference-actions {
   margin-top: 20px;
 }
 .stream-card .actions {
   margin-top: auto;
-  padding-top: 24px;
-}
-.stream-episode-list {
-  display: grid;
-  gap: 16px;
-  padding-left: 24px;
-  margin-block: 20px;
-  font-weight: 600;
-}
-.stream-episode-list li::marker {
-  color: var(--brand);
+  padding-top: 20px;
 }
 .stream-note,
 .stream-timezone {
-  margin-top: 20px;
+  margin-top: 16px;
   color: var(--muted);
   font-size: 0.8rem;
 }
@@ -1235,9 +1244,6 @@ nav a[aria-current] {
 .talk-speaker {
   color: var(--muted);
   font-size: 0.85rem;
-}
-.talk-entry .small-link {
-  margin-top: 12px;
 }
 .info-panel {
   padding: 30px;
@@ -1662,7 +1668,6 @@ dialog details p {
   }
 }
 @media (max-width: 480px) {
-  .talks-compact,
   .stream-card {
     padding: 18px;
   }

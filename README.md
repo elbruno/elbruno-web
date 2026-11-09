@@ -77,7 +77,7 @@ The image frame and separate caption panel stay stable on mobile and desktop.
 
 See the [hero asset manifest](docs/hero-asset-manifest.md) for selected source
 basenames, web derivatives, privacy evidence and scoped publication approvals.
-Only the selected bus photograph needs new derivatives:
+Regenerate the selected bus and AI Tour New York speaker derivatives:
 
 ```powershell
 npx tsx scripts/prepare-hero-photos.ts

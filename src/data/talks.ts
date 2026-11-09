@@ -49,16 +49,30 @@ export const foundrySeries = {
 export const botSeries = {
   title: 'New Year, New Bot',
   url: 'https://aka.ms/newyearnewbot',
-  sessionsUrl: 'https://elbruno.github.io/new-year-new-bot/#series',
   verifiedOn: '2026-11-08',
   summary: {
-    en: 'Three proposed sessions, one tiny desk robot: from StackChan hardware to a .NET backend and an AI companion.',
-    es: 'Tres sesiones propuestas y un pequeño robot de escritorio: de StackChan a un backend .NET y un compañero con IA.',
+    en: 'Three sessions, one tiny desk robot: from StackChan hardware to a .NET backend and an AI companion.',
+    es: 'Tres sesiones y un pequeño robot de escritorio: de StackChan a un backend .NET y un compañero con IA.',
   },
-  episodes: [
-    'Bring Your AI Desk Robot to Life',
-    'Build Its AI Brain with .NET and Aspire',
-    'Give Your Bot an Agentic Brain',
+  sessions: [
+    {
+      title: 'Bring Your AI Desk Robot to Life',
+      start: '2026-11-24T18:00:00Z',
+      end: '2026-11-24T19:00:00Z',
+      url: 'https://aka.ms/newyearnewbot/1',
+    },
+    {
+      title: 'Build Its AI Brain with .NET and Aspire',
+      start: '2026-12-01T18:00:00Z',
+      end: '2026-12-01T19:00:00Z',
+      url: 'https://aka.ms/newyearnewbot/2',
+    },
+    {
+      title: 'Give Your Bot an Agentic Brain',
+      start: '2026-12-08T18:00:00Z',
+      end: '2026-12-08T19:00:00Z',
+      url: 'https://aka.ms/newyearnewbot/3',
+    },
   ],
 } as const;
 

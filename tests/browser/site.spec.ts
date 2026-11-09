@@ -298,7 +298,7 @@ test('personal update is bilingual, uses the selected winter photo and preserves
       'https://aka.ms/genainet',
     ])
       await expect(page.locator(`.speaker-kit a[href="${href}"]`)).toHaveCount(1);
-    await expect(page.locator('#sessions .talk-entry')).toHaveCount(3);
+    await expect(page.locator('#sessions .talk-entry')).toHaveCount(6);
     await expect(page.locator('#sessions')).toContainText('16:00–16:30 PST');
     await expect(page.locator('#sessions')).toContainText('09:00–10:00 PST');
   }
@@ -311,7 +311,7 @@ test('talk labels stay date-aware after a static build and while the page remain
   await page.goto('/');
   await expect(page.locator('[data-talks-heading]')).toHaveText('Upcoming streams');
   await expect(page.locator('[data-talk-status]').first()).toHaveText('Upcoming');
-  await expect(page.locator('[data-talk-status]').first()).toBeVisible();
+  await expect(page.locator('[data-talk-status]').first()).toBeHidden();
   await page.clock.fastForward(30_000);
   await expect(page.locator('[data-talk-status]').first()).toHaveText('Scheduled now');
   await expect(page.locator('[data-talk-status]').first()).toBeVisible();
@@ -322,6 +322,9 @@ test('talk labels stay date-aware after a static build and while the page remain
     'Past session',
     'Upcoming',
     'Upcoming',
+    'Upcoming',
+    'Upcoming',
+    'Upcoming',
   ]);
   await page.clock.setSystemTime(new Date('2026-11-12T17:00:00Z'));
   await page.clock.fastForward(30_000);
@@ -329,11 +332,31 @@ test('talk labels stay date-aware after a static build and while the page remain
     'Past session',
     'Scheduled now',
     'Upcoming',
+    'Upcoming',
+    'Upcoming',
+    'Upcoming',
   ]);
   await page.clock.setSystemTime(new Date('2026-12-03T18:00:00Z'));
   await page.clock.fastForward(30_000);
+  await expect(page.locator('[data-talks-heading]')).toHaveText('Upcoming streams');
+  await expect(page.locator('[data-stream-series="bot"] [data-talk-status]')).toHaveText([
+    'Past session',
+    'Past session',
+    'Upcoming',
+  ]);
+  await page.clock.setSystemTime(new Date('2026-12-08T18:00:00Z'));
+  await page.clock.fastForward(30_000);
+  await expect(page.locator('[data-stream-series="bot"] [data-talk-status]').last()).toHaveText(
+    'Scheduled now',
+  );
+  await expect(page.locator('[data-stream-series="bot"] [data-talk-status]').last()).toBeVisible();
+  await page.clock.setSystemTime(new Date('2026-12-08T19:00:00Z'));
+  await page.clock.fastForward(30_000);
   await expect(page.locator('[data-talks-heading]')).toHaveText('Streams & series');
   await expect(page.locator('[data-talk-status]')).toHaveText([
+    'Past session',
+    'Past session',
+    'Past session',
     'Past session',
     'Past session',
     'Past session',
@@ -345,10 +368,13 @@ test('talk labels stay date-aware after a static build and while the page remain
     'Sesión pasada',
     'Sesión pasada',
     'Sesión pasada',
+    'Sesión pasada',
+    'Sesión pasada',
+    'Sesión pasada',
   ]);
 });
 
-test('upcoming stream cards separate confirmed sessions from proposed robot episodes', async ({
+test('upcoming stream cards show confirmed schedules with one link per session', async ({
   page,
 }) => {
   await page.clock.install({ time: new Date('2026-11-09T02:00:00Z') });
@@ -401,11 +427,21 @@ test('upcoming stream cards separate confirmed sessions from proposed robot epis
         'https://aka.ms/newyearnewbot',
       );
       await expect(bot.locator('.stream-episode-list li')).toHaveCount(3);
-      await expect(bot.locator('.stream-note')).toContainText(
-        prefix === '/' ? 'to be confirmed' : 'por confirmar',
+      await expect(bot.locator('time')).toHaveText(
+        prefix === '/'
+          ? ['November 24, 2026', 'December 1, 2026', 'December 8, 2026']
+          : ['24 de noviembre de 2026', '1 de diciembre de 2026', '8 de diciembre de 2026'],
       );
-      await expect(bot.locator('time, [data-talk-start], [data-talk-status]')).toHaveCount(0);
-      await expect(bot.locator('a')).toHaveCount(1);
+      for (let index = 0; index < 3; index++) {
+        await expect(bot.locator('h4 a').nth(index)).toHaveAttribute(
+          'href',
+          `https://aka.ms/newyearnewbot/${index + 1}`,
+        );
+        await expect(bot.locator('.talk-date').nth(index)).toContainText('10:00–11:00 PST');
+      }
+      await expect(bot.locator('.stream-note')).toContainText('Microsoft Reactor');
+      await expect(bot).not.toContainText(/proposed|propuest|to be confirmed|por confirmar/i);
+      await expect(bot.locator('a')).toHaveCount(4);
       expect(
         await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
       ).toBe(true);

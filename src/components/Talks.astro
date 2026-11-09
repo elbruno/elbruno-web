@@ -16,13 +16,13 @@ interface Props {
 }
 const { locale, compact = false } = Astro.props;
 const text = t(locale);
-const upcoming = [...talks, ...foundrySeries.sessions].some(
+const upcoming = [...talks, ...foundrySeries.sessions, ...botSeries.sessions].some(
   (talk) => talkStatus(talk.start, talk.end) !== 'past',
 );
 ---
 
 <section
-  class:list={['section', 'talks-section', { 'card talks-compact': compact }]}
+  class="section talks-section"
   data-talks
   data-upcoming={text.streamsHeading}
   data-archive={text.streamsArchive}
@@ -45,12 +45,9 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
       </div>
       <h3>{conference.name}</h3>
       <p class="stream-summary">{text.conferenceDescription}</p>
-      <div class="stream-sessions">
+      <ul class="stream-sessions">
         {talks.map((talk) => (
-          <div class="talk-entry" data-talk-start={talk.start} data-talk-end={talk.end}>
-            <p class="eyebrow" data-talk-status>
-              {text.talkStatus[talkStatus(talk.start, talk.end)]}
-            </p>
+          <li class="talk-entry" data-talk-start={talk.start} data-talk-end={talk.end}>
             <h4>
               <a href={talk.url}>{talk.title}</a>
             </h4>
@@ -59,17 +56,24 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
               {' · '}
               {talkTime(talk.start)}–{talkTime(talk.end)} PST
             </p>
+            <p
+              class="talk-status"
+              data-talk-status
+              hidden={talkStatus(talk.start, talk.end) === 'upcoming'}
+            >
+              {text.talkStatus[talkStatus(talk.start, talk.end)]}
+            </p>
             {!compact && (
               <>
                 <p>{talk.summary[locale]}</p>
                 <p class="talk-speaker">Bruno Capuano · {text.agendaSource}</p>
               </>
             )}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
       <div class="actions conference-actions">
-        <a class="button primary" href={conference.url}>
+        <a class="button secondary" href={conference.url}>
           {text.exploreConference}
         </a>
       </div>
@@ -83,12 +87,9 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
       </div>
       <h3>{foundrySeries.title}</h3>
       <p class="stream-summary">{foundrySeries.summary[locale]}</p>
-      <div class="stream-sessions">
+      <ul class="stream-sessions">
         {foundrySeries.sessions.map((session) => (
-          <div class="talk-entry" data-talk-start={session.start} data-talk-end={session.end}>
-            <p class="eyebrow" data-talk-status>
-              {text.talkStatus[talkStatus(session.start, session.end)]}
-            </p>
+          <li class="talk-entry" data-talk-start={session.start} data-talk-end={session.end}>
             <h4>
               <a href={session.url}>
                 {text.episode} {session.episode}
@@ -99,9 +100,16 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
               {' · '}
               {talkTime(session.start)}–{talkTime(session.end)} PST
             </p>
-          </div>
+            <p
+              class="talk-status"
+              data-talk-status
+              hidden={talkStatus(session.start, session.end) === 'upcoming'}
+            >
+              {text.talkStatus[talkStatus(session.start, session.end)]}
+            </p>
+          </li>
         ))}
-      </div>
+      </ul>
       <p class="stream-note">{text.topicsPending}</p>
       <div class="actions stream-actions">
         <a class="button secondary" href={foundrySeries.url}>
@@ -114,16 +122,32 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
         <span class="mini-icon">
           <Icon name="robot" size={24} />
         </span>
-        <p class="eyebrow">{text.proposedSeries}</p>
+        <p class="eyebrow">{text.livestreamSeries}</p>
       </div>
       <h3>{botSeries.title}</h3>
       <p class="stream-summary">{botSeries.summary[locale]}</p>
-      <ol class="stream-episode-list">
-        {botSeries.episodes.map((title) => (
-          <li lang="en">{title}</li>
+      <ol class="stream-sessions stream-episode-list">
+        {botSeries.sessions.map((session) => (
+          <li class="talk-entry" data-talk-start={session.start} data-talk-end={session.end}>
+            <h4 lang="en">
+              <a href={session.url}>{session.title}</a>
+            </h4>
+            <p class="talk-date">
+              <time datetime={session.start}>{talkDate(session.start, locale)}</time>
+              {' · '}
+              {talkTime(session.start)}–{talkTime(session.end)} PST
+            </p>
+            <p
+              class="talk-status"
+              data-talk-status
+              hidden={talkStatus(session.start, session.end) === 'upcoming'}
+            >
+              {text.talkStatus[talkStatus(session.start, session.end)]}
+            </p>
+          </li>
         ))}
       </ol>
-      <p class="stream-note">{text.botSchedulePending}</p>
+      <p class="stream-note">{text.botStreamingDetails}</p>
       <div class="actions stream-actions">
         <a class="button secondary" href={botSeries.url}>
           {text.exploreSeries}
@@ -149,6 +173,7 @@ const upcoming = [...talks, ...foundrySeries.sessions].some(
         upcoming ||= status !== 'past';
         const label = entry.querySelector<HTMLElement>('[data-talk-status]')!;
         label.textContent = labels[status];
+        label.hidden = status === 'upcoming';
       });
       section.querySelector('[data-talks-heading]')!.textContent = upcoming
         ? section.dataset.upcoming!

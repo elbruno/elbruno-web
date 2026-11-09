@@ -24,20 +24,30 @@ Home and Speaker Kit now group online appearances into three cards:
   resources are accessible through the series website. Specific topics remain
   unconfirmed. October episodes are not promoted as
   future sessions.
-- **[New Year, New Bot](https://aka.ms/newyearnewbot):** three proposed episode
-  themes from the public series page, progressing from StackChan hardware to a
-  .NET/Aspire AI backend and an agentic companion. Dates, streaming channel, and
-  collaboration details are not confirmed. No dates or individual episode URLs
-  are invented: the card links to the series website.
+- **[New Year, New Bot](https://aka.ms/newyearnewbot):** three confirmed
+  livestreams on Microsoft Reactor, in English. The refreshed public series
+  page and all three Reactor event pages confirm 18:00-19:00 UTC, displayed as
+  10:00-11:00 PST:
+  - [Bring Your AI Desk Robot to Life](https://aka.ms/newyearnewbot/1):
+    November 24, 2026.
+  - [Build Its AI Brain with .NET and Aspire](https://aka.ms/newyearnewbot/2):
+    December 1, 2026.
+  - [Give Your Bot an Agentic Brain](https://aka.ms/newyearnewbot/3):
+    December 8, 2026.
+    This confirmed schedule supersedes the earlier cached proposal. Registration
+    is open; project demos and learning resources remain in progress.
 
 Cards keep a single linked title per confirmed session and one general footer
-button per conference or series. Card headings and proposed robot episode names
-are plain text, with no repeated registration, resource, or agenda links.
+button per conference or series. Card headings are plain text, with no repeated
+registration, resource, or agenda links.
+All three cards use compact session lists rather than nested panels. Upcoming
+status labels stay hidden until a session is scheduled now or has ended; dates
+remain visible. Footer buttons share the same secondary style.
 
 All scheduled dates use Pacific Time with explicit PST labels. Browser status
-updates cover the conference and both Reactor sessions, including leave-open
+updates cover the conference and all five Reactor sessions, including leave-open
 transitions. Once all confirmed sessions end, the section becomes "Streams &
-series"; proposed robot episodes remain explicitly marked as proposals. No
+series". No
 recording availability is inferred. Without JavaScript, status reflects build
 time. Titles of external episodes retain their published English wording.
 

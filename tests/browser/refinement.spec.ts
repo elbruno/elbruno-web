@@ -79,7 +79,7 @@ test('curated portfolio and API repository cards retain distinct stable orders a
     const conference = page.locator('[data-stream-series="conference"]');
     await expect(conference.locator('h3')).toHaveText('.NET Conf 2026');
     await expect(conference.locator('h4')).toHaveText(['.NET + Foundry: Better Together']);
-    await expect(conference.locator('.conference-actions .primary')).toHaveAttribute(
+    await expect(conference.locator('.conference-actions .button')).toHaveAttribute(
       'href',
       'https://www.dotnetconf.net/',
     );

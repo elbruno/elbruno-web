@@ -38,23 +38,23 @@ export const heroStories: HeroStory[] = [
   },
   {
     id: 'speaker',
-    src: '/assets/photos/speaker-podium-1-960.webp',
+    src: '/images/hero/hero-speaker-new-york-960.webp',
     srcset:
-      '/assets/photos/speaker-podium-1-960.webp 960w, /assets/photos/speaker-podium-1-1440.webp 1440w',
-    width: 960,
-    height: 440,
+      '/images/hero/hero-speaker-new-york-960.webp 960w, /images/hero/hero-speaker-new-york-1280.webp 1280w',
+    width: 1280,
+    height: 960,
     fit: 'contain',
     backgroundMode: 'photo',
     text: {
       en: {
         title: 'The speaker 🎤',
-        caption: 'Sometimes I leave Visual Studio and talk to humans.',
-        alt: 'Bruno speaking at a podium in front of an event display.',
+        caption: 'Sometimes I leave my agents and Visual Studio and talk to humans.',
+        alt: 'Bruno taking a selfie with the audience at AI Tour New York.',
       },
       es: {
         title: 'El speaker 🎤',
-        caption: 'A veces salgo de Visual Studio para hablar con humanos.',
-        alt: 'Bruno hablando desde un podio frente a una pantalla del evento.',
+        caption: 'A veces dejo a mis agentes y Visual Studio para hablar con humanos.',
+        alt: 'Bruno haciéndose una selfie con el público en AI Tour New York.',
       },
     },
   },

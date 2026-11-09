@@ -264,7 +264,7 @@ test('JavaScript-disabled pages retain the first bilingual story and hide nonfun
 test('failed images keep the current story visible and the first image has a nonblank fallback', async ({
   page,
 }) => {
-  await page.route('**/speaker-podium-1-*.webp', (route) => route.abort());
+  await page.route('**/hero-speaker-new-york-*.webp', (route) => route.abort());
   await page.goto('/es/');
   const root = page.locator('[data-hero-carousel]');
   await root.locator('.story-next').click();
@@ -290,7 +290,11 @@ test('private originals remain ignored, untracked and unavailable from the publi
       encoding: 'utf8',
     }).trim(),
   ).toBe('tmp/photos/26-06-BusAllForMyself.png');
-  for (const basename of ['26-06-BusAllForMyself.png', '26-11-bruno hold stackchan.jpg']) {
+  for (const basename of [
+    '26-06-BusAllForMyself.png',
+    '26-11-bruno hold stackchan.jpg',
+    '24-10-bruno ai tour new york.jpg',
+  ]) {
     expect((await page.request.get(`/tmp/photos/${encodeURIComponent(basename)}`)).status()).toBe(
       404,
     );
