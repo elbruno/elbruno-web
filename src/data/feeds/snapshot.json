@@ -54,6 +54,14 @@
       "source": "podcast"
     },
     {
+      "id": "yt:video:K1JaSF-m2SQ",
+      "title": "Kimi K3.1 Pro in Microsoft Foundry 🚀 | Quick GitHub Copilot App Demo",
+      "url": "https://www.youtube.com/watch?v=K1JaSF-m2SQ",
+      "publishedAt": "2026-11-10T15:08:41.000Z",
+      "summary": "🚀 Kimi K3.1 Pro is now available in Microsoft Foundry! And of course, I couldn't just read the announcement. I had to deploy the model, connect it to Copilot, and see it in act...",
+      "source": "youtube"
+    },
+    {
       "id": "yt:video:cKnNBwpiJdI",
       "title": "Use Your Own AI Model in the GitHub Copilot App (BYOK + Microsoft Foundry)",
       "url": "https://www.youtube.com/watch?v=cKnNBwpiJdI",
@@ -67,14 +75,6 @@
       "url": "https://www.youtube.com/watch?v=dUllqWMHJW4",
       "publishedAt": "2026-08-04T17:15:30.000Z",
       "summary": "AI coding agents are amazing. They can write code, run commands, install packages, and do real work. And that is fantastic… until you remember they are running with your permiss...",
-      "source": "youtube"
-    },
-    {
-      "id": "yt:video:uuODOdtD2uk",
-      "title": "I Built a Daily News Digest with GitHub Agentic Workflows 🤖📰",
-      "url": "https://www.youtube.com/watch?v=uuODOdtD2uk",
-      "publishedAt": "2026-07-30T14:39:17.000Z",
-      "summary": "GitHub ships features faster than I can update my demos 😄 So instead of checking the GitHub Changelog manually every day, I built a small project using GitHub Agentic Workflows...",
       "source": "youtube"
     }
   ],
@@ -124,6 +124,6 @@
     "blog": "2026-11-08T22:14:38.199Z",
     "podcast": "2026-11-09T22:28:25.848Z",
     "repositories": "2026-11-10T07:27:42.533Z",
-    "youtube": "2026-11-06T19:29:59.006Z"
+    "youtube": "2026-11-10T19:50:44.935Z"
   }
 }
