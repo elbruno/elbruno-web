@@ -84,8 +84,8 @@
       "url": "https://github.com/elbruno/ElBruno.MarkItDotNet",
       "description": ".NET library that converts file formats to Markdown for AI pipelines",
       "language": "C#",
-      "stars": 58,
-      "updatedAt": "2026-11-04T02:06:38Z"
+      "stars": 59,
+      "updatedAt": "2026-11-10T02:24:36Z"
     },
     {
       "name": "elbruno.localembeddings",
@@ -123,7 +123,7 @@
   "fetchedAt": {
     "blog": "2026-11-08T22:14:38.199Z",
     "podcast": "2026-11-09T22:28:25.848Z",
-    "repositories": "2026-11-09T22:28:27.397Z",
+    "repositories": "2026-11-10T07:27:42.533Z",
     "youtube": "2026-11-06T19:29:59.006Z"
   }
 }
