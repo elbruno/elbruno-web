@@ -30,6 +30,14 @@
       "source": "blog"
     },
     {
+      "id": "https://www.ivoox.com/183681792",
+      "title": "NTN 596 - ️ Espías, Chips y Planillas",
+      "url": "https://www.ivoox.com/ntn-596-espias-chips-planillas-audios-mp3_rf_183681792_1.html",
+      "publishedAt": "2026-11-11T13:53:54.000Z",
+      "summary": "️ ¡Episodio express de NO TIENE NOMBRE! Claude se arma la oficina: Sheets, Whiteboards, Data y Meetings ️ Nvidia, Megaspeed y Alice Huang: ¿chips prohibidos rumbo a China? Bonus...",
+      "source": "podcast"
+    },
+    {
       "id": "https://www.ivoox.com/183543590",
       "title": "NTN 595 - ️ Espías, Chips y Corazones",
       "url": "https://www.ivoox.com/ntn-595-espias-chips-corazones-audios-mp3_rf_183543590_1.html",
@@ -43,14 +51,6 @@
       "url": "https://www.ivoox.com/ntn-594-reescribir-ya-no-es-audios-mp3_rf_183458704_1.html",
       "publishedAt": "2026-11-07T18:25:51.000Z",
       "summary": "Parte 2: los agentes quieren llegar a verde y, si los dejás, cambian los tests • Dieselgate y la ley de Goodhart • «Si compila, es correcto» es un chiste • Cuánto cuesta reescri...",
-      "source": "podcast"
-    },
-    {
-      "id": "https://www.ivoox.com/183372480",
-      "title": "NTN 593 - Reescribir ya no es pecado (Parte 1)",
-      "url": "https://www.ivoox.com/ntn-593-reescribir-ya-no-es-audios-mp3_rf_183372480_1.html",
-      "publishedAt": "2026-11-05T15:30:53.000Z",
-      "summary": "Parte 1: en 2000 Spolsky dijo NUNCA reescribas. En 2026 Toub portó Copilot a Rust con agentes • Netscape y el origen de Rust • ⚔️ Big bang vs. pieza por pieza • https://www.deve...",
       "source": "podcast"
     },
     {
@@ -84,8 +84,8 @@
       "url": "https://github.com/elbruno/ElBruno.MarkItDotNet",
       "description": ".NET library that converts file formats to Markdown for AI pipelines",
       "language": "C#",
-      "stars": 59,
-      "updatedAt": "2026-11-10T02:24:36Z"
+      "stars": 60,
+      "updatedAt": "2026-11-11T09:19:12Z"
     },
     {
       "name": "elbruno.localembeddings",
@@ -109,7 +109,7 @@
       "description": "A coming-soon project exploring an AI desk companion with M5Stack StackChan and .NET.",
       "language": "C#",
       "stars": 7,
-      "updatedAt": "2026-11-11T02:47:18Z"
+      "updatedAt": "2026-11-11T14:31:43Z"
     },
     {
       "name": "PromptDot",
@@ -122,8 +122,8 @@
   ],
   "fetchedAt": {
     "blog": "2026-11-08T22:14:38.199Z",
-    "podcast": "2026-11-09T22:28:25.848Z",
-    "repositories": "2026-11-11T06:38:17.048Z",
+    "podcast": "2026-11-11T19:42:34.533Z",
+    "repositories": "2026-11-11T19:42:35.567Z",
     "youtube": "2026-11-10T19:50:44.935Z"
   }
 }
