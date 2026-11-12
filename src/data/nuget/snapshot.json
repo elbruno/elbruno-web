@@ -1,12 +1,12 @@
 {
-  "fetchedAt": "2026-11-11T19:42:35.574Z",
-  "sourceUpdatedAt": "2026-11-11T17:06:43.639Z",
-  "repositorySourceUpdatedAt": "2026-11-11T17:06:43.639Z",
+  "fetchedAt": "2026-11-12T20:03:03.425Z",
+  "sourceUpdatedAt": "2026-11-12T17:35:17.628Z",
+  "repositorySourceUpdatedAt": "2026-11-12T17:35:17.628Z",
   "packages": [
     {
       "packageId": "ElBruno.LocalEmbeddings",
       "version": "1.6.7",
-      "totalDownloads": 23767,
+      "totalDownloads": 23967,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/elbruno.localembeddings",
@@ -15,7 +15,7 @@
     {
       "packageId": "ElBruno.LocalLLMs",
       "version": "0.24.1",
-      "totalDownloads": 6429,
+      "totalDownloads": 6448,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.LocalLLMs",
@@ -24,7 +24,7 @@
     {
       "packageId": "ElBruno.Text2Image",
       "version": "1.7.1",
-      "totalDownloads": 7168,
+      "totalDownloads": 7214,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.Text2Image",
@@ -33,7 +33,7 @@
     {
       "packageId": "ElBruno.MarkItDotNet",
       "version": "0.9.3",
-      "totalDownloads": 51984,
+      "totalDownloads": 53438,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.MarkItDotNet",
@@ -42,7 +42,7 @@
     {
       "packageId": "ElBruno.HuggingFace.Downloader",
       "version": "1.6.1",
-      "totalDownloads": 31978,
+      "totalDownloads": 32237,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.HuggingFace.Downloader",
@@ -51,7 +51,7 @@
     {
       "packageId": "ElBruno.Speech.Abstractions",
       "version": "1.6.1",
-      "totalDownloads": 4271,
+      "totalDownloads": 4281,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.Speech",
