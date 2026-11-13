@@ -30,6 +30,14 @@
       "source": "blog"
     },
     {
+      "id": "https://www.ivoox.com/183782975",
+      "title": "NTN 597 - Año 1 d.J.: Nvidia sin Jensen",
+      "url": "https://www.ivoox.com/ntn-597-ano-1-d-j-nvidia-audios-mp3_rf_183782975_1.html",
+      "publishedAt": "2026-11-13T14:08:28.000Z",
+      "summary": "️ ¡Episodio express! Es 2026 d.C., pero la industria ya vive el Año 1 d.J. (después de Jensen) • Jensen Huang deja Nvidia y Colette Kress queda como CEO interina… sin plan B • ¿...",
+      "source": "podcast"
+    },
+    {
       "id": "https://www.ivoox.com/183681792",
       "title": "NTN 596 - ️ Espías, Chips y Planillas",
       "url": "https://www.ivoox.com/ntn-596-espias-chips-planillas-audios-mp3_rf_183681792_1.html",
@@ -43,14 +51,6 @@
       "url": "https://www.ivoox.com/ntn-595-espias-chips-corazones-audios-mp3_rf_183543590_1.html",
       "publishedAt": "2026-11-09T15:40:25.000Z",
       "summary": "️ ¡Episodio de espías tech! • Nvidia investiga a su CEO, Jensen Huang, por su relación con una presunta espía china • 75 centavos que destaparon a un hacker de la KGB • Google,...",
-      "source": "podcast"
-    },
-    {
-      "id": "https://www.ivoox.com/183458704",
-      "title": "NTN 594 - Reescribir ya no es pecado (Parte 2)",
-      "url": "https://www.ivoox.com/ntn-594-reescribir-ya-no-es-audios-mp3_rf_183458704_1.html",
-      "publishedAt": "2026-11-07T18:25:51.000Z",
-      "summary": "Parte 2: los agentes quieren llegar a verde y, si los dejás, cambian los tests • Dieselgate y la ley de Goodhart • «Si compila, es correcto» es un chiste • Cuánto cuesta reescri...",
       "source": "podcast"
     },
     {
@@ -122,7 +122,7 @@
   ],
   "fetchedAt": {
     "blog": "2026-11-08T22:14:38.199Z",
-    "podcast": "2026-11-11T19:42:34.533Z",
+    "podcast": "2026-11-13T19:50:19.830Z",
     "repositories": "2026-11-11T19:42:35.567Z",
     "youtube": "2026-11-10T19:50:44.935Z"
   }
