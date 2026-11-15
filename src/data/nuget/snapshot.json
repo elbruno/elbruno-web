@@ -1,12 +1,12 @@
 {
-  "fetchedAt": "2026-11-13T19:50:21.098Z",
-  "sourceUpdatedAt": "2026-11-13T17:12:41.149Z",
-  "repositorySourceUpdatedAt": "2026-11-13T17:12:41.149Z",
+  "fetchedAt": "2026-11-15T18:56:43.212Z",
+  "sourceUpdatedAt": "2026-11-15T16:20:33.538Z",
+  "repositorySourceUpdatedAt": "2026-11-15T16:20:33.538Z",
   "packages": [
     {
       "packageId": "ElBruno.LocalEmbeddings",
-      "version": "1.6.7",
-      "totalDownloads": 24122,
+      "version": "1.6.8",
+      "totalDownloads": 24470,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/elbruno.localembeddings",
@@ -14,8 +14,8 @@
     },
     {
       "packageId": "ElBruno.LocalLLMs",
-      "version": "0.24.1",
-      "totalDownloads": 6460,
+      "version": "0.24.2",
+      "totalDownloads": 6569,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.LocalLLMs",
@@ -23,8 +23,8 @@
     },
     {
       "packageId": "ElBruno.Text2Image",
-      "version": "1.7.1",
-      "totalDownloads": 7219,
+      "version": "1.7.2",
+      "totalDownloads": 7288,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.Text2Image",
@@ -32,8 +32,8 @@
     },
     {
       "packageId": "ElBruno.MarkItDotNet",
-      "version": "0.9.3",
-      "totalDownloads": 55172,
+      "version": "0.9.4",
+      "totalDownloads": 57723,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.MarkItDotNet",
@@ -41,8 +41,8 @@
     },
     {
       "packageId": "ElBruno.HuggingFace.Downloader",
-      "version": "1.6.1",
-      "totalDownloads": 32400,
+      "version": "1.6.2",
+      "totalDownloads": 32884,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.HuggingFace.Downloader",
@@ -50,8 +50,8 @@
     },
     {
       "packageId": "ElBruno.Speech.Abstractions",
-      "version": "1.6.1",
-      "totalDownloads": 4285,
+      "version": "1.6.3",
+      "totalDownloads": 4439,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.Speech",
