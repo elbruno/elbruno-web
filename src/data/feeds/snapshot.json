@@ -6,6 +6,14 @@
   },
   "entries": [
     {
+      "id": "http://brunocapuano.wordpress.com/?p=43789",
+      "title": "Can a Small Fine-Tuned Model Help GitHub Copilot Understand My Robot’s Firmware?",
+      "url": "https://brunocapuano.wordpress.com/2026/11/16/can-a-small-fine-tuned-model-help-github-copilot-understand-my-robots-firmware/",
+      "publishedAt": "2026-11-16T19:53:51.000Z",
+      "summary": "I’m building New Year, New Bot, a project where AI, .NET, GitHub, and a tiny StackChan robot come together. And because apparently building a robot wasn’t enough, I decided to t...",
+      "source": "blog"
+    },
+    {
       "id": "http://elbruno.com/?p=43780",
       "title": "Local AI in GitHub Copilot: plenty of RAM, still out of memory?",
       "url": "https://brunocapuano.wordpress.com/2026/11/04/local-ai-in-github-copilot-plenty-of-ram-still-out-of-memory/",
@@ -22,12 +30,12 @@
       "source": "blog"
     },
     {
-      "id": "http://elbruno.com/?p=43767",
-      "title": "C# + Ollama: Give Your App a Voice with Phonon",
-      "url": "https://brunocapuano.wordpress.com/2026/10/25/c-ollama-give-your-app-a-voice-with-phonon/",
-      "publishedAt": "2026-10-25T20:35:08.000Z",
-      "summary": "Apple Silicon users, please try this C# sample and let us know whether speech generation and playback work on your Mac! ElBruno.Speech 1.6.0-preview.5 keeps setup simple: call s...",
-      "source": "blog"
+      "id": "https://www.ivoox.com/183897752",
+      "title": "NTN 598 - Agentes: el pasante con root",
+      "url": "https://www.ivoox.com/ntn-598-agentes-pasante-con-audios-mp3_rf_183897752_1.html",
+      "publishedAt": "2026-11-16T14:42:27.000Z",
+      "summary": "¡Hoy agentes, cero chismes! • Agentes = microservicios 2019 • Opus vs Argon buscando código • Tests truchos • ️ La respuesta: ingeniería Fuentes: • https://www.oreilly.com/radar...",
+      "source": "podcast"
     },
     {
       "id": "https://www.ivoox.com/183782975",
@@ -43,14 +51,6 @@
       "url": "https://www.ivoox.com/ntn-596-espias-chips-planillas-audios-mp3_rf_183681792_1.html",
       "publishedAt": "2026-11-11T13:53:54.000Z",
       "summary": "️ ¡Episodio express de NO TIENE NOMBRE! Claude se arma la oficina: Sheets, Whiteboards, Data y Meetings ️ Nvidia, Megaspeed y Alice Huang: ¿chips prohibidos rumbo a China? Bonus...",
-      "source": "podcast"
-    },
-    {
-      "id": "https://www.ivoox.com/183543590",
-      "title": "NTN 595 - ️ Espías, Chips y Corazones",
-      "url": "https://www.ivoox.com/ntn-595-espias-chips-corazones-audios-mp3_rf_183543590_1.html",
-      "publishedAt": "2026-11-09T15:40:25.000Z",
-      "summary": "️ ¡Episodio de espías tech! • Nvidia investiga a su CEO, Jensen Huang, por su relación con una presunta espía china • 75 centavos que destaparon a un hacker de la KGB • Google,...",
       "source": "podcast"
     },
     {
@@ -121,8 +121,8 @@
     }
   ],
   "fetchedAt": {
-    "blog": "2026-11-08T22:14:38.199Z",
-    "podcast": "2026-11-13T19:50:19.830Z",
+    "blog": "2026-11-16T22:15:20.660Z",
+    "podcast": "2026-11-16T22:15:21.087Z",
     "repositories": "2026-11-11T19:42:35.567Z",
     "youtube": "2026-11-10T19:50:44.935Z"
   }
