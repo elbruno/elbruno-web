@@ -117,4 +117,12 @@ test('events remain readable without JavaScript and reflow at small and intermed
       ).toBe(true);
     }
   }
+  await page.setViewportSize({ width: 320, height: 900 });
+  await page.goto('/es/events/');
+  await page.addStyleTag({
+    content: '.page-hero h1 { font-family: monospace; font-size: 48px; }',
+  });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
 });
