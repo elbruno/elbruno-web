@@ -28,10 +28,10 @@ test('session status changes at the exact scheduled start and end, without imply
 });
 
 test('session dates use the official Pacific day in both languages', () => {
-  assert.equal(talkDate(talks[0].start, 'en'), 'November 11, 2026');
-  assert.equal(talkDate(talks[0].start, 'es'), '11 de noviembre de 2026');
-  assert.equal(talkDate(foundrySeries.sessions[0].start, 'en'), 'November 12, 2026');
-  assert.equal(talkDate(foundrySeries.sessions[1].start, 'es'), '3 de diciembre de 2026');
+  assert.equal(talkDate(talks[0].start, 'en'), 'November 10, 2026');
+  assert.equal(talkDate(talks[0].start, 'es'), '10 de noviembre de 2026');
+  assert.equal(talkDate(foundrySeries.sessions[0].start, 'en'), 'December 3, 2026');
+  assert.equal(talkDate(botSeries.sessions[0].start, 'es'), '24 de noviembre de 2026');
   assert.equal(talkDate(botSeries.sessions[0].start, 'en'), 'November 24, 2026');
   assert.equal(talkDate(botSeries.sessions[1].start, 'es'), '1 de diciembre de 2026');
   assert.equal(talkDate(botSeries.sessions[2].start, 'en'), 'December 8, 2026');

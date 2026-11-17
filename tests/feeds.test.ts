@@ -5,9 +5,34 @@ import { feedExcerpt, normalize, parseFeed, plainText } from '../src/lib/feeds/p
 import { validateSnapshot } from '../src/lib/feeds/model';
 import type { Snapshot } from '../src/lib/feeds/model';
 import { refreshFeed, refreshRepository } from '../src/lib/feeds/refresh';
+import { selectFeedEntries } from '../src/lib/feeds/select';
 
 const now = Date.parse('2026-11-04T13:00:00Z');
 const fixture = readFileSync(new URL('./fixtures/rss.xml', import.meta.url), 'utf8');
+test('display selection returns the newest two blog/podcast entries, preserving three videos', () => {
+  const entries = (['blog', 'podcast', 'youtube'] as const)
+    .flatMap((source) =>
+      Array.from({ length: 5 }, (_, index) => ({
+        source,
+        id: `${source}-${index}`,
+        title: 'Source title',
+        url: `https://example.com/${source}/${index}`,
+        publishedAt: `2026-11-0${index + 1}T00:00:00Z`,
+      })),
+    )
+    .reverse();
+  for (const source of ['blog', 'podcast', 'youtube'] as const) {
+    const selected = selectFeedEntries(entries, source, now);
+    assert.deepEqual(
+      selected.map((entry) => entry.id),
+      source === 'youtube'
+        ? ['youtube-3', 'youtube-2', 'youtube-1']
+        : [`${source}-3`, `${source}-2`],
+    );
+  }
+  assert.deepEqual(selectFeedEntries([], 'podcast', now), []);
+  assert.deepEqual(selectFeedEntries(entries, 'podcast', Date.parse('2026-01-01')), []);
+});
 test('RSS is sanitized, sorted and deduplicated with invalid entries removed', () => {
   const entries = parseFeed(fixture, 'blog', now);
   assert.equal(entries.length, 2);

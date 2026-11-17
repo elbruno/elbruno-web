@@ -1,0 +1,39 @@
+---
+import snapshot from '../data/feeds/snapshot.json';
+import { validateSnapshot } from '../lib/feeds/model';
+import { selectFeedEntries } from '../lib/feeds/select';
+import { t, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+import ResourceLink from './ResourceLink.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+validateSnapshot(snapshot);
+const episode = selectFeedEntries(snapshot.entries, 'podcast')[0];
+const text = t(locale);
+---
+
+{episode && (
+  <aside class="latest-podcast" aria-label={text.latestPodcastLabel} data-latest-podcast>
+    <div class="container latest-podcast-inner">
+      <span class="latest-podcast-label">
+        <Icon name="headphones" size={20} />
+        {text.latestPodcastLabel}
+      </span>
+      <span class="latest-podcast-title" lang="es">
+        {episode.title}
+      </span>
+      <time datetime={episode.publishedAt}>
+        {new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeZone: 'UTC' }).format(
+          new Date(episode.publishedAt),
+        )}
+      </time>
+      <ResourceLink href={episode.url} locale={locale} class="small-link" newTab>
+        {text.listen}
+        <Icon name="arrow" size={17} />
+      </ResourceLink>
+    </div>
+  </aside>
+)}

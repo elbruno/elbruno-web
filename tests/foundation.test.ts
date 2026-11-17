@@ -10,7 +10,7 @@ import { bios } from '../src/data/speaking';
 import { heroStories } from '../src/data/hero-stories';
 
 test('language switching preserves every supported route', () => {
-  for (const page of ['', 'about', 'projects', 'speaking'] as const) {
+  for (const page of ['', 'about', 'projects', 'speaking', 'events'] as const) {
     assert.equal(route('es', page), `/es/${page ? `${page}/` : ''}`);
     assert.equal(route('en', page), `/${page ? `${page}/` : ''}`);
   }

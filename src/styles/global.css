@@ -1163,10 +1163,116 @@ nav a[aria-current] {
 .personal-roots p {
   margin-top: 14px;
 }
-.talks-grid {
+.events-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
+}
+.event-group {
+  margin-top: 32px;
+}
+.event-group > h2,
+.event-group > h3 {
+  margin-bottom: 20px;
+}
+.event-count {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 0.75em;
+}
+.event-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 24px;
+}
+.event-card h3,
+.event-card h4 {
+  margin-top: 12px;
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+.event-card > p:not(.eyebrow) {
+  margin-top: 12px;
+  font-size: 0.88rem;
+}
+.event-card .actions {
+  margin-top: auto;
+  padding-top: 18px;
+}
+.event-card .small-link {
+  min-height: 44px;
+}
+.event-card[hidden],
+.event-filters[hidden],
+.event-group[hidden] {
+  display: none;
+}
+.event-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
+.event-filters label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+.event-series-links {
+  margin-top: 24px;
+  padding: 20px;
+  border-left: 3px solid var(--brand);
+  background: var(--soft);
+}
+.event-series-links p {
+  font-size: 0.88rem;
+}
+.event-series-links p + p {
+  margin-top: 12px;
+}
+.talks-section .section-heading > .small-link {
+  white-space: normal;
+}
+.latest-podcast {
+  background: var(--brand-soft);
+  border-bottom: 1px solid var(--border);
+}
+.latest-podcast-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding-block: 12px;
+  font-size: 0.8rem;
+}
+.latest-podcast-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--brand);
+  font-weight: 700;
+}
+.latest-podcast-title {
+  flex: 1 1 260px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-weight: 600;
+}
+.latest-podcast time {
+  color: var(--muted);
+}
+.latest-podcast .small-link {
+  min-height: 44px;
+}
+.conference-highlights {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.conference-highlights > li + li {
+  padding-top: 0;
+  border-top: 0;
 }
 .stream-card {
   display: flex;
@@ -1781,9 +1887,16 @@ dialog details p {
   .winter-photo-card img {
     aspect-ratio: 908 / 302;
   }
-  .talks-grid {
+  .events-grid,
+  .conference-highlights {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+  .latest-podcast-inner {
+    gap: 4px 14px;
+  }
+  .latest-podcast-title {
+    flex-basis: 100%;
   }
   .cv-work-grid {
     grid-template-columns: 1fr;

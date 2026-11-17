@@ -51,8 +51,16 @@ async function request(url: string): Promise<string> {
 }
 for (const source of repositoriesOnly ? [] : (Object.keys(sources) as Source[])) {
   const result = await refreshFeed(snapshot, source, sources[source]!, request);
-  if (result.warning) console.warn(result.warning);
-  else console.log(`${source}: verified entries refreshed`);
+  if (result.warning) {
+    console.warn(result.warning);
+    if (process.env.GITHUB_ACTIONS === 'true')
+      console.warn(
+        `::warning title=RSS refresh::${result.warning.replaceAll('%', '%25').replaceAll('\r', '%0D').replaceAll('\n', '%0A')}`,
+      );
+  } else
+    console.log(
+      `${source}: verified entries checked (unchanged content retains its snapshot time)`,
+    );
   Object.assign(snapshot, result.snapshot);
 }
 const repositories: RepositorySummary[] = [];

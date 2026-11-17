@@ -2,8 +2,12 @@ import { test, expect } from '@playwright/test';
 import { featuredProjects, curatedRepositories } from '../../src/data/profile';
 import feeds from '../../src/data/feeds/snapshot.json' with { type: 'json' };
 import { heroStories } from '../../src/data/hero-stories';
+import { selectFeedEntries } from '../../src/lib/feeds/select';
+import { validateSnapshot, type Snapshot } from '../../src/lib/feeds/model';
 
-const routes = ['', 'about/', 'projects/', 'speaking/'];
+validateSnapshot(feeds);
+const feedSnapshot: Snapshot = feeds;
+const routes = ['', 'about/', 'projects/', 'speaking/', 'events/'];
 
 test('all WordPress links open isolated new tabs, including mobile navigation and article cards', async ({
   page,
@@ -24,7 +28,7 @@ test('all WordPress links open isolated new tabs, including mobile navigation an
       await expect(page.locator('nav a[href="https://brunocapuano.wordpress.com"]')).toHaveCount(1);
       expect(await links.count()).toBeGreaterThan(0);
       if (!route) {
-        for (const article of feeds.entries.filter((entry) => entry.source === 'blog'))
+        for (const article of selectFeedEntries(feedSnapshot.entries, 'blog'))
           await expect(page.locator(`a[href="${article.url}"]`)).toHaveCount(1);
       }
       for (const link of await links.all()) {
@@ -77,8 +81,13 @@ test('curated portfolio and API repository cards retain distinct stable orders a
     const second = (await cards[1].boundingBox())!;
     expect(isMobile ? second.y > first.y : Math.abs(second.y - first.y) < 1).toBe(true);
     const conference = page.locator('[data-stream-series="conference"]');
-    await expect(conference.locator('h3')).toHaveText('.NET Conf 2026');
-    await expect(conference.locator('h4')).toHaveText(['.NET + Foundry: Better Together']);
+    await expect(conference.locator('.eyebrow')).toContainText('.NET Conf 2026');
+    await expect(conference.locator('h4')).toHaveText([
+      'Small Models, Big .NET Energy',
+      '.NET + Foundry: Better Together',
+      'Beyond Localhost: .NET Agents in Foundry',
+      'Give Your .NET Agent a Face: Building an AI Desk Companion with M5Stack',
+    ]);
     await expect(conference.locator('.conference-actions .button')).toHaveAttribute(
       'href',
       'https://www.dotnetconf.net/',

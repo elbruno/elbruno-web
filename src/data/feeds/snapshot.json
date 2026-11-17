@@ -6,6 +6,14 @@
   },
   "entries": [
     {
+      "id": "http://brunocapuano.wordpress.com/?p=43789",
+      "title": "Can a Small Fine-Tuned Model Help GitHub Copilot Understand My Robot’s Firmware?",
+      "url": "https://brunocapuano.wordpress.com/2026/11/16/can-a-small-fine-tuned-model-help-github-copilot-understand-my-robots-firmware/",
+      "publishedAt": "2026-11-16T19:53:51.000Z",
+      "summary": "I’m building New Year, New Bot, a project where AI, .NET, GitHub, and a tiny StackChan robot come together. And because apparently building a robot wasn’t enough, I decided to t...",
+      "source": "blog"
+    },
+    {
       "id": "http://elbruno.com/?p=43780",
       "title": "Local AI in GitHub Copilot: plenty of RAM, still out of memory?",
       "url": "https://brunocapuano.wordpress.com/2026/11/04/local-ai-in-github-copilot-plenty-of-ram-still-out-of-memory/",
@@ -22,36 +30,36 @@
       "source": "blog"
     },
     {
-      "id": "http://elbruno.com/?p=43767",
-      "title": "C# + Ollama: Give Your App a Voice with Phonon",
-      "url": "https://brunocapuano.wordpress.com/2026/10/25/c-ollama-give-your-app-a-voice-with-phonon/",
-      "publishedAt": "2026-10-25T20:35:08.000Z",
-      "summary": "Apple Silicon users, please try this C# sample and let us know whether speech generation and playback work on your Mac! ElBruno.Speech 1.6.0-preview.5 keeps setup simple: call s...",
-      "source": "blog"
-    },
-    {
-      "id": "https://www.ivoox.com/183458704",
-      "title": "NTN 594 - Reescribir ya no es pecado (Parte 2)",
-      "url": "https://www.ivoox.com/ntn-594-reescribir-ya-no-es-audios-mp3_rf_183458704_1.html",
-      "publishedAt": "2026-11-07T18:25:51.000Z",
-      "summary": "Parte 2: los agentes quieren llegar a verde y, si los dejás, cambian los tests • Dieselgate y la ley de Goodhart • «Si compila, es correcto» es un chiste • Cuánto cuesta reescri...",
+      "id": "https://www.ivoox.com/183897752",
+      "title": "NTN 598 - Agentes: el pasante con root",
+      "url": "https://www.ivoox.com/ntn-598-agentes-pasante-con-audios-mp3_rf_183897752_1.html",
+      "publishedAt": "2026-11-16T14:42:27.000Z",
+      "summary": "¡Hoy agentes, cero chismes! • Agentes = microservicios 2019 • Opus vs Argon buscando código • Tests truchos • ️ La respuesta: ingeniería Fuentes: • https://www.oreilly.com/radar...",
       "source": "podcast"
     },
     {
-      "id": "https://www.ivoox.com/183372480",
-      "title": "NTN 593 - Reescribir ya no es pecado (Parte 1)",
-      "url": "https://www.ivoox.com/ntn-593-reescribir-ya-no-es-audios-mp3_rf_183372480_1.html",
-      "publishedAt": "2026-11-05T15:30:53.000Z",
-      "summary": "Parte 1: en 2000 Spolsky dijo NUNCA reescribas. En 2026 Toub portó Copilot a Rust con agentes • Netscape y el origen de Rust • ⚔️ Big bang vs. pieza por pieza • https://www.deve...",
+      "id": "https://www.ivoox.com/183782975",
+      "title": "NTN 597 - Año 1 d.J.: Nvidia sin Jensen",
+      "url": "https://www.ivoox.com/ntn-597-ano-1-d-j-nvidia-audios-mp3_rf_183782975_1.html",
+      "publishedAt": "2026-11-13T14:08:28.000Z",
+      "summary": "️ ¡Episodio express! Es 2026 d.C., pero la industria ya vive el Año 1 d.J. (después de Jensen) • Jensen Huang deja Nvidia y Colette Kress queda como CEO interina… sin plan B • ¿...",
       "source": "podcast"
     },
     {
-      "id": "https://www.ivoox.com/183238577",
-      "title": "NTN 592 - IA operando IA, sin anestesia",
-      "url": "https://www.ivoox.com/ntn-592-ia-operando-ia-sin-audios-mp3_rf_183238577_1.html",
-      "publishedAt": "2026-11-03T18:20:52.000Z",
-      "summary": "️ ¡Nuevo NTN! El CEO de Proton llamó \"perdedores\" a los que piden pentest y canceló las re-entrevistas de IA GPT-6 Astra editó el 0,016% de los pesos de Qwen: matemática de 7,9%...",
+      "id": "https://www.ivoox.com/183681792",
+      "title": "NTN 596 - ️ Espías, Chips y Planillas",
+      "url": "https://www.ivoox.com/ntn-596-espias-chips-planillas-audios-mp3_rf_183681792_1.html",
+      "publishedAt": "2026-11-11T13:53:54.000Z",
+      "summary": "️ ¡Episodio express de NO TIENE NOMBRE! Claude se arma la oficina: Sheets, Whiteboards, Data y Meetings ️ Nvidia, Megaspeed y Alice Huang: ¿chips prohibidos rumbo a China? Bonus...",
       "source": "podcast"
+    },
+    {
+      "id": "yt:video:K1JaSF-m2SQ",
+      "title": "Kimi K3.1 Pro in Microsoft Foundry 🚀 | Quick GitHub Copilot App Demo",
+      "url": "https://www.youtube.com/watch?v=K1JaSF-m2SQ",
+      "publishedAt": "2026-11-10T15:08:41.000Z",
+      "summary": "🚀 Kimi K3.1 Pro is now available in Microsoft Foundry! And of course, I couldn't just read the announcement. I had to deploy the model, connect it to Copilot, and see it in act...",
+      "source": "youtube"
     },
     {
       "id": "yt:video:cKnNBwpiJdI",
@@ -68,14 +76,6 @@
       "publishedAt": "2026-08-04T17:15:30.000Z",
       "summary": "AI coding agents are amazing. They can write code, run commands, install packages, and do real work. And that is fantastic… until you remember they are running with your permiss...",
       "source": "youtube"
-    },
-    {
-      "id": "yt:video:uuODOdtD2uk",
-      "title": "I Built a Daily News Digest with GitHub Agentic Workflows 🤖📰",
-      "url": "https://www.youtube.com/watch?v=uuODOdtD2uk",
-      "publishedAt": "2026-07-30T14:39:17.000Z",
-      "summary": "GitHub ships features faster than I can update my demos 😄 So instead of checking the GitHub Changelog manually every day, I built a small project using GitHub Agentic Workflows...",
-      "source": "youtube"
     }
   ],
   "repositories": [
@@ -84,16 +84,16 @@
       "url": "https://github.com/elbruno/ElBruno.MarkItDotNet",
       "description": ".NET library that converts file formats to Markdown for AI pipelines",
       "language": "C#",
-      "stars": 58,
-      "updatedAt": "2026-11-04T02:06:38Z"
+      "stars": 61,
+      "updatedAt": "2026-11-17T05:16:48Z"
     },
     {
       "name": "elbruno.localembeddings",
       "url": "https://github.com/elbruno/elbruno.localembeddings",
       "description": ".NET library for local embedding generation using ONNX and Microsoft.Extensions.AI",
       "language": "C#",
-      "stars": 44,
-      "updatedAt": "2026-11-05T17:32:19Z"
+      "stars": 46,
+      "updatedAt": "2026-11-17T14:32:59Z"
     },
     {
       "name": "ElBruno.OllamaMonitor",
@@ -108,8 +108,8 @@
       "url": "https://github.com/elbruno/new-year-new-bot",
       "description": "A coming-soon project exploring an AI desk companion with M5Stack StackChan and .NET.",
       "language": "C#",
-      "stars": 5,
-      "updatedAt": "2026-10-29T15:07:44Z"
+      "stars": 7,
+      "updatedAt": "2026-11-11T14:31:43Z"
     },
     {
       "name": "PromptDot",
@@ -121,9 +121,9 @@
     }
   ],
   "fetchedAt": {
-    "blog": "2026-11-08T22:14:38.199Z",
-    "podcast": "2026-11-07T21:57:49.639Z",
-    "repositories": "2026-11-06T06:57:34.071Z",
-    "youtube": "2026-11-06T19:29:59.006Z"
+    "blog": "2026-11-17T16:23:51.043Z",
+    "podcast": "2026-11-17T16:23:51.493Z",
+    "repositories": "2026-11-17T16:23:52.898Z",
+    "youtube": "2026-11-17T16:23:52.433Z"
   }
 }

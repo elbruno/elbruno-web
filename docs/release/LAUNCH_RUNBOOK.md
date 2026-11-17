@@ -30,12 +30,12 @@ Before any authorized staging upload, the owner/operator must confirm the Azure 
 
 At the temporary hostname, verify:
 
-1. `/`, `/about/`, `/projects/`, `/speaking/` and their `/es/` equivalents return 200; unknown paths return a real 404.
+1. `/`, `/about/`, `/projects/`, `/speaking/`, `/events/` and their `/es/` equivalents return 200; unknown paths return a real 404.
 2. HTTP response headers include the intended CSP, `X-Content-Type-Options`, referrer policy, permissions policy, and `X-Robots-Tag: noindex, nofollow`; `/robots.txt` disallows indexing on the preview host.
 3. EN/ES language switching, titles, document language, canonical/alternate links, sitemap behavior, both themes, mobile navigation, keyboard focus, clipboard controls, robot, and Bug Invaders work.
 4. All three photo downloads and the ZIP return 200 with correct MIME types and the expected bytes. Photo reuse permissions remain unapproved.
-5. The latest committed content snapshot renders three blog, podcast, and video entries, plus the curated GitHub entries. Confirm no same-origin asset failures, broken images, console errors, or mobile overflow.
-6. Axe checks show no critical/serious findings on the eight localized content routes in light and dark themes. Manual keyboard, focus, contrast, language, image-alt, and responsive review is still required.
+5. The latest committed content snapshot renders two blog posts, two podcast episodes, three video entries, and the curated GitHub entries. The Home-only podcast strip matches the newest episode. Events shows the approved archive and upcoming entries (32 past and five upcoming on November 17), with working year/type filters and recording links. Confirm no same-origin asset failures, broken images, console errors, or mobile overflow.
+6. Axe checks show no critical/serious findings on the ten localized content routes in light and dark themes. Manual keyboard, focus, contrast, language, image-alt, and responsive review is still required.
 7. Page performance measurements and screenshots are recorded in the QA report, with the tested hostname, viewport, date, and browser identified.
 
 Do not treat temporary staging success as a production sign-off.

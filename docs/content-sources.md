@@ -22,7 +22,7 @@ OllamaMonitor, with PromptDot retained only in Projects/history. See
 
 `npm run refresh-content` requests each source with a 20-second timeout and a streaming 2 MB response limit. Only HTTPS endpoints are accepted. XML DTD/entity declarations and invalid XML are rejected. Snippets become bounded plain text; third-party HTML is never rendered. Entries need usable titles, HTTPS links and valid, nonfuture publication dates.
 
-Normalization removes duplicates, sorts by actual publication time and keeps three entries per source. Tie ordering is deterministic. A failed or empty source retains its old entries and old source metadata. Repository failures retain the previous matching repository. Snapshots are runtime-validated before writing and before rendering.
+Normalization removes duplicates, sorts by actual publication time and keeps three entries per source in the snapshot. Home displays the newest two blog posts and two podcast episodes, while YouTube retains three. The Home-only latest-podcast strip uses the same validated selection as the podcast cards, with the original Spanish title and an isolated external Listen link. It has no autoplay or embedded player and is omitted when no published episode exists. Tie ordering is deterministic. A failed or empty source retains its old entries and old source metadata. Repository failures retain the previous matching repository. Snapshots are runtime-validated before writing and before rendering.
 
 The committed JSON is sufficient for offline builds. Snapshot timestamps record
 material successful refreshes, not every unchanged poll, avoiding timestamp-only
@@ -31,7 +31,9 @@ GitHub descriptions retain source wording.
 
 ## Automation and manual operation
 
-The refresh GitHub Actions workflow runs at minute 17 every six hours and supports manual dispatch. Only changed normalized JSON is committed. A changed snapshot triggers a preview deployment only when Azure has been explicitly enabled. Bot commits do not themselves trigger ordinary push workflows, so refresh deployment is explicit.
+The refresh GitHub Actions workflow runs daily at **06:17 UTC** and supports manual dispatch. Only changed normalized JSON is committed. A changed snapshot triggers a preview deployment only when Azure has been explicitly enabled. The refresh job hands off the exact successfully pushed commit SHA; deployment explicitly checks out that SHA, not the original workflow revision. Bot commits do not themselves trigger ordinary push workflows, so refresh deployment is explicit.
+
+The site is static: a refreshed snapshot does not update an already deployed build. Local previews also need a refresh followed by a rebuild to display new publications. Snapshot timestamps describe material content changes, publication dates describe source posts, and the build revision identifies what was actually rendered. An unchanged successful poll does not advance snapshot timestamps or trigger a deployment.
 
 ```powershell
 npm run refresh-content
@@ -41,7 +43,7 @@ npm run build
 
 Environment overrides are optional and documented in `.env.example`. The TypeScript CLI reads process environment variables, not `.env` files automatically. Default sources require no token. If unauthenticated GitHub API requests are rate-limited, old metadata is preserved. Add a scoped read-only token only if observed limits justify it; never send that token to non-GitHub sources.
 
-GitHub schedules can be delayed or disabled after inactivity. Monitor workflow execution and warnings, verify publication dates in snapshots periodically, and manually dispatch after a long pause. A green run with outage warnings means the last-known-good content remains, not that every source refreshed successfully.
+GitHub schedules are best-effort and can be delayed or disabled after inactivity. Monitor workflow execution and RSS warning annotations, verify publication dates in snapshots periodically, and manually dispatch after a long pause. A green run with outage warnings means the last-known-good content remains, not that every source refreshed successfully.
 
 ## External content and images
 

@@ -1,0 +1,68 @@
+---
+import { eventDate, eventStatus, eventYear, type Appearance } from '../lib/events';
+import { talkTime } from '../data/talks';
+import { t, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+interface Props {
+  event: Appearance;
+  locale: Locale;
+  heading?: 'h3' | 'h4';
+}
+const { event, locale, heading: Heading = 'h3' } = Astro.props;
+const text = t(locale);
+const zone =
+  event.precision === 'time'
+    ? new Intl.DateTimeFormat('en', {
+        timeZone: 'America/Los_Angeles',
+        timeZoneName: 'short',
+      })
+        .formatToParts(new Date(event.start))
+        .find((part) => part.type === 'timeZoneName')?.value
+    : undefined;
+---
+
+<article
+  class="card event-card"
+  data-event-id={event.id}
+  data-event-type={event.type}
+  data-event-year={eventYear(event)}
+>
+  <p class="eyebrow">
+    {text.eventTypes[event.type]} · {event.series}
+  </p>
+  <Heading lang={event.language}>
+    <a href={event.url}>{event.title}</a>
+  </Heading>
+  <p class="talk-date">
+    <time datetime={event.start}>{eventDate(event, locale)}</time>
+    {event.precision === 'time' && (
+      <>
+        {' '}
+        · {talkTime(event.start)}–{talkTime(event.end)} {zone}
+      </>
+    )}
+  </p>
+  <p class="talk-status" data-event-status>
+    {text.eventStatus[eventStatus(event)]}
+  </p>
+  <p>{event.summary[locale]}</p>
+  <div class="actions">
+    {event.url !== event.videoUrl && (
+      <a class="small-link" href={event.url}>
+        {text.eventDetails}
+        <Icon name="arrow" size={16} />
+      </a>
+    )}
+    {event.videoUrl && (
+      <a class="small-link" href={event.videoUrl} data-recording-link>
+        {event.recordingScope === 'event' ? text.watchFullEvent : text.watchSession}
+        <Icon name="play" size={16} />
+      </a>
+    )}
+    {event.resourcesUrl && (
+      <a class="small-link" href={event.resourcesUrl}>
+        {text.episodeResources}
+      </a>
+    )}
+  </div>
+</article>

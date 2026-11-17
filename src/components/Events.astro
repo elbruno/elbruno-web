@@ -1,0 +1,124 @@
+---
+import { events } from '../data/events';
+import { eventStatus, eventYear, selectEvents } from '../lib/events';
+import { t, type Locale } from '../i18n';
+import EventCard from './EventCard.astro';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = t(locale);
+const now = Date.now();
+const ordered = selectEvents(events, {}, now);
+const years = [...new Set(events.map(eventYear))].sort().reverse();
+---
+
+<section
+  class="section events-directory"
+  data-events
+  data-event-labels={JSON.stringify(text.eventStatus)}
+>
+  <div class="event-filters" data-event-filters hidden>
+    <label>
+      {text.eventView}
+      <select data-event-view>
+        <option value="all">{text.allEvents}</option>
+        <option value="upcoming">{text.upcomingEvents}</option>
+        <option value="past">{text.pastEvents}</option>
+      </select>
+    </label>
+    <label>
+      {text.eventYear}
+      <select data-event-year>
+        <option value="all">{text.allYears}</option>
+        {years.map((year) => (
+          <option value={year}>{year}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      {text.eventType}
+      <select data-event-type>
+        <option value="all">{text.allTypes}</option>
+        {Object.entries(text.eventTypes).map(([type, label]) => (
+          <option value={type}>{label}</option>
+        ))}
+      </select>
+    </label>
+  </div>
+  <p class="editorial-note">{text.eventsCoverage}</p>
+  {(['upcoming', 'past'] as const).map((view) => {
+    const entries = ordered.filter(
+      (event) => (eventStatus(event, now) === 'past') === (view === 'past'),
+    );
+    return (
+      <section class="event-group" data-event-group={view}>
+        <h2>
+          {view === 'upcoming' ? text.upcomingEvents : text.pastEvents}
+          <span class="event-count" data-event-count>
+            ({entries.length})
+          </span>
+        </h2>
+        <div class="events-grid" data-event-list>
+          {entries.map((event) => (
+            <EventCard event={event} locale={locale} />
+          ))}
+        </div>
+        <p class="empty-state" role="status" data-event-empty hidden={entries.length > 0}>
+          {text.noEvents}
+        </p>
+      </section>
+    );
+  })}
+  <p class="editorial-note">{text.eventTimeNote}</p>
+</section>
+
+<script>
+  import { events } from '../data/events';
+  import { eventStatus, selectEvents } from '../lib/events';
+
+  document.querySelectorAll<HTMLElement>('[data-events]').forEach((root) => {
+    const view = root.querySelector<HTMLSelectElement>('[data-event-view]')!;
+    const year = root.querySelector<HTMLSelectElement>('select[data-event-year]')!;
+    const type = root.querySelector<HTMLSelectElement>('select[data-event-type]')!;
+    const labels = JSON.parse(root.dataset.eventLabels!) as Record<
+      ReturnType<typeof eventStatus>,
+      string
+    >;
+    function update() {
+      const now = Date.now();
+      const selected = selectEvents(
+        events,
+        { view: view.value, year: year.value, type: type.value },
+        now,
+      );
+      const selectedIds = new Set(selected.map((event) => event.id));
+      for (const entry of root.querySelectorAll<HTMLElement>('[data-event-id]'))
+        entry.hidden = !selectedIds.has(entry.dataset.eventId!);
+      const positions = { upcoming: 0, past: 0 };
+      for (const event of selectEvents(events, {}, now)) {
+        const status = eventStatus(event, now);
+        const view = status === 'past' ? 'past' : 'upcoming';
+        const group = root.querySelector<HTMLElement>(`[data-event-group="${view}"]`)!;
+        const entry = root.querySelector<HTMLElement>(`[data-event-id="${event.id}"]`)!;
+        const list = group.querySelector('[data-event-list]')!;
+        const next = list.children[positions[view]++] ?? null;
+        if (next !== entry) list.insertBefore(entry, next);
+        entry.querySelector('[data-event-status]')!.textContent = labels[status];
+      }
+      for (const group of root.querySelectorAll<HTMLElement>('[data-event-group]')) {
+        group.hidden = view.value !== 'all' && view.value !== group.dataset.eventGroup;
+        const count = [...group.querySelectorAll<HTMLElement>('[data-event-id]')].filter(
+          (entry) => !entry.hidden,
+        ).length;
+        group.querySelector('[data-event-count]')!.textContent = `(${count})`;
+        group.querySelector<HTMLElement>('[data-event-empty]')!.hidden = count > 0;
+      }
+    }
+    root.querySelector<HTMLElement>('[data-event-filters]')!.hidden = false;
+    for (const select of [view, year, type]) select.addEventListener('change', update);
+    update();
+    window.setInterval(update, 30_000);
+    document.addEventListener('visibilitychange', update);
+  });
+</script>

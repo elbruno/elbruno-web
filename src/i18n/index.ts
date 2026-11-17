@@ -1,5 +1,5 @@
 export type Locale = 'en' | 'es';
-export type Page = '' | 'about' | 'projects' | 'speaking';
+export type Page = '' | 'about' | 'projects' | 'speaking' | 'events';
 export const locales: Locale[] = ['en', 'es'];
 export const route = (locale: Locale, page: Page = '') =>
   `${locale === 'es' ? '/es/' : '/'}${page ? `${page}/` : ''}`;
@@ -9,6 +9,7 @@ const en = {
     about: 'About',
     projects: 'Projects',
     speaking: 'Speaker Kit',
+    events: 'Events',
     podcast: 'Podcast',
     blog: 'Blog',
   },
@@ -16,6 +17,35 @@ const en = {
   menu: 'Toggle navigation',
   theme: 'Toggle dark mode',
   home: 'Home',
+  latestPodcastLabel: 'Latest from No Tiene Nombre',
+  watchFullEvent: 'Watch the full event',
+  eventsTitle: 'Events & appearances',
+  eventsDescription:
+    'Upcoming events, conference sessions, livestreams and community collaborations.',
+  eventsCoverage:
+    'A growing, curated archive of publicly verified appearances. More events are added after review.',
+  upcomingEvents: 'Upcoming events',
+  pastEvents: 'Past events',
+  pastHighlights: '.NET Conf recordings',
+  allEventsLink: 'Explore all events & appearances',
+  allEvents: 'All events',
+  allYears: 'All years',
+  allTypes: 'All types',
+  eventView: 'Show',
+  eventYear: 'Year',
+  eventType: 'Type',
+  eventDetails: 'Event details',
+  noEvents: 'No events match this selection.',
+  noUpcomingEvents:
+    'No upcoming events are currently announced. Explore the archive and series below.',
+  eventTimeNote:
+    'Session times are shown in Pacific time. Date-only entries show the verified event or broadcast date, with status changing at midnight UTC.',
+  eventTypes: {
+    conference: 'Conference',
+    livestream: 'Livestream',
+    collaboration: 'Collaboration',
+  },
+  eventStatus: { upcoming: 'Upcoming', live: 'Scheduled now', today: 'Today', past: 'Past event' },
   eyebrow: 'AI, code & a little curiosity',
   hello: "Hi, I'm Bruno",
   role: 'Cloud Advocate at GitHub / Microsoft, focused on AI Agents, AI and .NET.',
@@ -128,7 +158,7 @@ const en = {
   mediaRightsPending:
     'These are authentic photographs with location metadata removed. Reuse rights are not included; please confirm permission and credit before publishing.',
   eventContactNote:
-    'For availability and event-specific details, contact Bruno through his public LinkedIn profile. Talk recordings and a current CV can be added when supplied.',
+    'For availability and event-specific details, contact Bruno through his public LinkedIn profile. More talk recordings and a current CV can be added when available.',
   communityPhotoTitle: 'Developer community',
   communityPhotoText: 'Bruno at Buenos Aires Data Day, with the audience in the room.',
   runningPhotoTitle: 'Trail running',
@@ -148,20 +178,21 @@ const en = {
   streamsArchive: 'Streams & series',
   streamsEyebrow: 'Learn live. Build together.',
   streamsDescription: 'Join me online for .NET, AI and a tiny robot with big plans.',
-  streamsTimezone: 'All scheduled times are Pacific Time (PST).',
+  streamsTimezone: 'All scheduled times are Pacific Time.',
   onlineConference: 'Online conference',
   livestreamSeries: 'Livestream series',
   exploreSeries: 'Explore the series',
   episode: 'Episode',
   episodeResources: 'Episode resources',
   sessionRegistration: 'Event details & registration',
+  watchSession: 'Watch the session',
   topicsPending: 'Topics and demos will be shared when confirmed.',
   botStreamingDetails: 'Live on Microsoft Reactor, in English.',
   proposedEpisodes: 'Explore proposed sessions',
   conferenceHeading: 'Speaking at .NET Conf 2026',
   conferenceHighlight: '.NET Conf 2026 speaking highlight',
   conferenceDescription:
-    'A demo-packed session at the official .NET developer conference, exploring Microsoft Foundry with .NET.',
+    'Four sessions from .NET Conf 2026, including the 30-minute .NET + Foundry: Better Together talk, with video and session-detail links.',
   exploreConference: 'Explore .NET Conf 2026',
   viewSessions: 'View sessions',
   speakingHighlight: 'Speaking highlight',
@@ -267,6 +298,7 @@ const es: typeof en = {
     about: 'Sobre mí',
     projects: 'Proyectos',
     speaking: 'Kit de charlas',
+    events: 'Eventos',
     podcast: 'Podcast',
     blog: 'Blog',
   },
@@ -274,6 +306,36 @@ const es: typeof en = {
   menu: 'Abrir o cerrar navegación',
   theme: 'Cambiar tema oscuro',
   home: 'Inicio',
+  latestPodcastLabel: 'Lo último de No Tiene Nombre',
+  watchFullEvent: 'Ver el evento completo',
+  eventsTitle: 'Eventos y participaciones',
+  eventsDescription:
+    'Próximos eventos, sesiones de conferencias, streams y colaboraciones con la comunidad.',
+  eventsCoverage:
+    'Un archivo en crecimiento de participaciones verificadas públicamente. Agregamos más eventos después de revisarlos.',
+  upcomingEvents: 'Próximos eventos',
+  pastEvents: 'Eventos pasados',
+  pastHighlights: 'Grabaciones de .NET Conf',
+  allEventsLink: 'Ver todos los eventos y participaciones',
+  allEvents: 'Todos los eventos',
+  allYears: 'Todos los años',
+  allTypes: 'Todos los tipos',
+  eventView: 'Mostrar',
+  eventYear: 'Año',
+  eventType: 'Tipo',
+  eventDetails: 'Detalles del evento',
+  noEvents: 'No hay eventos que coincidan con esta selección.',
+  noUpcomingEvents:
+    'No hay próximos eventos anunciados. Explora el archivo y las series a continuación.',
+  eventTimeNote:
+    'Los horarios se muestran en hora del Pacífico. Las entradas sin horario muestran la fecha verificada del evento o emisión y cambian de estado a medianoche UTC.',
+  eventTypes: { conference: 'Conferencia', livestream: 'Stream', collaboration: 'Colaboración' },
+  eventStatus: {
+    upcoming: 'Próximo',
+    live: 'En horario de emisión',
+    today: 'Hoy',
+    past: 'Evento pasado',
+  },
   eyebrow: 'IA, código y un poco de curiosidad',
   hello: 'Hola, soy Bruno',
   role: 'Cloud Advocate en GitHub / Microsoft, enfocado en agentes de IA, IA y .NET.',
@@ -389,7 +451,7 @@ const es: typeof en = {
   mediaRightsPending:
     'Son fotografías auténticas sin metadatos de ubicación. No se transfieren derechos de reutilización; confirma permisos y créditos antes de publicarlas.',
   eventContactNote:
-    'Para consultar disponibilidad y detalles del evento, contacta a Bruno mediante su perfil público de LinkedIn. Se pueden agregar grabaciones y un CV actualizado cuando estén disponibles.',
+    'Para consultar disponibilidad y detalles del evento, contacta a Bruno mediante su perfil público de LinkedIn. Se pueden agregar más grabaciones de charlas y un CV actualizado cuando estén disponibles.',
   communityPhotoTitle: 'Comunidad de desarrollo',
   communityPhotoText: 'Bruno en Buenos Aires Data Day, con el público en la sala.',
   runningPhotoTitle: 'Running en senderos',
@@ -410,20 +472,21 @@ const es: typeof en = {
   streamsEyebrow: 'Aprendemos en vivo. Construimos juntos.',
   streamsDescription:
     'Acompáñame online para explorar .NET, IA y un pequeño robot con grandes planes.',
-  streamsTimezone: 'Todos los horarios confirmados usan la hora del Pacífico (PST).',
+  streamsTimezone: 'Todos los horarios confirmados usan la hora del Pacífico.',
   onlineConference: 'Conferencia online',
   livestreamSeries: 'Serie en vivo',
   exploreSeries: 'Explora la serie',
   episode: 'Episodio',
   episodeResources: 'Recursos del episodio',
   sessionRegistration: 'Detalles e inscripción',
+  watchSession: 'Ver la sesión',
   topicsPending: 'Los temas y las demos se compartirán cuando estén confirmados.',
   botStreamingDetails: 'En vivo por Microsoft Reactor, en inglés.',
   proposedEpisodes: 'Explora las sesiones propuestas',
   conferenceHeading: 'Charlas en .NET Conf 2026',
   conferenceHighlight: 'Charlas destacadas en .NET Conf 2026',
   conferenceDescription:
-    'Una sesión con demos en la conferencia oficial para developers .NET, explorando Microsoft Foundry con .NET.',
+    'Cuatro sesiones de .NET Conf 2026, incluida la charla de 30 minutos .NET + Foundry: Better Together, con enlaces a videos y detalles.',
   exploreConference: 'Explora .NET Conf 2026',
   viewSessions: 'Ver sesiones',
   speakingHighlight: 'Charlas destacadas',

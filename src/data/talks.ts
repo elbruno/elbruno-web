@@ -3,19 +3,53 @@ import type { Locale } from '../i18n';
 export const conference = {
   name: '.NET Conf 2026',
   url: 'https://www.dotnetconf.net/',
-  agenda: 'https://www.dotnetconf.net/agenda',
-  verifiedOn: '2026-11-08',
+  agenda: 'https://dotnet.microsoft.com/en-us/conf/2026/agenda',
+  verifiedOn: '2026-11-16',
 };
 
 export const talks = [
   {
+    title: 'Small Models, Big .NET Energy',
+    start: '2026-11-10T18:30:00-08:00',
+    end: '2026-11-10T19:00:00-08:00',
+    url: 'https://dotnet.microsoft.com/en-us/conf/2026/agenda/brk037',
+    videoUrl: 'https://youtu.be/ongDevKLRxM',
+    summary: {
+      en: 'A practical look at running small AI models locally with Foundry Local and .NET.',
+      es: 'Una mirada práctica a cómo ejecutar modelos pequeños de IA localmente con Foundry Local y .NET.',
+    },
+  },
+  {
     title: '.NET + Foundry: Better Together',
     start: '2026-11-11T16:00:00-08:00',
     end: '2026-11-11T16:30:00-08:00',
-    url: `${conference.agenda}#session-D2T20261111040000`,
+    url: 'https://dotnet.microsoft.com/en-us/conf/2026/agenda/brk007',
+    videoUrl: 'https://www.youtube.com/watch?v=o2RUf9npgns',
     summary: {
-      en: 'A demo-packed tour of the latest Microsoft Foundry features and services, and how to get the most out of them with .NET.',
-      es: 'Un recorrido con demos por las novedades y servicios de Microsoft Foundry y cómo aprovecharlos con .NET.',
+      en: 'A 30-minute .NET Conf session exploring the latest Microsoft Foundry features and how to use them with .NET.',
+      es: 'Una sesión de 30 minutos en .NET Conf para explorar las novedades de Microsoft Foundry y cómo usarlas con .NET.',
+    },
+  },
+  {
+    title: 'Beyond Localhost: .NET Agents in Foundry',
+    start: '2026-11-11T17:00:00-08:00',
+    end: '2026-11-11T17:30:00-08:00',
+    url: 'https://dotnet.microsoft.com/en-us/conf/2026/agenda/brk031',
+    videoUrl: 'https://youtu.be/Dq8fcig5-Gk',
+    summary: {
+      en: 'A demo-led look at moving .NET agents from local development to managed hosting in Microsoft Foundry.',
+      es: 'Una demostración de cómo pasar agentes .NET del desarrollo local al alojamiento administrado en Microsoft Foundry.',
+    },
+  },
+  {
+    title: 'Give Your .NET Agent a Face: Building an AI Desk Companion with M5Stack',
+    start: '2026-11-11T19:00:00-08:00',
+    end: '2026-11-11T19:30:00-08:00',
+    url: 'https://dotnet.microsoft.com/en-us/conf/2026/agenda/brk040',
+    videoUrl: 'https://youtu.be/7EXrTrcJ7zA',
+    summary: {
+      en: 'A demo of connecting an M5Stack desk companion to a .NET backend, Aspire, and AI services.',
+      es: 'Una demostración de cómo conectar un compañero de escritorio M5Stack con un backend .NET, Aspire y servicios de IA.',
     },
   },
 ] as const;
@@ -23,19 +57,12 @@ export const talks = [
 export const foundrySeries = {
   title: '.NET + Foundry: Better Together',
   url: 'https://aka.ms/netfoundry-bt',
-  verifiedOn: '2026-11-08',
+  verifiedOn: '2026-11-16',
   summary: {
-    en: 'Live C# demos and practical explorations of Microsoft Foundry, on the .NET Channel and Microsoft Reactor.',
-    es: 'Demos en vivo con C# y exploraciones prácticas de Microsoft Foundry, en el canal de .NET y Microsoft Reactor.',
+    en: 'A biweekly live series with C# demos and practical explorations of Microsoft Foundry, on the .NET Channel and Microsoft Reactor.',
+    es: 'Una serie en vivo cada dos semanas, con demos en C# y exploraciones prácticas de Microsoft Foundry, en .NET Channel y Microsoft Reactor.',
   },
   sessions: [
-    {
-      episode: '03',
-      start: '2026-11-12T17:00:00Z',
-      end: '2026-11-12T18:00:00Z',
-      url: 'https://developer.microsoft.com/en-us/reactor/events/27632/',
-      resources: 'https://elbruno.github.io/NETFoundry-BetterTogether/episodes/03-2026-11-12/',
-    },
     {
       episode: '04',
       start: '2026-12-03T17:00:00Z',
@@ -49,7 +76,7 @@ export const foundrySeries = {
 export const botSeries = {
   title: 'New Year, New Bot',
   url: 'https://aka.ms/newyearnewbot',
-  verifiedOn: '2026-11-08',
+  verifiedOn: '2026-11-16',
   summary: {
     en: 'Three sessions, one tiny desk robot: from StackChan hardware to a .NET backend and an AI companion.',
     es: 'Tres sesiones y un pequeño robot de escritorio: de StackChan a un backend .NET y un compañero con IA.',

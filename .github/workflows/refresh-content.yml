@@ -1,7 +1,7 @@
 name: Refresh public content
 on:
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: '17 6 * * *'
   workflow_dispatch:
 permissions:
   contents: write
@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     outputs:
       changed: ${{ steps.changed.outputs.changed }}
+      sha: ${{ steps.changed.outputs.sha }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
@@ -36,6 +37,7 @@ jobs:
             git commit -m "Refresh verified public content" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
             git push
             echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           fi
   deploy:
     needs: refresh
@@ -47,6 +49,8 @@ jobs:
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ needs.refresh.outputs.sha }}
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: 24

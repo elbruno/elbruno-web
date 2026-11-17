@@ -7,6 +7,7 @@ import PackageSection from './PackageSection.astro';
 import ResourceLink from './ResourceLink.astro';
 import Talks from './Talks.astro';
 import HeroCarousel from './HeroCarousel.astro';
+import LatestPodcast from './LatestPodcast.astro';
 import { profile, featuredProjects } from '../data/profile';
 import { route, t, type Locale } from '../i18n';
 interface Props {
@@ -17,6 +18,7 @@ const text = t(locale);
 ---
 
 <Layout locale={locale}>
+  <LatestPodcast locale={locale} />
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">

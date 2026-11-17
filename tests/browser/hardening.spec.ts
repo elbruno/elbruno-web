@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const routes = ['', 'about/', 'projects/', 'speaking/'];
+const routes = ['', 'about/', 'projects/', 'speaking/', 'events/'];
 
 test('WCAG 2.2 AA checks cover both themes and languages', async ({ page }) => {
   for (const locale of ['/', '/es/']) {

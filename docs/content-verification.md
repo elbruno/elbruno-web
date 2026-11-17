@@ -4,52 +4,106 @@ This summary separates owner-supplied information from repository-backed project
 
 ## Facts used on the site
 
-### Upcoming streams, verified November 8, 2026
+### .NET Conf recordings and upcoming streams, verified November 16, 2026
 
-The [current official .NET Conf agenda](https://www.dotnetconf.net/agenda) now
-lists one Bruno Capuano session: [.NET + Foundry: Better Together](https://www.dotnetconf.net/agenda#session-D2T20261111040000),
-November 11, 2026, 16:00-16:30 PST. The former November 10 listing is now a
-different speaker's session, and Beyond Localhost is no longer listed. This
-verification supersedes the older two-session schedule documented below.
+The [official .NET Conf speaker profile](https://dotnet.microsoft.com/en-us/conf/2026/speakers/bruno-capuano)
+lists four sessions, with official details and on-demand recordings:
 
-Home and Speaker Kit now group online appearances into three cards:
+- [Small Models, Big .NET Energy](https://dotnet.microsoft.com/en-us/conf/2026/agenda/brk037),
+  November 10, 18:30-19:00 PST, [recording](https://youtu.be/ongDevKLRxM).
+- [.NET + Foundry: Better Together](https://dotnet.microsoft.com/en-us/conf/2026/agenda/brk007),
+  November 11, 16:00-16:30 PST, [recording](https://www.youtube.com/watch?v=o2RUf9npgns).
+- [Beyond Localhost: .NET Agents in Foundry](https://dotnet.microsoft.com/en-us/conf/2026/agenda/brk031),
+  November 11, 17:00-17:30 PST, [recording](https://youtu.be/Dq8fcig5-Gk).
+- [Give Your .NET Agent a Face: Building an AI Desk Companion with M5Stack](https://dotnet.microsoft.com/en-us/conf/2026/agenda/brk040),
+  November 11, 19:00-19:30 PST, [recording](https://youtu.be/7EXrTrcJ7zA).
 
-- **.NET Conf 2026:** the single currently listed session and official agenda.
-- **[.NET + Foundry: Better Together](https://aka.ms/netfoundry-bt):**
-  [episode 03](https://developer.microsoft.com/en-us/reactor/events/27632/),
-  November 12, 2026, and
-  [episode 04](https://developer.microsoft.com/en-us/reactor/events/27634/),
-  December 3, 2026. Reactor confirms 17:00-18:00 UTC for both, displayed as
-  09:00-10:00 PST. Each episode title links to its event registration page;
-  resources are accessible through the series website. Specific topics remain
-  unconfirmed. October episodes are not promoted as
-  future sessions.
-- **[New Year, New Bot](https://aka.ms/newyearnewbot):** three confirmed
-  livestreams on Microsoft Reactor, in English. The refreshed public series
-  page and all three Reactor event pages confirm 18:00-19:00 UTC, displayed as
-  10:00-11:00 PST:
-  - [Bring Your AI Desk Robot to Life](https://aka.ms/newyearnewbot/1):
-    November 24, 2026.
-  - [Build Its AI Brain with .NET and Aspire](https://aka.ms/newyearnewbot/2):
-    December 1, 2026.
-  - [Give Your Bot an Agentic Brain](https://aka.ms/newyearnewbot/3):
-    December 8, 2026.
-    This confirmed schedule supersedes the earlier cached proposal. Registration
-    is open; project demos and learning resources remain in progress.
+The BRK007 YouTube oEmbed metadata confirms the video title and official
+[@dotnet channel](https://www.youtube.com/@dotnet). Bruno supplied its URL.
+The other three recording URLs are listed in the matching public
+[session repositories](https://github.com/dotnetConf/2026/tree/main/Technical).
 
-Cards keep a single linked title per confirmed session and one general footer
-button per conference or series. Card headings are plain text, with no repeated
-registration, resource, or agenda links.
-All three cards use compact session lists rather than nested panels. Upcoming
-status labels stay hidden until a session is scheduled now or has ended; dates
-remain visible. Footer buttons share the same secondary style.
+The .NET + Foundry: Better Together livestream is a separate series that airs
+every two weeks on the .NET Channel and Microsoft Reactor. The similarly named
+BRK007 is a one-time, 30-minute .NET Conf session.
 
-All scheduled dates use Pacific Time with explicit PST labels. Browser status
-updates cover the conference and all five Reactor sessions, including leave-open
-transitions. Once all confirmed sessions end, the section becomes "Streams &
-series". No
-recording availability is inferred. Without JavaScript, status reflects build
-time. Titles of external episodes retain their published English wording.
+The homepage and Speaker Kit separate upcoming events from the four-session .NET Conf
+recording highlights. Upcoming events include [Foundry series episode 04](https://developer.microsoft.com/en-us/reactor/events/27634/)
+on December 3, and the three [New Year, New Bot](https://aka.ms/newyearnewbot)
+sessions on November 24, December 1, and December 8. Reactor confirms 17:00-18:00
+UTC (09:00-10:00 PST) for episode 04 and 18:00-19:00 UTC (10:00-11:00 PST) for
+the bot sessions. The series cadence and channels are owner-supplied. Past
+livestream dates are no longer shown as upcoming.
+
+Conference titles link to official session details, with separate recording
+links when published. Future livestream entries disappear from the live list
+after they end. Scheduled times use Pacific Time; status updates run on page
+load, every 30 seconds, and when the page becomes visible. Without JavaScript,
+status reflects build time. Upcoming sessions are ordered chronologically, rather
+than by series, and only the four conference recordings appear as past highlights
+on Home. Both presentations link to the full Events directory.
+
+### Events and RSS local review, November 17, 2026
+
+The bilingual `/events/` and `/es/events/` directory reuses the existing
+conference and series data. The local review catalogue now also includes 29
+independently verified public appearances: 11 .NET AI Community Standups, four
+Spanish-language Copilot sessions at Reactor, .NET Day on Agentic Modernization,
+the Reactor modernization-skills session, Latino NET Online, Foundry episode 03,
+and .NET Conf in Mississauga. Further public-source verification added six
+scheduled Reactor broadcasts, Foundry episodes 01 and 02, and the Global AI
+Sarasota keynote. On November 17 this produces **32 past events and
+five upcoming events**, rather than an archive restricted to four .NET Conf talks.
+Twenty-two archived appearances have public recording links. Distinct scheduled
+broadcasts keep their own event pages and times; simultaneous video mirrors do
+not create extra entries. The Sarasota video is labeled as a full-event recording,
+not a session-specific cut.
+
+Public YouTube descriptions establish participation for the standups and
+Latino NET Online; their broadcast metadata establishes dates. The linked
+Reactor and Meetup pages establish speakers and schedules for the other
+additions. Recording-only sources retain date-only precision rather than
+turning video runtime into a claimed session schedule. A recording link and
+an event-details link are not shown as separate actions when they are the same
+destination.
+
+The six additional Reactor schedules are publicly documented at events
+[26649](https://developer.microsoft.com/en-us/reactor/events/26649/),
+[26648](https://developer.microsoft.com/en-us/reactor/events/26648/),
+[27028](https://developer.microsoft.com/en-us/reactor/events/27028/),
+[27029](https://developer.microsoft.com/en-us/reactor/events/27029/),
+[26752](https://developer.microsoft.com/en-us/reactor/events/26752/) and
+[26753](https://developer.microsoft.com/en-us/reactor/events/26753/).
+The public [Foundry series resources](https://elbruno.github.io/NETFoundry-BetterTogether/)
+name Bruno and link the first two episodes; the
+[Sarasota agenda](https://globalai.community/e/9hlij6cs) names his keynote and
+its November 13, 14:15-14:45 EST slot.
+
+Additional records need public evidence of both participation and date.
+On November 17, the owner approved the expanded catalogue and all reviewed site
+changes for GitHub publication and deployment to the existing Azure site.
+Domain binding, DNS changes and WordPress migration remain outside this update.
+The archive is a growing curated selection, not a claim to cover every career
+appearance. Year/type filters compose with upcoming/past views; without
+JavaScript, both lists remain available as built. Completed sessions move to the
+archive while the page remains open, without inventing recording links. Home
+still has only the four .NET Conf recordings as past highlights; the larger
+archive belongs on Events.
+
+Dates with confirmed times use Pacific time for display and exact instants for
+classification. Future date-only records display the verified event/broadcast
+date, retain a separate Today state, and change status at midnight UTC rather
+than inventing a session time.
+
+The public WordPress and podcast feeds were successfully refreshed locally.
+The latest returned publications were the November 16 firmware fine-tuning blog
+post and `NTN 598 - Agentes: el pasante con root`. Home now displays two entries
+from each source and a compact latest-podcast strip below navigation. YouTube
+still displays three entries; repository and NuGet selection remain unchanged.
+
+Daily RSS automation is scheduled for 06:17 UTC. The deploy job now checks out
+the exact snapshot commit produced by refresh. The existing opt-in Azure preview
+gate is retained; the approved update uses that existing deployment workflow.
 
 ### V06 UX refinement, verified November 5, 2026
 

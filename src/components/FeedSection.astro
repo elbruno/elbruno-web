@@ -6,6 +6,7 @@ import { validateSnapshot, type Snapshot } from '../lib/feeds/model';
 import { profile } from '../data/profile';
 import { selectRepositories } from '../lib/repositories';
 import { feedExcerpt } from '../lib/feeds/parse';
+import { selectFeedEntries } from '../lib/feeds/select';
 import { t, type Locale } from '../i18n';
 interface Props {
   locale: Locale;
@@ -102,32 +103,32 @@ const freshness = (source: 'blog' | 'podcast' | 'youtube' | 'repositories') => {
     {freshness('repositories')}
   </p>
 </section>
-{sections.map((section) => (
-  <section class="section" id={`feed-${section.key}`}>
-    <div class="section-heading">
-      <div>
-        <h2>
-          <Icon name={section.icon} size={26} />
-          {section.title}
-        </h2>
-        <p>{section.subtitle}</p>
+{sections.map((section) => {
+  const entries = selectFeedEntries(snapshot.entries, section.key);
+  return (
+    <section class="section" id={`feed-${section.key}`}>
+      <div class="section-heading">
+        <div>
+          <h2>
+            <Icon name={section.icon} size={26} />
+            {section.title}
+          </h2>
+          <p>{section.subtitle}</p>
+        </div>
+        {section.url && (
+          <ResourceLink
+            class="small-link"
+            href={section.url}
+            locale={locale}
+            newTab={section.key === 'podcast'}
+          >
+            {text.sourceLink}
+            <Icon name="arrow" size={17} />
+          </ResourceLink>
+        )}
       </div>
-      {section.url && (
-        <ResourceLink
-          class="small-link"
-          href={section.url}
-          locale={locale}
-          newTab={section.key === 'podcast'}
-        >
-          {text.sourceLink}
-          <Icon name="arrow" size={17} />
-        </ResourceLink>
-      )}
-    </div>
-    <div class="feed-grid">
-      {snapshot.entries
-        .filter((entry) => entry.source === section.key)
-        .map((entry) => (
+      <div class="feed-grid">
+        {entries.map((entry) => (
           <article class="card feed-card">
             <span class="feed-kind">
               {section.key === 'podcast'
@@ -155,20 +156,23 @@ const freshness = (source: 'blog' | 'podcast' | 'youtube' | 'repositories') => {
             )}
           </article>
         ))}
-    </div>
-    <p class="editorial-note" data-feed-freshness>
-      {freshness(section.key)}
-    </p>
-    {snapshot.entries.filter((entry) => entry.source === section.key).length === 0 && (
-      <p class="empty-state">
-        {text.empty}
-        {!section.url && (
-          <span>
-            {' '}
-            {locale === 'en' ? 'Channel verification pending.' : 'Canal pendiente de verificación.'}
-          </span>
-        )}
+      </div>
+      <p class="editorial-note" data-feed-freshness>
+        {freshness(section.key)}
       </p>
-    )}
-  </section>
-))}
+      {entries.length === 0 && (
+        <p class="empty-state">
+          {text.empty}
+          {!section.url && (
+            <span>
+              {' '}
+              {locale === 'en'
+                ? 'Channel verification pending.'
+                : 'Canal pendiente de verificación.'}
+            </span>
+          )}
+        </p>
+      )}
+    </section>
+  );
+})}

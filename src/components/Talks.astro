@@ -1,54 +1,70 @@
 ---
-import {
-  conference,
-  talks,
-  foundrySeries,
-  botSeries,
-  talkDate,
-  talkTime,
-  talkStatus,
-} from '../data/talks';
+import { conference, talks, foundrySeries, botSeries, talkDate, talkTime } from '../data/talks';
+import { events } from '../data/events';
+import { selectEvents } from '../lib/events';
+import EventCard from './EventCard.astro';
 import Icon from './Icon.astro';
-import { t, type Locale } from '../i18n';
+import { route, t, type Locale } from '../i18n';
 interface Props {
   locale: Locale;
   compact?: boolean;
 }
 const { locale, compact = false } = Astro.props;
 const text = t(locale);
-const upcoming = [...talks, ...foundrySeries.sessions, ...botSeries.sessions].some(
-  (talk) => talkStatus(talk.start, talk.end) !== 'past',
-);
+const upcoming = selectEvents(events, { view: 'upcoming' });
 ---
 
 <section
   class="section talks-section"
   data-talks
-  data-upcoming={text.streamsHeading}
-  data-archive={text.streamsArchive}
-  data-status-labels={JSON.stringify(text.talkStatus)}
+  data-status-labels={JSON.stringify(text.eventStatus)}
 >
   <div class="section-heading">
     <div>
       <p class="eyebrow">{text.streamsEyebrow}</p>
-      <h2 data-talks-heading>{upcoming ? text.streamsHeading : text.streamsArchive}</h2>
-      <p>{text.streamsDescription}</p>
+      <h2>{text.eventsTitle}</h2>
+      <p>{text.eventsDescription}</p>
     </div>
+    <a class="small-link" href={route(locale, 'events')}>
+      {text.allEventsLink}
+      <Icon name="arrow" size={17} />
+    </a>
   </div>
-  <div class="talks-grid">
+  <section class="event-group" aria-labelledby="upcoming-events-heading">
+    <h3 id="upcoming-events-heading">{text.upcomingEvents}</h3>
+    <div class="events-grid" data-upcoming-list>
+      {upcoming.map((event) => (
+        <EventCard event={event} locale={locale} heading="h4" />
+      ))}
+    </div>
+    <p class="empty-state" data-no-upcoming hidden={upcoming.length > 0}>
+      {text.noUpcomingEvents}
+    </p>
+  </section>
+  <div class="event-series-links">
+    <p>
+      <a href={foundrySeries.url}>{foundrySeries.title}</a> · {foundrySeries.summary[locale]}
+    </p>
+    <p>
+      <a href={botSeries.url}>{botSeries.title}</a> · {botSeries.summary[locale]}
+    </p>
+  </div>
+  <section class="event-group" aria-labelledby="past-highlights-heading">
+    <h3 id="past-highlights-heading">{text.pastHighlights}</h3>
     <article class="card stream-card" data-stream-series="conference">
       <div class="stream-card-heading">
         <span class="mini-icon">
           <Icon name="mic" size={24} />
         </span>
-        <p class="eyebrow">{text.onlineConference}</p>
+        <p class="eyebrow">
+          {text.onlineConference} · {conference.name}
+        </p>
       </div>
-      <h3>{conference.name}</h3>
       <p class="stream-summary">{text.conferenceDescription}</p>
-      <ul class="stream-sessions">
+      <ul class="stream-sessions conference-highlights">
         {talks.map((talk) => (
-          <li class="talk-entry" data-talk-start={talk.start} data-talk-end={talk.end}>
-            <h4>
+          <li class="talk-entry">
+            <h4 lang="en">
               <a href={talk.url}>{talk.title}</a>
             </h4>
             <p class="talk-date">
@@ -56,19 +72,12 @@ const upcoming = [...talks, ...foundrySeries.sessions, ...botSeries.sessions].so
               {' · '}
               {talkTime(talk.start)}–{talkTime(talk.end)} PST
             </p>
-            <p
-              class="talk-status"
-              data-talk-status
-              hidden={talkStatus(talk.start, talk.end) === 'upcoming'}
-            >
-              {text.talkStatus[talkStatus(talk.start, talk.end)]}
+            <p class="talk-video-link">
+              <a class="small-link" href={talk.videoUrl}>
+                {text.watchSession}
+              </a>
             </p>
-            {!compact && (
-              <>
-                <p>{talk.summary[locale]}</p>
-                <p class="talk-speaker">Bruno Capuano · {text.agendaSource}</p>
-              </>
-            )}
+            {!compact && <p>{talk.summary[locale]}</p>}
           </li>
         ))}
       </ul>
@@ -78,107 +87,32 @@ const upcoming = [...talks, ...foundrySeries.sessions, ...botSeries.sessions].so
         </a>
       </div>
     </article>
-    <article class="card stream-card" data-stream-series="foundry">
-      <div class="stream-card-heading">
-        <span class="mini-icon">
-          <Icon name="play" size={24} />
-        </span>
-        <p class="eyebrow">{text.livestreamSeries}</p>
-      </div>
-      <h3>{foundrySeries.title}</h3>
-      <p class="stream-summary">{foundrySeries.summary[locale]}</p>
-      <ul class="stream-sessions">
-        {foundrySeries.sessions.map((session) => (
-          <li class="talk-entry" data-talk-start={session.start} data-talk-end={session.end}>
-            <h4>
-              <a href={session.url}>
-                {text.episode} {session.episode}
-              </a>
-            </h4>
-            <p class="talk-date">
-              <time datetime={session.start}>{talkDate(session.start, locale)}</time>
-              {' · '}
-              {talkTime(session.start)}–{talkTime(session.end)} PST
-            </p>
-            <p
-              class="talk-status"
-              data-talk-status
-              hidden={talkStatus(session.start, session.end) === 'upcoming'}
-            >
-              {text.talkStatus[talkStatus(session.start, session.end)]}
-            </p>
-          </li>
-        ))}
-      </ul>
-      <p class="stream-note">{text.topicsPending}</p>
-      <div class="actions stream-actions">
-        <a class="button secondary" href={foundrySeries.url}>
-          {text.exploreSeries}
-        </a>
-      </div>
-    </article>
-    <article class="card stream-card" data-stream-series="bot">
-      <div class="stream-card-heading">
-        <span class="mini-icon">
-          <Icon name="robot" size={24} />
-        </span>
-        <p class="eyebrow">{text.livestreamSeries}</p>
-      </div>
-      <h3>{botSeries.title}</h3>
-      <p class="stream-summary">{botSeries.summary[locale]}</p>
-      <ol class="stream-sessions stream-episode-list">
-        {botSeries.sessions.map((session) => (
-          <li class="talk-entry" data-talk-start={session.start} data-talk-end={session.end}>
-            <h4 lang="en">
-              <a href={session.url}>{session.title}</a>
-            </h4>
-            <p class="talk-date">
-              <time datetime={session.start}>{talkDate(session.start, locale)}</time>
-              {' · '}
-              {talkTime(session.start)}–{talkTime(session.end)} PST
-            </p>
-            <p
-              class="talk-status"
-              data-talk-status
-              hidden={talkStatus(session.start, session.end) === 'upcoming'}
-            >
-              {text.talkStatus[talkStatus(session.start, session.end)]}
-            </p>
-          </li>
-        ))}
-      </ol>
-      <p class="stream-note">{text.botStreamingDetails}</p>
-      <div class="actions stream-actions">
-        <a class="button secondary" href={botSeries.url}>
-          {text.exploreSeries}
-        </a>
-      </div>
-    </article>
-  </div>
+  </section>
   <p class="stream-timezone">{text.streamsTimezone}</p>
 </section>
 
 <script>
-  import { talkStatus } from '../data/talks';
+  import { events } from '../data/events';
+  import { eventStatus } from '../lib/events';
 
   function updateTalks() {
-    document.querySelectorAll<HTMLElement>('[data-talks]').forEach((section) => {
+    for (const section of document.querySelectorAll<HTMLElement>('[data-talks]')) {
       const labels = JSON.parse(section.dataset.statusLabels!) as Record<
-        ReturnType<typeof talkStatus>,
+        ReturnType<typeof eventStatus>,
         string
       >;
-      let upcoming = false;
-      section.querySelectorAll<HTMLElement>('[data-talk-start]').forEach((entry) => {
-        const status = talkStatus(entry.dataset.talkStart!, entry.dataset.talkEnd!);
-        upcoming ||= status !== 'past';
-        const label = entry.querySelector<HTMLElement>('[data-talk-status]')!;
-        label.textContent = labels[status];
-        label.hidden = status === 'upcoming';
-      });
-      section.querySelector('[data-talks-heading]')!.textContent = upcoming
-        ? section.dataset.upcoming!
-        : section.dataset.archive!;
-    });
+      const now = Date.now();
+      const cards = section.querySelectorAll<HTMLElement>('[data-event-id]');
+      for (const card of cards) {
+        const event = events.find((event) => event.id === card.dataset.eventId)!;
+        const status = eventStatus(event, now);
+        card.hidden = status === 'past';
+        card.querySelector('[data-event-status]')!.textContent = labels[status];
+      }
+      section.querySelector<HTMLElement>('[data-no-upcoming]')!.hidden = [...cards].some(
+        (card) => !card.hidden,
+      );
+    }
   }
   updateTalks();
   window.setInterval(updateTalks, 30_000);

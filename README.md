@@ -25,7 +25,7 @@ npm run test:e2e
 npm run format:check
 ```
 
-`validate` runs Astro/TypeScript checks, ESLint, fixture/unit tests, snapshot validation and the production build. Playwright exercises desktop and mobile layouts, all eight content routes, both themes, clipboard controls, robot reactions, secret activation paths and game controls. Automated axe checks are not a replacement for human accessibility testing.
+`validate` runs Astro/TypeScript checks, ESLint, fixture/unit tests, snapshot validation and the production build. Playwright exercises desktop and mobile layouts, all ten content routes, both themes, event filters, clipboard controls, robot reactions, secret activation paths and game controls. Automated axe checks are not a replacement for human accessibility testing.
 
 ### v0.2 baseline validation, November 4, 2026
 
@@ -109,7 +109,15 @@ required.
 | `docs\release\LAUNCH_RUNBOOK.md`               | Staging checks and separate migration/rollback preparation             |
 | `docs\media-usage.md`                          | Separate photo, generated art and code usage guidance                  |
 
-English routes are `/`, `/about/`, `/projects/`, `/speaking/`; Spanish equivalents use `/es/`. Translated pages share components rather than duplicated layouts. The language switch preserves the route. The site includes canonical URLs, language alternates, Person structured data, a sitemap and localized 404 content.
+English routes are `/`, `/about/`, `/projects/`, `/speaking/`, `/events/`; Spanish equivalents use `/es/`. Translated pages share components rather than duplicated layouts. The language switch preserves the route. The site includes canonical URLs, language alternates, Person structured data, a sitemap and localized 404 content.
+
+Events separates upcoming appearances from a reverse-chronological archive, with
+year/type filters and a usable no-JavaScript list. Only independently verified
+public facts belong in `src/data/events.ts` or its existing `src/data/talks.ts` source.
+Home keeps upcoming events and the four .NET Conf recording highlights, plus a
+link to the complete curated directory. New historical candidates are reviewed
+locally before any publication. The owner approved the expanded catalogue and
+reviewed changes for GitHub and the existing Azure site on November 17, 2026.
 
 ## Implementation milestones
 
@@ -130,7 +138,7 @@ npm run refresh-content
 npm run validate-content
 ```
 
-The refresh workflow runs every six hours and accepts manual dispatch. Failed sources preserve the previous snapshot. Only normalized changes are committed and redeployed. Optional `BLOG_RSS_URL` and `PODCAST_RSS_URL` process environment variables override the verified defaults. `.env.example` documents them; the standalone script does not automatically load `.env` files.
+The refresh workflow runs daily at 06:17 UTC and accepts manual dispatch. Failed sources preserve the previous snapshot. Only normalized changes are committed and redeployed; the deploy job checks out the exact pushed refresh commit, with the existing opt-in Azure preview gate unchanged. Home displays two blog posts, two podcast episodes and a latest-podcast strip; YouTube retains three entries. Optional `BLOG_RSS_URL` and `PODCAST_RSS_URL` process environment variables override the verified defaults. `.env.example` documents them; the standalone script does not automatically load `.env` files.
 
 See [content sources](docs/content-sources.md) for provenance, fallback behavior and monitoring.
 
@@ -147,7 +155,9 @@ Workflows pin Ubuntu 24.04 and commit-pinned Node 24-based checkout/setup action
 
 `public\staticwebapp.config.json` contains headers and real 404 behavior, not an SPA catch-all. The CSP permits same-origin scripts and assets only; inline CSS is allowed for presentation. There are no external embeds, analytics, browser-side API calls or forms. Theme choice is stored locally, and unavailable storage is handled. No cookies or leaderboard services are used.
 
-No Azure deployment, domain binding, DNS change or WordPress migration has been performed. Follow [the migration guide](docs/domain-migration.md) before any cutover.
+This update uses the existing Azure preview deployment. No domain binding, DNS
+change or WordPress migration is included. Follow [the migration guide](docs/domain-migration.md)
+before any separately approved domain cutover.
 
 Implementation was checked against the current official [Astro installation guide](https://docs.astro.build/en/install-and-setup/), [Astro Azure deployment guide](https://docs.astro.build/en/guides/deploy/microsoft-azure/), and [Azure build configuration reference](https://learn.microsoft.com/en-us/azure/static-web-apps/build-configuration). Small Astro scripts are emitted as external files so the same-origin script CSP does not block speaker controls.
 

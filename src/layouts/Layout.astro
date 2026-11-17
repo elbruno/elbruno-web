@@ -119,7 +119,7 @@ const schema = {
           id="primary-nav"
           aria-label={locale === 'en' ? 'Main navigation' : 'Navegación principal'}
         >
-          {(['about', 'projects', 'speaking'] as const).map((item) => (
+          {(['about', 'projects', 'events', 'speaking'] as const).map((item) => (
             <a href={route(locale, item)} aria-current={page === item ? 'page' : undefined}>
               {text.nav[item]}
             </a>
