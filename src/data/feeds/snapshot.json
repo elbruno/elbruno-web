@@ -6,6 +6,14 @@
   },
   "entries": [
     {
+      "id": "http://brunocapuano.wordpress.com/?p=43799",
+      "title": "Foundry Local 0.5.0: native sessions behind your .NET agent",
+      "url": "https://brunocapuano.wordpress.com/2026/11/19/foundry-local-0-5-0-native-sessions-behind-your-net-agent/",
+      "publishedAt": "2026-11-19T22:09:57.000Z",
+      "summary": "ElBruno.MAF.FoundryLocal.Adapter 0.5.0 moves local chat, streaming, and embeddings to native Foundry Local SDK sessions. If your app already uses IChatClient, keep your agent co...",
+      "source": "blog"
+    },
+    {
       "id": "http://brunocapuano.wordpress.com/?p=43789",
       "title": "Can a Small Fine-Tuned Model Help GitHub Copilot Understand My Robot’s Firmware?",
       "url": "https://brunocapuano.wordpress.com/2026/11/16/can-a-small-fine-tuned-model-help-github-copilot-understand-my-robots-firmware/",
@@ -19,14 +27,6 @@
       "url": "https://brunocapuano.wordpress.com/2026/11/04/local-ai-in-github-copilot-plenty-of-ram-still-out-of-memory/",
       "publishedAt": "2026-11-04T18:38:52.000Z",
       "summary": "I tried running MAI Code 1.1 Flash locally in the GitHub Copilot desktop app. A 52 GB model, four NVIDIA Tesla T4 GPUs, and hundreds of GB of system RAM. Should be easy, right?...",
-      "source": "blog"
-    },
-    {
-      "id": "http://elbruno.com/?p=43776",
-      "title": "From Zero to Production: Build an AI Agent in C# with Microsoft Agent Framework",
-      "url": "https://brunocapuano.wordpress.com/2026/10/31/from-zero-to-production-build-an-ai-agent-in-c-with-microsoft-agent-framework/",
-      "publishedAt": "2026-10-31T22:55:17.000Z",
-      "summary": "",
       "source": "blog"
     },
     {
@@ -84,8 +84,8 @@
       "url": "https://github.com/elbruno/ElBruno.MarkItDotNet",
       "description": ".NET library that converts file formats to Markdown for AI pipelines",
       "language": "C#",
-      "stars": 61,
-      "updatedAt": "2026-11-17T05:16:48Z"
+      "stars": 62,
+      "updatedAt": "2026-11-20T07:30:06Z"
     },
     {
       "name": "elbruno.localembeddings",
@@ -121,9 +121,9 @@
     }
   ],
   "fetchedAt": {
-    "blog": "2026-11-16T22:15:20.660Z",
+    "blog": "2026-11-20T15:24:07.655Z",
     "podcast": "2026-11-18T15:36:04.478Z",
-    "repositories": "2026-11-17T16:23:52.898Z",
+    "repositories": "2026-11-20T15:24:09.632Z",
     "youtube": "2026-11-10T19:50:44.935Z"
   }
 }
