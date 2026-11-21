@@ -1,12 +1,12 @@
 {
-  "fetchedAt": "2026-11-20T15:24:09.636Z",
-  "sourceUpdatedAt": "2026-11-19T18:16:08.963Z",
-  "repositorySourceUpdatedAt": "2026-11-19T18:16:08.963Z",
+  "fetchedAt": "2026-11-21T14:36:46.928Z",
+  "sourceUpdatedAt": "2026-11-20T17:47:20.608Z",
+  "repositorySourceUpdatedAt": "2026-11-20T17:47:20.608Z",
   "packages": [
     {
       "packageId": "ElBruno.LocalEmbeddings",
       "version": "1.6.9",
-      "totalDownloads": 25591,
+      "totalDownloads": 25946,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/elbruno.localembeddings",
@@ -15,7 +15,7 @@
     {
       "packageId": "ElBruno.LocalLLMs",
       "version": "0.24.3",
-      "totalDownloads": 6800,
+      "totalDownloads": 6855,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.LocalLLMs",
@@ -24,7 +24,7 @@
     {
       "packageId": "ElBruno.Text2Image",
       "version": "1.7.3",
-      "totalDownloads": 7585,
+      "totalDownloads": 7665,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.Text2Image",
@@ -32,8 +32,8 @@
     },
     {
       "packageId": "ElBruno.MarkItDotNet",
-      "version": "0.9.4",
-      "totalDownloads": 60330,
+      "version": "0.9.5",
+      "totalDownloads": 60619,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.MarkItDotNet",
@@ -42,7 +42,7 @@
     {
       "packageId": "ElBruno.HuggingFace.Downloader",
       "version": "1.6.3",
-      "totalDownloads": 34207,
+      "totalDownloads": 34739,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.HuggingFace.Downloader",
@@ -51,7 +51,7 @@
     {
       "packageId": "ElBruno.Speech.Abstractions",
       "version": "1.6.4",
-      "totalDownloads": 4882,
+      "totalDownloads": 4992,
       "lifecycle": "active",
       "listed": true,
       "repositoryUrl": "https://github.com/elbruno/ElBruno.Speech",

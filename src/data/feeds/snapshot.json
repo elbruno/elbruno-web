@@ -30,6 +30,14 @@
       "source": "blog"
     },
     {
+      "id": "https://www.ivoox.com/184138103",
+      "title": "NTN 600 - Anthropic toca la campana y tu agente cambia de pantalla",
+      "url": "https://www.ivoox.com/ntn-600-anthropic-toca-campana-audios-mp3_rf_184138103_1.html",
+      "publishedAt": "2026-11-20T14:33:28.000Z",
+      "summary": "Agentes sin trasbordo y Anthropic en Wall Street • Anthropic debuta en el Nasdaq (ANT) y cierra +17% su primer día • GitHub y el Agent Host Protocol: tu sesión sigue del celu a...",
+      "source": "podcast"
+    },
+    {
       "id": "https://www.ivoox.com/183995929",
       "title": "NTN 599 - Ignite 2026: 50 millones de agentes",
       "url": "https://www.ivoox.com/ntn-599-ignite-2026-50-millones-audios-mp3_rf_183995929_1.html",
@@ -43,14 +51,6 @@
       "url": "https://www.ivoox.com/ntn-598-agentes-pasante-con-audios-mp3_rf_183897752_1.html",
       "publishedAt": "2026-11-16T14:42:27.000Z",
       "summary": "¡Hoy agentes, cero chismes! • Agentes = microservicios 2019 • Opus vs Argon buscando código • Tests truchos • ️ La respuesta: ingeniería Fuentes: • https://www.oreilly.com/radar...",
-      "source": "podcast"
-    },
-    {
-      "id": "https://www.ivoox.com/183782975",
-      "title": "NTN 597 - Año 1 d.J.: Nvidia sin Jensen",
-      "url": "https://www.ivoox.com/ntn-597-ano-1-d-j-nvidia-audios-mp3_rf_183782975_1.html",
-      "publishedAt": "2026-11-13T14:08:28.000Z",
-      "summary": "️ ¡Episodio express! Es 2026 d.C., pero la industria ya vive el Año 1 d.J. (después de Jensen) • Jensen Huang deja Nvidia y Colette Kress queda como CEO interina… sin plan B • ¿...",
       "source": "podcast"
     },
     {
@@ -92,16 +92,16 @@
       "url": "https://github.com/elbruno/elbruno.localembeddings",
       "description": ".NET library for local embedding generation using ONNX and Microsoft.Extensions.AI",
       "language": "C#",
-      "stars": 46,
-      "updatedAt": "2026-11-17T14:32:59Z"
+      "stars": 47,
+      "updatedAt": "2026-11-21T10:25:17Z"
     },
     {
       "name": "ElBruno.OllamaMonitor",
       "url": "https://github.com/elbruno/ElBruno.OllamaMonitor",
       "description": "A tiny Windows system tray tool to monitor your local Ollama runtime.",
       "language": "C#",
-      "stars": 12,
-      "updatedAt": "2026-09-07T09:34:20Z"
+      "stars": 13,
+      "updatedAt": "2026-11-20T18:10:13Z"
     },
     {
       "name": "new-year-new-bot",
@@ -122,8 +122,8 @@
   ],
   "fetchedAt": {
     "blog": "2026-11-20T15:24:07.655Z",
-    "podcast": "2026-11-18T15:36:04.478Z",
-    "repositories": "2026-11-20T15:24:09.632Z",
+    "podcast": "2026-11-21T14:36:45.841Z",
+    "repositories": "2026-11-21T14:36:46.921Z",
     "youtube": "2026-11-10T19:50:44.935Z"
   }
 }
