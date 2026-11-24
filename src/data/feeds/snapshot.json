@@ -30,6 +30,14 @@
       "source": "blog"
     },
     {
+      "id": "https://www.ivoox.com/184261397",
+      "title": "NTN 601 - ARTEX: el hacker que no duerme",
+      "url": "https://www.ivoox.com/ntn-601-artex-hacker-que-audios-mp3_rf_184261397_1.html",
+      "publishedAt": "2026-11-23T18:47:52.000Z",
+      "summary": "Claude ayudó a demostrar Riemann y, la misma semana, ARTEX, un agente de IA open source, se paseó por bancos y nubes. • Cómo piensa ARTEX por dentro • Barracuda: 10 cuentas en 4...",
+      "source": "podcast"
+    },
+    {
       "id": "https://www.ivoox.com/184138103",
       "title": "NTN 600 - Anthropic toca la campana y tu agente cambia de pantalla",
       "url": "https://www.ivoox.com/ntn-600-anthropic-toca-campana-audios-mp3_rf_184138103_1.html",
@@ -43,14 +51,6 @@
       "url": "https://www.ivoox.com/ntn-599-ignite-2026-50-millones-audios-mp3_rf_183995929_1.html",
       "publishedAt": "2026-11-18T02:14:23.000Z",
       "summary": "¡Desarmamos Microsoft Ignite 2026! • Copilot, el nuevo sistema operativo del trabajo • MAI-Code-2 y pesos licenciados (con letra chica) • 50 millones de agentes con DNI y el chi...",
-      "source": "podcast"
-    },
-    {
-      "id": "https://www.ivoox.com/183897752",
-      "title": "NTN 598 - Agentes: el pasante con root",
-      "url": "https://www.ivoox.com/ntn-598-agentes-pasante-con-audios-mp3_rf_183897752_1.html",
-      "publishedAt": "2026-11-16T14:42:27.000Z",
-      "summary": "¡Hoy agentes, cero chismes! • Agentes = microservicios 2019 • Opus vs Argon buscando código • Tests truchos • ️ La respuesta: ingeniería Fuentes: • https://www.oreilly.com/radar...",
       "source": "podcast"
     },
     {
@@ -107,9 +107,9 @@
       "name": "new-year-new-bot",
       "url": "https://github.com/elbruno/new-year-new-bot",
       "description": "A coming-soon project exploring an AI desk companion with M5Stack StackChan and .NET.",
-      "language": "C#",
-      "stars": 7,
-      "updatedAt": "2026-11-11T14:31:43Z"
+      "language": "C++",
+      "stars": 8,
+      "updatedAt": "2026-11-24T01:08:10Z"
     },
     {
       "name": "PromptDot",
@@ -122,8 +122,8 @@
   ],
   "fetchedAt": {
     "blog": "2026-11-20T15:24:07.655Z",
-    "podcast": "2026-11-21T14:36:45.841Z",
-    "repositories": "2026-11-21T14:36:46.921Z",
+    "podcast": "2026-11-24T17:38:37.739Z",
+    "repositories": "2026-11-24T17:38:39.683Z",
     "youtube": "2026-11-10T19:50:44.935Z"
   }
 }
