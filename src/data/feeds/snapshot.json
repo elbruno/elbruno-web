@@ -30,6 +30,14 @@
       "source": "blog"
     },
     {
+      "id": "https://www.ivoox.com/184404701",
+      "title": "NTN 602 - Ctrl+Z a Jensen y Code Red en Microsoft",
+      "url": "https://www.ivoox.com/ntn-602-ctrl-z-a-jensen-y-audios-mp3_rf_184404701_1.html",
+      "publishedAt": "2026-11-25T18:28:37.000Z",
+      "summary": "️ ¡Semana de reinicios en NTN! • Jensen Huang vuelve como CEO de NVIDIA: qué pasó, su estilo de gestión y el impacto en política y mercados • Microsoft declara \"Code Red\" tras 2...",
+      "source": "podcast"
+    },
+    {
       "id": "https://www.ivoox.com/184261397",
       "title": "NTN 601 - ARTEX: el hacker que no duerme",
       "url": "https://www.ivoox.com/ntn-601-artex-hacker-que-audios-mp3_rf_184261397_1.html",
@@ -43,14 +51,6 @@
       "url": "https://www.ivoox.com/ntn-600-anthropic-toca-campana-audios-mp3_rf_184138103_1.html",
       "publishedAt": "2026-11-20T14:33:28.000Z",
       "summary": "Agentes sin trasbordo y Anthropic en Wall Street • Anthropic debuta en el Nasdaq (ANT) y cierra +17% su primer día • GitHub y el Agent Host Protocol: tu sesión sigue del celu a...",
-      "source": "podcast"
-    },
-    {
-      "id": "https://www.ivoox.com/183995929",
-      "title": "NTN 599 - Ignite 2026: 50 millones de agentes",
-      "url": "https://www.ivoox.com/ntn-599-ignite-2026-50-millones-audios-mp3_rf_183995929_1.html",
-      "publishedAt": "2026-11-18T02:14:23.000Z",
-      "summary": "¡Desarmamos Microsoft Ignite 2026! • Copilot, el nuevo sistema operativo del trabajo • MAI-Code-2 y pesos licenciados (con letra chica) • 50 millones de agentes con DNI y el chi...",
       "source": "podcast"
     },
     {
@@ -122,7 +122,7 @@
   ],
   "fetchedAt": {
     "blog": "2026-11-20T15:24:07.655Z",
-    "podcast": "2026-11-24T17:38:37.739Z",
+    "podcast": "2026-11-26T16:50:43.552Z",
     "repositories": "2026-11-24T17:38:39.683Z",
     "youtube": "2026-11-10T19:50:44.935Z"
   }
