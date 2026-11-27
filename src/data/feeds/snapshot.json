@@ -30,6 +30,14 @@
       "source": "blog"
     },
     {
+      "id": "https://www.ivoox.com/184487719",
+      "title": "NTN 603 - ⚙️ Viernes técnico: un motor que no duerme",
+      "url": "https://www.ivoox.com/ntn-603-viernes-tecnico-motor-audios-mp3_rf_184487719_1.html",
+      "publishedAt": "2026-11-27T14:41:20.000Z",
+      "summary": "️ ¡Vuelven los viernes técnicos a NTN! Y gracias por escucharnos Jon Hoyt (GitHub) quemó su primer motor de agentes y lo rehízo: SQLite, worktrees, watchdogs y un revisor indepe...",
+      "source": "podcast"
+    },
+    {
       "id": "https://www.ivoox.com/184404701",
       "title": "NTN 602 - Ctrl+Z a Jensen y Code Red en Microsoft",
       "url": "https://www.ivoox.com/ntn-602-ctrl-z-a-jensen-y-audios-mp3_rf_184404701_1.html",
@@ -46,12 +54,12 @@
       "source": "podcast"
     },
     {
-      "id": "https://www.ivoox.com/184138103",
-      "title": "NTN 600 - Anthropic toca la campana y tu agente cambia de pantalla",
-      "url": "https://www.ivoox.com/ntn-600-anthropic-toca-campana-audios-mp3_rf_184138103_1.html",
-      "publishedAt": "2026-11-20T14:33:28.000Z",
-      "summary": "Agentes sin trasbordo y Anthropic en Wall Street • Anthropic debuta en el Nasdaq (ANT) y cierra +17% su primer día • GitHub y el Agent Host Protocol: tu sesión sigue del celu a...",
-      "source": "podcast"
+      "id": "yt:video:BMy_GOD4t54",
+      "title": "What If Your AI Agents Had a $0.10 Daily Budget?",
+      "url": "https://www.youtube.com/watch?v=BMy_GOD4t54",
+      "publishedAt": "2026-11-26T17:15:28.000Z",
+      "summary": "My AI agents now get pocket money! 😂 Building AI agents is fun, but keeping their costs under control is just as important. In this quick demo, I explore the new Cost Controls...",
+      "source": "youtube"
     },
     {
       "id": "yt:video:K1JaSF-m2SQ",
@@ -67,14 +75,6 @@
       "url": "https://www.youtube.com/watch?v=cKnNBwpiJdI",
       "publishedAt": "2026-08-19T15:21:55.000Z",
       "summary": "Want to use your own AI model inside the GitHub Copilot app? In this quick demo, I connect models deployed in Microsoft Foundry, add them to the Copilot model picker, and use th...",
-      "source": "youtube"
-    },
-    {
-      "id": "yt:video:dUllqWMHJW4",
-      "title": "GitHub Copilot CLI /sandbox: Give Your AI Agent Boundaries",
-      "url": "https://www.youtube.com/watch?v=dUllqWMHJW4",
-      "publishedAt": "2026-08-04T17:15:30.000Z",
-      "summary": "AI coding agents are amazing. They can write code, run commands, install packages, and do real work. And that is fantastic… until you remember they are running with your permiss...",
       "source": "youtube"
     }
   ],
@@ -122,8 +122,8 @@
   ],
   "fetchedAt": {
     "blog": "2026-11-20T15:24:07.655Z",
-    "podcast": "2026-11-26T16:50:43.552Z",
+    "podcast": "2026-11-27T16:36:09.469Z",
     "repositories": "2026-11-24T17:38:39.683Z",
-    "youtube": "2026-11-10T19:50:44.935Z"
+    "youtube": "2026-11-27T16:36:10.346Z"
   }
 }
